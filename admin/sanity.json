@@ -1,7 +1,8 @@
 {
   "root": true,
   "project": {
-    "name": "t5-project"
+    "name": "t5-project",
+    "basePath": "/admin"
   },
   "api": {
     "projectId": "258g4cwf",
@@ -15,9 +16,7 @@
   ],
   "env": {
     "development": {
-      "plugins": [
-        "@sanity/vision"
-      ]
+      "plugins": ["@sanity/vision"]
     }
   },
   "parts": [
