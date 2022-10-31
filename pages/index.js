@@ -14,11 +14,11 @@ export default function Home({ periods }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="pt-[210px] mx-5 border-l-[1px] border-solid border-saddle">
-        <div className=" ml-[12px] snap-y snap-mandatory">
+        <div className="ml-[12px] snap-y snap-mandatory">
           {periods.map((period, key) => (
             <div key={key} className="flex items-center snap-center">
               <span className="w-3 h-3 bg-platinum border-solid border-[1px] border-saddle rounded-full ml-[-18px] mt-[-12px]"></span>
-              <div className="inline-block text-7xl pl-1 tracking-[-0.07em]">
+              <div className="inline-block text-7xl pl-1 tracking-[-0.07em] text-saddle">
                 {period.Period}
               </div>
             </div>

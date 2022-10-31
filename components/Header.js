@@ -13,8 +13,8 @@ const Header = ({ page, data }) => {
   return (
     <nav className="w-full fixed left-0 top-0 bg-saddle text-iceberg py-5">
       <div className="flex flex-row justify-between items-center px-5">
-        <div>
-          A Mur<span class="italic">mur</span>ation{" "}
+        <div className="tracking-[-0.07em]">
+          A Mur<span className="italic">mur</span>ation
         </div>
         <div
           className="flex items-center h-[26px]"
