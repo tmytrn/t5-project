@@ -8,7 +8,7 @@ const Disc = ({ data, setIsDiscOpen }) => {
 
   return (
     <DiscWrapper color={data.color.name}>
-      <div className="px-8">
+      <div className="px-8 text-saddle">
         <div className="flex flex-col justify-center text-center pt-[15px]">
           <a
             onClick={() => setIsDiscOpen(false)}
@@ -19,21 +19,25 @@ const Disc = ({ data, setIsDiscOpen }) => {
         </div>
         <div className="h-discscroll overflow-x-visible overflow-y-auto pb-8">
           <div className="font-sans text-[22px] uppercase text-center">
-            {data.country}
+            {data?.country}
           </div>
-          <div className="text-7xl pb-16 overflow-x-visible">
-            <span className="opening-mark overflow-x-visible">“</span>
-            {data.quote}
-            <span className="closing-mark">”</span>
+          <div className="text-7xl pb-16 ">
+            {/* <span className="opening-mark overflow-x-visible">“</span> */}
+            {data?.quote}
+            {/* <span className="closing-mark">”</span> */}
           </div>
-          <div>
-            <p className="font-sans uppercase text-md">Original Text</p>
-            <div className="italic text-5xl">{data.translation}</div>
-          </div>
-          <div className="font-sans uppercase text-md pb-4">
-            <p>Contributor</p>
-            <p>{data.contributor}</p>
-          </div>
+          {data.translation && (
+            <div>
+              <p className="font-sans uppercase text-md">Original Text</p>
+              <div className="italic text-5xl">{data?.translation}</div>
+            </div>
+          )}
+          {data.contributor && (
+            <div className="font-sans uppercase text-md pb-4">
+              <p>Contributor</p>
+              <p>{data?.contributor}</p>
+            </div>
+          )}
           {data.organization && (
             <div className="font-sans uppercase text-md pb-4">
               <p>Organization</p>
