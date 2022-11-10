@@ -23,13 +23,13 @@ const Disc = ({ data, setIsDiscOpen, isDiscOpen }) => {
           </div>
           <div className="text-7xl pb-16 ">
             {/* <span className="opening-mark overflow-x-visible">“</span> */}
-            {data?.quote}
+            {data?.translation}
             {/* <span className="closing-mark">”</span> */}
           </div>
           {data.translation && (
             <div>
               <p className="font-sans uppercase text-md">Original Text</p>
-              <div className="italic text-5xl">{data?.translation}</div>
+              <div className="italic text-5xl">{data?.quote}</div>
             </div>
           )}
           {data.contributor && (
