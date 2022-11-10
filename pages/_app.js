@@ -1,13 +1,13 @@
 import "../styles/globals.scss";
 import "../styles/fonts.scss";
 import React, { useState, useEffect } from "react";
-import MyLayout from "../components/Layout";
 
 function MyApp({ Component, pageProps }) {
+  const Layout = Component.Layout ? Component.Layout : React.Fragment;
   return (
-    <MyLayout page={pageProps.page}>
+    <Layout page={pageProps.page}>
       <Component {...pageProps} />
-    </MyLayout>
+    </Layout>
   );
 }
 

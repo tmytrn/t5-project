@@ -11,4 +11,11 @@ export const getAllPeriods = async () => {
   return data;
 };
 
+export const getPeriodPage = async (period) => {
+  const data = await getClient().fetch(queries.periodPageQuery, {
+    period: period,
+  });
+  return data;
+};
+
 export { queries };

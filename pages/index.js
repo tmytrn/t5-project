@@ -4,8 +4,9 @@ import Link from "next/link";
 import period from "../admin/schemas/period";
 import { getAllDiscs, getAllPeriods } from "../data";
 import styles from "../styles/Home.module.scss";
+import MyLayout from "components/Layout";
 
-export default function Home({ periods }) {
+const Home = ({ periods }) => {
   return (
     <div>
       <Head>
@@ -18,16 +19,18 @@ export default function Home({ periods }) {
           {periods.map((period, key) => (
             <div key={key} className="flex items-center snap-center">
               <span className="w-3 h-3 bg-platinum border-solid border-[1px] border-saddle rounded-full ml-[-18px] mt-[-12px]"></span>
-              <div className="inline-block text-7xl pl-1 tracking-[-0.07em] text-saddle">
-                {period.Period}
-              </div>
+              <Link href={`/period/${period.period}`}>
+                <a className="inline-block text-7xl pl-1 tracking-[-0.07em] text-saddle">
+                  {period.name}
+                </a>
+              </Link>
             </div>
           ))}
         </div>
       </main>
     </div>
   );
-}
+};
 
 export async function getStaticProps(context) {
   const periods = await getAllPeriods();
@@ -36,3 +39,6 @@ export async function getStaticProps(context) {
     revalidate: 10,
   };
 }
+
+Home.Layout = MyLayout;
+export default Home;

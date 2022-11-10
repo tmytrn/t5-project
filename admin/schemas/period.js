@@ -4,9 +4,34 @@ export default {
   title: "Periods",
   fields: [
     {
-      name: "Period",
+      name: "name",
+      type: "string",
+      title: "Name",
+    },
+    {
+      name: "period",
       type: "string",
       title: "Period",
+    },
+    {
+      name: "past",
+      type: "string",
+      title: "Past Period",
+    },
+    {
+      name: "future",
+      type: "string",
+      title: "Future Period",
+    },
+    {
+      name: "about",
+      type: "array",
+      title: "About",
+      of: [
+        {
+          type: "block",
+        },
+      ],
     },
   ],
   // orderings: [

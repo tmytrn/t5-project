@@ -11,7 +11,7 @@ const Header = ({ page, data }) => {
   const { loaderDidRun } = useContext(LoaderContext);
   const [isNavOpen, setIsNavOpen] = useState(false);
   return (
-    <nav className="w-full fixed left-0 top-0 bg-saddle text-iceberg py-5">
+    <nav className="w-full fixed left-0 top-0 bg-saddle text-iceberg py-5 z-50">
       <div className="flex flex-row justify-between items-center px-5">
         <div className="tracking-[-0.07em]">
           A Mur<span className="italic">mur</span>ation
@@ -49,7 +49,7 @@ const Header = ({ page, data }) => {
             </Link>
           </div>
         </div>
-      ) : (
+      ) : page == "period" ? null : (
         <div className="flex flex-col md:flex-row justify-between align-top px-5">
           <h1 className="uppercase font-sans text-6xl">Welcome.</h1>
           <div className="uppercase font-sans text-lg md:text-xl ">
