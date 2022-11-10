@@ -27,3 +27,17 @@ a {
 .closing-mark {
   margin-right: -27px;
 }
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.bg-moss-green {
+  background: rgba(149, 149, 56, 0.6);
+}

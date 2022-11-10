@@ -7,7 +7,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Period = ({ period, data }) => {
-  const [isDiskOpen, setIsDiscOpen] = useState(false);
+  const [isDiscOpen, setIsDiscOpen] = useState(false);
   const [currentDisc, setCurentDisc] = useState();
   data = data[0];
   const discs = data.discs;
@@ -68,24 +68,27 @@ const Period = ({ period, data }) => {
               </a>
             </div>
           </div>
-          <div className="pl-[32px] py-2 font-sans w-full">
-            <div className="flex items-center snap-center">
-              <span className="w-3 h-3 bg-platinum border-solid border-[1px] border-saddle rounded-full ml-[-18px]"></span>
-              <Link href={`/period/${data.past}`}>
-                <a className="ml-4 uppercase bg-saddle text-iceberg px-3 py-1 rounded-full text-center">
-                  To the Past
-                </a>
-              </Link>
+          {data.past && (
+            <div className="pl-[32px] py-2 font-sans w-full">
+              <div className="flex items-center snap-center">
+                <span className="w-3 h-3 bg-platinum border-solid border-[1px] border-saddle rounded-full ml-[-18px]"></span>
+                <Link href={`/period/${data.past}`}>
+                  <a className="ml-4 uppercase bg-saddle text-iceberg px-3 py-1 rounded-full text-center">
+                    To the Past
+                  </a>
+                </Link>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </main>
       <AnimatePresence>
-        {isDiskOpen && (
-          <Disc data={currentDisc} setIsDiscOpen={setIsDiscOpen} />
-        )}
+        <Disc
+          data={currentDisc}
+          setIsDiscOpen={setIsDiscOpen}
+          isDiscOpen={isDiscOpen}
+        />
       </AnimatePresence>
-      <Disc />
     </div>
   );
 };

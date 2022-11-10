@@ -2,12 +2,12 @@ import { motion } from "framer-motion";
 import { slugify } from "util/utiliities";
 import DropdownArrow from "svg/DropdownArrow";
 
-const Disc = ({ data, setIsDiscOpen }) => {
+const Disc = ({ data, setIsDiscOpen, isDiscOpen }) => {
   console.log("DISK DATA: ", data);
   if (!data) return null;
 
   return (
-    <DiscWrapper color={data.color.name}>
+    <DiscWrapper color={data.color.name} isDiscOpen={isDiscOpen}>
       <div className="px-8 text-saddle">
         <div className="flex flex-col justify-center text-center pt-[15px]">
           <a
@@ -17,7 +17,7 @@ const Disc = ({ data, setIsDiscOpen }) => {
             <DropdownArrow />
           </a>
         </div>
-        <div className="h-discscroll overflow-x-visible overflow-y-auto pb-8">
+        <div className="h-discscroll overflow-y-auto pb-8 hide-scrollbar">
           <div className="font-sans text-[22px] uppercase text-center">
             {data?.country}
           </div>
@@ -62,54 +62,130 @@ const Disc = ({ data, setIsDiscOpen }) => {
   );
 };
 
-const DiscWrapper = ({ color, children }) => {
+const variants = {
+  visible: {
+    y: 0,
+    transition: {
+      duration: 0.5,
+    },
+  },
+  hidden: {
+    y: "100%",
+    transition: {
+      duration: 0.5,
+    },
+  },
+};
+
+const DiscWrapper = ({ color, children, isDiscOpen }) => {
   switch (color) {
     case "desert tan":
       return (
-        <motion.div className="w-disc h-disc fixed mx-[5px] top-[80px] left-0 bg-deserttan/[0.9] rounded-[15px] border-solid border-saddle border-[1px]">
-          {children}
+        <motion.div
+          className="w-disc h-disc fixed mx-[5px] top-[80px] left-0 bg-white/[0.85] rounded-[15px] border-solid border-saddle border-[1px]"
+          initial={"hidden"}
+          variants={variants}
+          animate={isDiscOpen ? "visible" : "hidden"}
+        >
+          <div className="absolute w-full h-full bg-deserttan/[0.6]">
+            {children}
+          </div>
         </motion.div>
       );
     case "moss green":
       return (
-        <motion.div className="w-disc h-disc fixed mx-[5px] top-[80px] left-0 bg-mossgreen/[0.9] rounded-[15px] border-solid border-saddle border-[1px]">
-          {children}
+        <motion.div
+          className="w-disc h-disc fixed mx-[5px] top-[80px] left-0 bg-white/[0.85] rounded-[15px] border-solid border-saddle border-[1px]"
+          initial={"hidden"}
+          variants={variants}
+          animate={isDiscOpen ? "visible" : "hidden"}
+        >
+          {" "}
+          <div className="absolute w-full h-full bg-mossgreen/[0.6]">
+            {children}
+          </div>
         </motion.div>
       );
     case "olive drab":
       return (
-        <motion.div className="w-disc h-disc fixed mx-[5px] top-[80px] left-0 bg-olivedrab/[0.9] rounded-[15px] border-solid border-saddle border-[1px]">
-          {children}
+        <motion.div
+          className="w-disc h-disc fixed mx-[5px] top-[80px] left-0 bg-white/[0.85] rounded-[15px] border-solid border-saddle border-[1px]"
+          initial={"hidden"}
+          variants={variants}
+          animate={isDiscOpen ? "visible" : "hidden"}
+        >
+          {" "}
+          <div className="absolute w-full h-full bg-olivedrab/[0.6]">
+            {children}
+          </div>
         </motion.div>
       );
     case "pewter":
       return (
-        <motion.div className="w-disc h-disc fixed mx-[5px] top-[80px] left-0 bg-pewter/[0.9] rounded-[15px] border-solid border-saddle border-[1px]">
-          {children}
+        <motion.div
+          className="w-disc h-disc fixed mx-[5px] top-[80px] left-0 bg-white/[0.85] rounded-[15px] border-solid border-saddle border-[1px]"
+          initial={"hidden"}
+          variants={variants}
+          animate={isDiscOpen ? "visible" : "hidden"}
+        >
+          {" "}
+          <div className="absolute w-full h-full bg-pwewter/[0.6]">
+            {children}
+          </div>
         </motion.div>
       );
     case "clear":
       return (
-        <motion.div className="w-disc h-disc fixed mx-[5px] top-[80px] left-0 bg-clear/[0.9] rounded-[15px] border-solid border-saddle border-[1px]">
-          {children}
+        <motion.div
+          className="w-disc h-disc fixed mx-[5px] top-[80px] left-0 bg-white/[0.85] rounded-[15px] border-solid border-saddle border-[1px]"
+          variants={variants}
+          animate={isDiscOpen ? "visible" : "hidden"}
+        >
+          {" "}
+          <div className="absolute w-full h-full bg-clear/[0.6]">
+            {children}
+          </div>
         </motion.div>
       );
     case "old penny":
       return (
-        <motion.div className="w-disc h-disc fixed mx-[5px] top-[80px] left-0 bg-oldpenny/[0.9] rounded-[15px] border-solid border-saddle border-[1px]">
-          {children}
+        <motion.div
+          className="w-disc h-disc fixed mx-[5px] top-[80px] left-0 bg-white/[0.85] rounded-[15px] border-solid border-saddle border-[1px]"
+          variants={variants}
+          animate={isDiscOpen ? "visible" : "hidden"}
+        >
+          {" "}
+          <div className="absolute w-full h-full bg-oldpenny/[0.6]">
+            {children}
+          </div>
         </motion.div>
       );
     case "new penny":
       return (
-        <motion.div className="w-disc h-disc fixed mx-[5px] top-[80px] left-0 bg-newpenny/[0.9] rounded-[15px] border-solid border-saddle border-[1px]">
-          {children}
+        <motion.div
+          className="w-disc h-disc fixed mx-[5px] top-[80px] left-0 bg-white/[0.85] rounded-[15px] border-solid border-saddle border-[1px]"
+          initial={"hidden"}
+          variants={variants}
+          animate={isDiscOpen ? "visible" : "hidden"}
+        >
+          {" "}
+          <div className="absolute w-full h-full bg-newpenny/[0.6]">
+            {children}
+          </div>
         </motion.div>
       );
     case "dark earth":
       return (
-        <motion.div className="w-disc h-disc fixed mx-[5px] top-[80px] left-0 bg-darkearth/[0.9] rounded-[15px] border-solid border-saddle border-[1px]">
-          {children}
+        <motion.div
+          className="w-disc h-disc fixed mx-[5px] top-[80px] left-0 bg-white/[0.85] rounded-[15px] border-solid border-saddle border-[1px]"
+          initial={"hidden"}
+          variants={variants}
+          animate={isDiscOpen ? "visible" : "hidden"}
+        >
+          {" "}
+          <div className="absolute w-full h-full bg-darkearth/[0.6]">
+            {children}
+          </div>
         </motion.div>
       );
   }
