@@ -21,14 +21,14 @@ const Disc = ({ data, setIsDiscOpen, isDiscOpen }) => {
           <div className="font-sans text-[22px] uppercase text-center">
             {data?.country}
           </div>
-          <div className="text-7xl pb-16 ">
+          <div className="text-7xl pb-8 ">
             {/* <span className="opening-mark overflow-x-visible">“</span> */}
             {data?.translation}
             {/* <span className="closing-mark">”</span> */}
           </div>
           {data.translation && (
             <div>
-              <p className="font-sans uppercase text-md">Original Text</p>
+              <p className="font-sans uppercase text-md pb-4">Original Text</p>
               <div className="italic text-5xl">{data?.quote}</div>
             </div>
           )}
