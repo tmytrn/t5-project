@@ -6,7 +6,6 @@ export const discQuery = `
 
 export const periodQuery = `
 *[_type == "period"] | order(name desc){
-name,
 period,
 }
 `;

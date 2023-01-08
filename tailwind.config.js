@@ -5,6 +5,10 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    letterSpacing: {
+      tightest: " -0.07em",
+      tight: " 0.03em",
+    },
     fontSize: {
       sm: "0.8rem",
       base: "1rem",
@@ -22,7 +26,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        platinum: "#EBE9E0",
+        platinum: "#FFF3CF",
         saddle: "#5B3B0B",
         iceberg: "#E2F0F8",
         mossgreen: "#959538",

@@ -4,11 +4,6 @@ export default {
   title: "Periods",
   fields: [
     {
-      name: "name",
-      type: "string",
-      title: "Name",
-    },
-    {
       name: "period",
       type: "string",
       title: "Period",

@@ -1,5 +1,6 @@
 import "../styles/globals.scss";
 import "../styles/fonts.scss";
+import "../styles/BayA.scss";
 import React, { useState, useEffect } from "react";
 
 function MyApp({ Component, pageProps }) {

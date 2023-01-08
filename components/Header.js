@@ -7,30 +7,13 @@ import Facebook from "../svg/Facebook";
 import Instagram from "../svg/Instagram";
 import Twitter from "../svg/Twitter";
 import { useState } from "react";
+import React from "react";
+
 const Header = ({ page, data }) => {
   const { loaderDidRun } = useContext(LoaderContext);
   const [isNavOpen, setIsNavOpen] = useState(false);
   return (
-    <nav className="w-full fixed left-0 top-0 bg-saddle text-iceberg py-5 z-50">
-      <div className="flex flex-row justify-between items-center px-5">
-        <div className="tracking-[-0.07em]">
-          A Mur<span className="italic">mur</span>ation
-        </div>
-        <div
-          className="flex items-center h-[26px]"
-          onClick={() => setIsNavOpen(!isNavOpen)}
-        >
-          {isNavOpen ? (
-            <div className="flex font-sans items-center uppercase border-solid border-iceberg border-[1px] rounded-full px-2 bg-iceberg text-saddle">
-              close
-            </div>
-          ) : (
-            <div className="flex items-center">
-              <Hamburger />
-            </div>
-          )}
-        </div>
-      </div>
+    <nav className="w-full fixed left-0 top-0 text-saddle z-50 ">
       {isNavOpen ? (
         <div className="w-full flex flex-col justify-center items-center pt-8">
           <div className="w-full uppercase text-center font-sans border-t-[1px] border-b-[1px] border-iceberg border-solid">
@@ -49,14 +32,28 @@ const Header = ({ page, data }) => {
             </Link>
           </div>
         </div>
-      ) : page == "period" ? null : (
-        <div className="flex flex-col md:flex-row justify-between align-top px-5">
-          <h1 className="uppercase font-sans text-6xl">Welcome.</h1>
-          <div className="uppercase font-sans text-lg md:text-xl ">
-            Choose a time to start <br />
-            your journey
+      ) : page == "home" ? (
+        <>
+          <div className="flex flex-col md:flex-row justify-between align-top p-5 sunset">
+            <p className="font-sans text-center"> WELCOME TO</p>
+            <h1 className=" font-serif text-6xl text-opacity-90 tracking-tightest text-center">
+              A Mur<i>mur</i>ation,
+            </h1>
+            <div className="uppercase font-sans text-base md:text-xl text-center tracking-tight">
+              HOW WE COME, GO, AND SHAPE THE LAND.
+            </div>
           </div>
-        </div>
+          <div className=" uppercase font-sans text-base md:text-xl text-center tracking-tight py-5">
+            START YOUR JOURNEY HERE BY CHOOSING AN ERA BELOW.
+          </div>{" "}
+        </>
+      ) : (
+        <>
+          <div className="absolute w-full h-[58px] period-gradient z-10 top-[56px]"></div>
+          <div className="absolute w-full flex flex-col md:flex-row justify-between align-top p-4 nav-gradient z-20">
+            <p className="font-serif text-left text-base">A Murmuration</p>
+          </div>
+        </>
       )}
     </nav>
   );
