@@ -13,16 +13,22 @@ const Header = ({ page, data }) => {
   const { loaderDidRun } = useContext(LoaderContext);
   const [isNavOpen, setIsNavOpen] = useState(false);
   return (
-    <nav className="w-full fixed left-0 top-0 text-saddle z-50 ">
+    <nav className="w-full fixed left-0 top-0 text-saddle z-50 h-[56px]">
       {isNavOpen ? (
-        <div className="w-full flex flex-col justify-center items-center pt-8">
+        <div className="w-full flex flex-col justify-center items-center sunset">
+          <div className="w-full flex flex-row md:flex-row justify-between items-center p-4 nav-gradient z-20">
+            <p className="font-serif text-left text-base">A Murmuration</p>
+            <a
+              className="flex justify-center items-center "
+              onClick={() => {
+                setIsNavOpen(false);
+              }}
+            >
+              <Hamburger />
+            </a>
+          </div>
           <div className="w-full uppercase text-center font-sans border-t-[1px] border-b-[1px] border-iceberg border-solid">
             About
-          </div>
-          <div className="w-full flex flex-row justify-between py-8 px-12">
-            <Facebook />
-            <Twitter />
-            <Instagram />
           </div>
           <div className="inline-block text-center">
             <Link href="/">
@@ -49,9 +55,21 @@ const Header = ({ page, data }) => {
         </>
       ) : (
         <>
-          <div className="absolute w-full h-[58px] period-gradient z-10 top-[56px]"></div>
-          <div className="absolute w-full flex flex-col md:flex-row justify-between align-top p-4 nav-gradient z-20">
-            <p className="font-serif text-left text-base">A Murmuration</p>
+          <div className="absolute w-full flex flex-row md:flex-row justify-between items-center p-4 nav-gradient z-20">
+            <Link href="/">
+              <a className="font-serif text-left text-base">
+                A Mur<i>mur</i>ation
+              </a>
+            </Link>
+
+            <a
+              className="flex justify-center items-center "
+              onClick={() => {
+                setIsNavOpen(true);
+              }}
+            >
+              <Hamburger />
+            </a>
           </div>
         </>
       )}

@@ -2,21 +2,17 @@ import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-const BayA = ({ zoom, handleDiscClick }) => {
+const BayA = ({ zoom, handleDiscClick, mapRef }) => {
   return (
     <motion.svg
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       viewBox="0 0 2208.27 996.35"
-      intial={{ scale: 0.85, x: "-10%", opacity: 0 }}
-      animate={{ scale: zoom / 100, x: "-10%", opacity: 1 }}
+      intial={{ scale: 0.85, opacity: 0 }}
+      animate={{ scale: zoom / 100, opacity: 1 }}
+      // className="absolute left-[calc(50% - 2200px)] top-[calc(50% - 996px)] w-[2208px] h-[996px]"
       drag
-      dragConstraints={{
-        top: -50,
-        left: -1400,
-        right: 0,
-        bottom: 50,
-      }}
+      dragConstraints={{ top: -25, left: -1200, right: 100, bottom: 25 }}
     >
       <defs>
         <clipPath id="clip-path" transform="translate(0 33.12)">
@@ -37,9 +33,9 @@ const BayA = ({ zoom, handleDiscClick }) => {
           gradientTransform="translate(333 1685.09) rotate(-97.02)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#fff" />
-          <stop offset="0.39" stop-color="#fffcf2" />
-          <stop offset="0.7" stop-color="#89979e" />
+          <stop offset="0" stopColor="#fff" />
+          <stop offset="0.39" stopColor="#fffcf2" />
+          <stop offset="0.7" stopColor="#89979e" />
         </linearGradient>
         <linearGradient
           id="linear-gradient-2"
@@ -858,9 +854,9 @@ const BayA = ({ zoom, handleDiscClick }) => {
           gradientTransform="matrix(-0.1, -0.99, 0.99, -0.1, 219.95, 1658.96)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#fff" />
-          <stop offset="0.39" stop-color="#fffcf2" />
-          <stop offset="0.7" stop-color="#0d123c" />
+          <stop offset="0" stopColor="#fff" />
+          <stop offset="0.39" stopColor="#fffcf2" />
+          <stop offset="0.7" stopColor="#0d123c" />
         </linearGradient>
         <linearGradient
           id="linear-gradient-104"
@@ -1673,7 +1669,7 @@ const BayA = ({ zoom, handleDiscClick }) => {
         <clipPath id="clip-path-2" transform="translate(0 33.12)">
           <circle
             id="SVGID-2"
-            data-name="SVGID"
+            dataName="SVGID"
             className="cls-1"
             cx="429.46"
             cy="768.02"
@@ -1689,9 +1685,9 @@ const BayA = ({ zoom, handleDiscClick }) => {
           gradientTransform="translate(-591.64 1131.87) rotate(-58.33)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#fff" />
-          <stop offset="0.39" stop-color="#fffcf2" />
-          <stop offset="0.7" stop-color="#4e803b" />
+          <stop offset="0" stopColor="#fff" />
+          <stop offset="0.39" stopColor="#fffcf2" />
+          <stop offset="0.7" stopColor="#4e803b" />
         </linearGradient>
         <linearGradient
           id="linear-gradient-206"
@@ -3422,7 +3418,7 @@ const BayA = ({ zoom, handleDiscClick }) => {
         <clipPath id="clip-path-3" transform="translate(0 33.12)">
           <circle
             id="SVGID-3"
-            data-name="SVGID"
+            dataName="SVGID"
             className="cls-1"
             cx="282.25"
             cy="458.12"
@@ -3438,9 +3434,9 @@ const BayA = ({ zoom, handleDiscClick }) => {
           gradientTransform="matrix(0.98, 0.18, -0.18, 0.98, -631.27, -92.46)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#fff" />
-          <stop offset="0.39" stop-color="#fffcf2" />
-          <stop offset="0.7" stop-color="#fed206" />
+          <stop offset="0" stopColor="#fff" />
+          <stop offset="0.39" stopColor="#fffcf2" />
+          <stop offset="0.7" stopColor="#fed206" />
         </linearGradient>
         <linearGradient
           id="linear-gradient-410"
@@ -5171,7 +5167,7 @@ const BayA = ({ zoom, handleDiscClick }) => {
         <clipPath id="clip-path-4" transform="translate(0 33.12)">
           <circle
             id="SVGID-4"
-            data-name="SVGID"
+            dataName="SVGID"
             className="cls-1"
             cx="482.38"
             cy="291.02"
@@ -5187,9 +5183,9 @@ const BayA = ({ zoom, handleDiscClick }) => {
           gradientTransform="translate(-591.64 1131.87) rotate(-58.33)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#fff" />
-          <stop offset="0.39" stop-color="#fffcf2" />
-          <stop offset="0.7" stop-color="#bccab3" />
+          <stop offset="0" stopColor="#fff" />
+          <stop offset="0.39" stopColor="#fffcf2" />
+          <stop offset="0.7" stopColor="#bccab3" />
         </linearGradient>
         <linearGradient
           id="linear-gradient-614"
@@ -6920,7 +6916,7 @@ const BayA = ({ zoom, handleDiscClick }) => {
         <clipPath id="clip-path-5" transform="translate(0 33.12)">
           <circle
             id="SVGID-5"
-            data-name="SVGID"
+            dataName="SVGID"
             className="cls-1"
             cx="684.51"
             cy="541.4"
@@ -8664,7 +8660,7 @@ const BayA = ({ zoom, handleDiscClick }) => {
         <clipPath id="clip-path-6" transform="translate(0 33.12)">
           <circle
             id="SVGID-6"
-            data-name="SVGID"
+            dataName="SVGID"
             className="cls-1"
             cx="965.54"
             cy="158.35"
@@ -8680,9 +8676,9 @@ const BayA = ({ zoom, handleDiscClick }) => {
           gradientTransform="translate(-697.67 54.54) rotate(-18.61)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#fff" />
-          <stop offset="0.39" stop-color="#fffcf2" />
-          <stop offset="0.7" stop-color="#6e79ba" />
+          <stop offset="0" stopColor="#fff" />
+          <stop offset="0.39" stopColor="#fffcf2" />
+          <stop offset="0.7" stopColor="#6e79ba" />
         </linearGradient>
         <linearGradient
           id="linear-gradient-1022"
@@ -10413,7 +10409,7 @@ const BayA = ({ zoom, handleDiscClick }) => {
         <clipPath id="clip-path-7" transform="translate(0 33.12)">
           <circle
             id="SVGID-7"
-            data-name="SVGID"
+            dataName="SVGID"
             className="cls-1"
             cx="1681.26"
             cy="447.81"
@@ -11647,7 +11643,7 @@ const BayA = ({ zoom, handleDiscClick }) => {
         <clipPath id="clip-path-8" transform="translate(0 33.12)">
           <circle
             id="SVGID-8"
-            data-name="SVGID"
+            dataName="SVGID"
             className="cls-1"
             cx="1990.89"
             cy="758.82"
@@ -12951,8 +12947,8 @@ const BayA = ({ zoom, handleDiscClick }) => {
           xlink:href="#linear-gradient-103"
         />
       </defs>
-      <g id="Layer_2" data-name="Layer 2">
-        <g id="Background_shape" data-name="Background shape">
+      <g id="Layer_2" dataName="Layer 2">
+        <g id="Background_shape" dataName="Background shape">
           <path
             className="cls-2"
             d="M1948.87,339.12l25.58,5.56,4.73,1.11,3.33.56,3.62.83,19.46,3.62,19.74,3.33H2027l1.39.28,2.22,4.45,1.67,1.94c1.9,3.32,5,6.63,6.12,10v.84h.27v.55l-.27.28v1.11l-.28.56-.56.83-.55,1.12a24.7,24.7,0,0,1-4.45,5.83l-3.89,3.9c-14.61,12.93-29.79,19.13-47.27,27l-1.11-.27-1.11-.28"
@@ -14057,7 +14053,7 @@ const BayA = ({ zoom, handleDiscClick }) => {
             transform="translate(0 33.12)"
           />
         </g>
-        <g id="Outlined_circles" data-name="Outlined circles">
+        <g id="Outlined_circles" dataName="Outlined circles">
           <path
             className="cls-3"
             d="M1723.68,752v-2.28l-.28-2c-5.9-26.32-42.46-24.56-45.78,2V754c3.29,26.85,40.05,28.46,45.78,2l.28-2v-2"
@@ -14300,7 +14296,7 @@ const BayA = ({ zoom, handleDiscClick }) => {
             transform="translate(0 33.12)"
           />
         </g>
-        <g id="Colored_Circles" data-name="Colored Circles" className="cls-4">
+        <g id="Colored_Circles" dataName="Colored Circles" className="cls-4">
           <path
             className="cls-5"
             d="M1723.68,752v-2.28l-.28-2c-5.9-26.32-42.46-24.56-45.78,2V754c3.29,26.85,40.05,28.46,45.78,2l.28-2v-2"
@@ -14585,7 +14581,7 @@ const BayA = ({ zoom, handleDiscClick }) => {
             transform="translate(0 33.12)"
           />
         </g>
-        <g id="_White_filter_" data-name="(White filter)">
+        <g id="_White_filter_" dataName="(White filter)">
           <path
             className="cls-11"
             d="M1723.68,752v-2.28l-.28-2c-5.9-26.32-42.46-24.56-45.78,2V754c3.29,26.85,40.05,28.46,45.78,2l.28-2v-2"
@@ -14977,7 +14973,7 @@ const BayA = ({ zoom, handleDiscClick }) => {
             transform="translate(0 33.12)"
           />
         </g>
-        <g id="Use_This_Texture" data-name="Use This! Texture">
+        <g id="Use_This_Texture" dataName="Use This! Texture">
           <g className="cls-12">
             <line
               className="cls-13"
