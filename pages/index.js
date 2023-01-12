@@ -90,7 +90,7 @@ const Home = ({ periods }) => {
                   <div
                     className={
                       selectedPeriod == key
-                        ? "visible absolute bg-cheddar top-0 left-0 w-full h-[108px]"
+                        ? "visible absolute bg-cheddar top-0 left-0 w-full h-[108px] z-20"
                         : "hidden"
                     }
                   ></div>
