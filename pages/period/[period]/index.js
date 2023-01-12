@@ -108,7 +108,7 @@ const Period = ({ period, data }) => {
           )}
 
           <motion.div
-            className={"bay-illustration z-20 "}
+            className={"bay-illustration absolute z-30 "}
             variants={variants}
             initial={"hidden"}
             animate={"visible"}

@@ -45,6 +45,9 @@ module.exports = {
       width: {
         disc: "calc(100vw - 10px)",
       },
+      margin: {
+        center: "0 auto",
+      },
     },
   },
   plugins: [],

@@ -51,6 +51,11 @@ a {
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
+.slick-slide {
+  &:last-child {
+    border-bottom: 1px solid white;
+  }
+}
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .hide-scrollbar {
@@ -60,6 +65,11 @@ a {
 
 .bg-moss-green {
   background: rgba(149, 149, 56, 0.6);
+}
+
+.bg-cheddar {
+  background: linear-gradient(0deg, #f5db95, #f5db95), rgba(255, 255, 255, 0.85);
+  opacity: 0.9;
 }
 
 .bay-illustration {

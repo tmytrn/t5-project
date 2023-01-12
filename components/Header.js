@@ -49,8 +49,9 @@ const Header = ({ page, data }) => {
               HOW WE COME, GO, AND SHAPE THE LAND.
             </div>
           </div>
-          <div className=" uppercase font-sans text-base md:text-xl text-center tracking-tight py-5">
-            START YOUR JOURNEY HERE BY CHOOSING AN ERA BELOW.
+          <div className=" font-sans text-base md:text-xl text-center tracking-tight py-5">
+            Start your journey here{" "}
+            <span className="block">by choosing an era below.</span>
           </div>{" "}
         </>
       ) : (
