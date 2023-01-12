@@ -86,13 +86,15 @@ const Home = ({ periods }) => {
               }
             >
               <Link href={`/period/${period.period}`}>
-                <div
-                  className={
-                    selectedPeriod == key
-                      ? "visible absolute bg-cheddar top-0 left-0 w-full h-[108px]"
-                      : "hidden"
-                  }
-                ></div>
+                <a>
+                  <div
+                    className={
+                      selectedPeriod == key
+                        ? "visible absolute bg-cheddar top-0 left-0 w-full h-[108px]"
+                        : "hidden"
+                    }
+                  ></div>
+                </a>
               </Link>
               <a
                 className={
