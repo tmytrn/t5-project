@@ -108,10 +108,10 @@ const Period = ({ period, data }) => {
           )}
 
           <motion.div
-            className={"bay-illustration absolute z-30 "}
+            className={"bay-illustration absolute z-30 h-screen w-screen"}
             variants={variants}
             initial={"hidden"}
-            animate={"visible"}
+            animate={isDiscOpen ? "hidden" : "visible"}
           >
             <BayA zoom={zoom} handleDiscClick={handleDiscClick} />
           </motion.div>
@@ -133,7 +133,12 @@ const Period = ({ period, data }) => {
             <div>{zoom}</div>
             <ZoomOut />
           </div>
-          <div className="flex flex-col w-full absolute bottom-0 left-0">
+          <motion.div
+            className="flex flex-col w-full absolute bottom-0 left-0"
+            variant={variants}
+            initial={"hidden"}
+            animate={isDiscOpen ? "hidden" : "visible"}
+          >
             <div className="absolute left-0 bottom-[185px] uppercase text-center w-full z-30 font-sans text-base underline text-saddle">
               About This Era
             </div>
@@ -161,7 +166,7 @@ const Period = ({ period, data }) => {
                 </Link>
               </div>
             )}
-          </div>
+          </motion.div>
         </div>
       </main>
       <AnimatePresence>

@@ -7,6 +7,7 @@ body {
   padding: 0;
   margin: 0;
   background: linear-gradient(180deg, #fff3cf 0%, #e2f0f8 75.52%);
+  background-repeat: none;
   height: 100vh;
   // overflow: hidden;
 
@@ -20,6 +21,7 @@ body {
 }
 .bg-sunset {
   background: linear-gradient(180deg, #fff3cf 0%, #e2f0f8 75.52%);
+  background-repeat: none;
 }
 
 .sunset {
@@ -56,6 +58,9 @@ a {
     border-bottom: 1px solid white;
   }
 }
+.slick-list {
+  padding: 0;
+}
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .hide-scrollbar {
@@ -70,6 +75,10 @@ a {
 .bg-cheddar {
   background: linear-gradient(0deg, #f5db95, #f5db95), rgba(255, 255, 255, 0.85);
   opacity: 0.9;
+}
+
+.selector {
+  top: calc(50% + 40px);
 }
 
 .bay-illustration {
