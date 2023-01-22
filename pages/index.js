@@ -19,28 +19,7 @@ const Home = ({ periods, periodsReverse }) => {
   const ref = useRef();
   const [selectedPeriod, setSelectedPeriod] = useState(0);
   const [isChanging, setChanging] = useState(false);
-
-  const settings = {
-    arrows: false,
-    dots: false,
-    infinite: false,
-    centerMode: true,
-    slidesToShow: 1,
-    initialSlide: 1,
-    vertical: true,
-    verticalSwiping: true,
-    touchMove: true,
-    swipeToSlide: true,
-    className: "absolute left-0 top-[50%] h-screen w-full bg-transparent",
-    afterChange: (index) => {
-      setChanging(false);
-      console.log("current index", index);
-    },
-    beforeChange: (current, next) => {
-      setSelectedPeriod(next);
-      setChanging(true);
-    },
-  };
+  const [selectedLink, setSelectedLink] = useState("/period/2020-2040");
 
   const opacity = {
     hidden: { opacity: 0, transition: { duration: 0.001 } },
@@ -57,15 +36,27 @@ const Home = ({ periods, periodsReverse }) => {
     show: { opacity: 1, transition: { duration: 0.5, delay: 0.5 } },
   };
 
+  const desktopSelector = {
+    hidden: {
+      background: "transparent",
+      opacity: 0.5,
+      transition: { duration: 0.001 },
+    },
+    show: {
+      background: "#F5DD9D",
+      opacity: 1,
+      color: "#E2F0F8",
+      transition: { duration: 0.5, delay: 0.5 },
+    },
+  };
   const desktopEnter = {
     hidden: {
-      background: "#F5DB95",
       opacity: 0,
       transition: { duration: 0.001 },
     },
     show: {
-      background: "#F5DB95",
-      opacity: 0.9,
+      opacity: 1,
+      color: "#5B3B0B",
       transition: { duration: 0.5, delay: 0.5 },
     },
   };
@@ -140,30 +131,13 @@ const Home = ({ periods, periodsReverse }) => {
         className="h-full md:h-screen d:flex md:flex-col md:justify-end pt-[172px] md:pt-[350px] px-5 md:px-0 border-solid border-saddle w-full bg-transparent overflow-hidden"
         ref={ref}
       >
-        <motion.div
-          className="hidden md:block absolute left-[calc(50%-372.5px)] w-[745px] pb-16 pt-[124px] bottom-[0px]"
-          variants={desktopEnter}
-          animate={isChanging ? "hidden" : "show"}
-        >
-          <span className="flex flex-col w-full justify-center items-center z-30 ">
-            <motion.span
-              className="font-sans text-2xl uppercase leading-[18px] pb-1 mb-4 border-b-[1px] border-b-solid border-saddle text-saddle"
-              variants={enter}
-              animate={isChanging ? "hidden" : "show"}
-            >
-              Enter
-            </motion.span>
-            <SelectorDesktop />
-          </span>
-        </motion.div>
-
-        <motion.div className={"bg-branch hidden md:block w-full h-full"}>
+        <div className={"bg-branch hidden md:block w-full h-full"}>
           <Swiper
-            slidesPerView={"3"}
+            slidesPerView={"auto"}
             spaceBetween={43}
             initialSlide={0}
             centeredSlides={true}
-            className={"mySwiper w-full h-full cursor-grab select-none"}
+            className={"mySwiper w-full h-full select-none"}
             onSlideChange={(i) => {
               // setSelectedPeriod(i.realIndex);
               setChanging(false);
@@ -180,12 +154,12 @@ const Home = ({ periods, periodsReverse }) => {
           >
             {periodsReverse.map((period, key) => (
               <SwiperSlide
-                className="w-[745px] flex justify-center items-center relative shrink-0 transition-transform"
+                className="w-[745px] flex justify-center items-center relative shrink-0 transition-transform md:cursor-grab"
                 key={key}
               >
-                <div className="text-saddle flex flex-col h-full justify-start opacity-50 hover:bg-sunset hover:cursor-pointer">
+                <div className="text-saddle flex flex-col h-full justify-start hover:bg-sunset pt-4">
                   {/* <BayThumbnail /> */}
-                  <div className="relative w-[670px] h-[274px]">
+                  <div className="relative w-[670px] h-[274px] select-none">
                     <img
                       src="/images/thumbnailWhite.png"
                       className="absolute top-0 left-0 "
@@ -199,17 +173,43 @@ const Home = ({ periods, periodsReverse }) => {
                       }
                     />
                   </div>
-                  <motion.a
-                    className="text-[90px] text-center"
-                    href={`/period/2020-2040`}
+                  <motion.div
+                    className="w-[745px] text-[90px] text-center grow flex flex-col justify-center"
+                    variants={desktopSelector}
+                    animate={
+                      !isChanging && selectedPeriod == key ? "show" : "hidden"
+                    }
                   >
-                    {period.period}
-                  </motion.a>
+                    <a
+                      className="leading-[60px] inline"
+                      href={`/period/2020-2040`}
+                    >
+                      {period.period}
+                    </a>
+
+                    <motion.span
+                      className="h-[60px] flex flex-col justify-start"
+                      variants={desktopEnter}
+                    >
+                      <a
+                        className="inline font-sans text-2xl color-saddle hover:underline hover:cursor-pointer"
+                        href={`/period/2020-2040`}
+                      >
+                        ENTER
+                      </a>
+                      <a
+                        className="flex justify-center text-center hover:cursor-pointer"
+                        href={`/period/2020-2040`}
+                      >
+                        <SelectorDesktop />
+                      </a>
+                    </motion.span>
+                  </motion.div>
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
-        </motion.div>
+        </div>
         <motion.div
           variants={container}
           initial="hidden"

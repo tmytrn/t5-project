@@ -212,7 +212,9 @@ a {
 
 .swiper-slide {
   height: 108px !important;
+  width: 100%;
   @media only screen and (min-width: 600px) {
     height: 100% !important;
+    width: 745px !important;
   }
 }

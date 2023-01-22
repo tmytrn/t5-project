@@ -172,7 +172,7 @@ const Period = ({ period, data }) => {
           </div>
           <motion.div
             className="md:hidden flex flex-col w-full absolute bottom-0 left-0"
-            variant={variants}
+            variants={variants}
             initial={"hidden"}
             animate={isDiscOpen ? "hidden" : "visible"}
           >
@@ -197,10 +197,15 @@ const Period = ({ period, data }) => {
               </div>
             )}
           </motion.div>
-          <div className="absolute w-full bottom-[54px] flex justify-between z-30">
+          <motion.div
+            className="absolute w-full bottom-[54px] flex justify-between z-30"
+            variants={variants}
+            initial={"hidden"}
+            animate={isDiscOpen ? "hidden" : "visible"}
+          >
             <span className="border-saddle border-solid border-t-[1px] md:border-t-2 w-4"></span>
             <span className="border-saddle border-solid border-t-[1px] md:border-t-2 w-4"></span>
-          </div>
+          </motion.div>
         </div>
       </main>
       <Disc

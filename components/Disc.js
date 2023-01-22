@@ -35,8 +35,8 @@ const Disc = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
             initial={"hidden"}
             animate={isDiscOpen ? "visible" : "hidden"}
           >
-            <a className="font-sans">CLOSE</a>
-            <a className="text-center flex justify-center pb-[12px] ">
+            <a className="font-sans inline">CLOSE</a>
+            <a className="text-center flex justify-center pb-[12px]  inline">
               <DropdownArrow />
             </a>
           </motion.div>
@@ -73,7 +73,7 @@ const Disc = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
                   ESPAÑOL
                 </a>
               </div>
-              <div className="text-5xl pb-8 leading-[52px] ">
+              <div className="text-5xl pb-8 md:pb-4 lg:pb-2 leading-[52px] ">
                 {isEnglish
                   ? `“${data?.translation}”`
                   : `“${
@@ -84,7 +84,7 @@ const Disc = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
               </div>
             </div>
             {data?.translation && (
-              <div className="md:w-1/3">
+              <div className="md:w-1/3 pb-8 md:pb-4 lg:pb-2">
                 <p className="font-sans uppercase text-md pb-4">
                   Original Text
                 </p>
@@ -152,13 +152,13 @@ const DiscWrapper = ({
   const variants = isSmall
     ? {
         visible: {
-          y: "0%",
+          y: "-90%",
           transition: {
             duration: 0.5,
           },
         },
         hidden: {
-          y: "100%",
+          y: "0%",
           transition: {
             duration: 0.5,
           },
@@ -166,13 +166,13 @@ const DiscWrapper = ({
       }
     : {
         visible: {
-          y: "40%",
+          y: "-60%",
           transition: {
             duration: 0.5,
           },
         },
         hidden: {
-          y: "90%",
+          y: "-60px",
           transition: {
             duration: 0.5,
           },
@@ -180,9 +180,9 @@ const DiscWrapper = ({
       };
   return (
     <motion.div
-      className="absolute z-50 w-full h-disc top-[80px] left-0 bg-white/[0.85] md:bg-transparent rounded-[15px] flex justify-center"
+      className="absolute z-50 w-full h-disc top-[100%] left-0  md:bg-transparent rounded-[15px] flex justify-center"
       variants={variants}
-      initial={"hidden"}
+      initial={"initial"}
       animate={isDiscOpen && isData ? "visible" : "hidden"}
       onClick={() => {
         !isSmall && !isDiscOpen && isData ? setIsDiscOpen(true) : null;
