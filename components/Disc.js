@@ -20,7 +20,7 @@ const Disc = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
       isSmall={isSmall}
       isData={data ? true : false}
     >
-      <div className="px-8 md:px-24 text-saddle ">
+      <div className="px-8 md:px-24 text-saddle">
         {!data && (
           <div className="flex flex-col justify-center text-center pt-[16px] font-sans">
             What does this mean? Click the disk to see it from here.
@@ -41,7 +41,7 @@ const Disc = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
             </a>
           </motion.div>
         ) : null}
-        <div className="h-discscroll overflow-y-scroll pb-8 hide-scrollbar">
+        <div className="h-discscroll overflow-y-scroll pb-36 md:pb-12 hide-scrollbar">
           <div className="font-sans text-[22px] uppercase text-center pb-8">
             {data?.country}
           </div>

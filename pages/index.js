@@ -102,23 +102,32 @@ const Home = ({ periods, periodsReverse }) => {
   };
 
   const opacities = {
-    full: { opacity: 1 },
-    eighty: { opacity: 0.8 },
-    thirty: { opacity: 0.3 },
-    ten: { opacity: 0.1 },
-  };
-
-  const handleMouseDown = (e) => {
-    console.log("mouse down");
+    full: { opacity: 1, transition: { duration: 0.25 } },
+    eighty: { opacity: 0.8, transition: { duration: 0.25 } },
+    thirty: { opacity: 0.3, transition: { duration: 0.25 } },
+    ten: { opacity: 0.1, transition: { duration: 0.25 } },
   };
 
   let divide = 100 / 13;
   const getCenterIndex = (num) => {
     if (num < 0) return 0;
     let progress = num * 100;
-    console.log("num: ", progress, "divide", divide);
     return parseInt(progress / divide);
   };
+
+  function throttle(cb, delay = 250) {
+    let shouldWait = false;
+
+    return (...args) => {
+      if (shouldWait) return;
+
+      cb(...args);
+      shouldWait = true;
+      setTimeout(() => {
+        shouldWait = false;
+      }, delay);
+    };
+  }
 
   return (
     <div className="overflow-hidden">
@@ -128,7 +137,7 @@ const Home = ({ periods, periodsReverse }) => {
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
       <main
-        className="md:h-screen d:flex md:flex-col md:justify-end pt-[310px] md:pt-[350px] px-5 md:px-0 border-solid border-saddle w-full bg-transparent overflow-hidden"
+        className="h-full md:h-screen d:flex md:flex-col md:justify-end pt-[172px] md:pt-[350px] px-5 md:px-0 border-solid border-saddle w-full bg-transparent overflow-hidden"
         ref={ref}
       >
         <motion.div
@@ -201,27 +210,6 @@ const Home = ({ periods, periodsReverse }) => {
             ))}
           </Swiper>
         </motion.div>
-
-        <div className=" md:hidden absolute left-0 pl-[17px] h-[108px] selector w-full flex justify-start items-center select-none">
-          <span className="flex w-1/2 items center z-30 ">
-            <Selector />
-            <motion.span
-              className="font-sans uppercase ml-2 leading-[18px] pb-1 border-b-[1px] border-b-solid border-saddle"
-              variants={enter}
-              animate={isChanging ? "hidden" : "show"}
-            >
-              Enter
-            </motion.span>
-          </span>
-          <motion.span
-            className="w-1/2 ml-[-20px] z-30 "
-            variants={opacity}
-            animate={isChanging ? "show" : "hidden"}
-          >
-            <Hyphen />
-          </motion.span>
-        </div>
-
         <motion.div
           variants={container}
           initial="hidden"
@@ -232,7 +220,7 @@ const Home = ({ periods, periodsReverse }) => {
         >
           <Swiper
             direction={"vertical"}
-            slidesPerView={"7"}
+            slidesPerView={"auto"}
             initialSlide={0}
             centeredSlides={true}
             onSlideChange={(i) => {
@@ -242,6 +230,7 @@ const Home = ({ periods, periodsReverse }) => {
             }}
             onSliderMove={(i, e) => {
               setChanging(true);
+
               setSelectedPeriod(getCenterIndex(i.progress));
             }}
             onTouchEnd={(i) => {
@@ -250,9 +239,29 @@ const Home = ({ periods, periodsReverse }) => {
             }}
             className={"w-full h-full"}
           >
+            <div className=" md:hidden absolute left-0 top-[calc(50%-54px)] pl-[17px] h-[108px] selector w-full flex justify-start items-center select-none">
+              <span className="flex w-1/2 items center z-30 ">
+                <Selector />
+                <motion.span
+                  className="font-sans uppercase ml-2 leading-[18px] pb-1 border-b-[1px] border-b-solid border-saddle"
+                  variants={enter}
+                  animate={isChanging ? "hidden" : "show"}
+                >
+                  Enter
+                </motion.span>
+              </span>
+              <motion.span
+                className="w-1/2 ml-[-20px] z-30 "
+                variants={opacity}
+                animate={isChanging ? "show" : "hidden"}
+              >
+                <Hyphen />
+              </motion.span>
+            </div>
+
             {periods.map((period, key) => (
               <SwiperSlide
-                className="last:border-b-solid last:border-b-[1px] last:border-b-white"
+                className="last:border-b-solid last:border-b-[1px] last:border-b-white h-[108px]"
                 key={key}
               >
                 <motion.div
@@ -262,7 +271,7 @@ const Home = ({ periods, periodsReverse }) => {
                     selectedPeriod == key && !isChanging ? "show" : "hidden"
                   }
                   className={
-                    "h-full flex justify-center w-full border-t-white border-solid border-t-[1px]  "
+                    "h-[108px] flex justify-center w-full border-t-white border-solid border-t-[1px]  "
                   }
                 >
                   <motion.a
@@ -282,23 +291,11 @@ const Home = ({ periods, periodsReverse }) => {
                     href={`/period/2020-2040`}
                     //TODO: make this a dynamic route
                   >
-                    <motion.span
-                      className="mr-auto w-[142px] leading-[60px]"
-                      variants={blur}
-                      animate={
-                        selectedPeriod == key && !isChanging ? "show" : "hidden"
-                      }
-                    >
+                    <motion.span className="mr-auto w-[142px] leading-[60px]">
                       {period.period.split("-")[0]}
                     </motion.span>
 
-                    <motion.span
-                      className="ml-auto leading-[60px]"
-                      variants={blur}
-                      animate={
-                        selectedPeriod == key && !isChanging ? "show" : "hidden"
-                      }
-                    >
+                    <motion.span className="ml-auto leading-[60px]">
                       {period.period.split("-")[1]}
                     </motion.span>
                   </motion.a>
