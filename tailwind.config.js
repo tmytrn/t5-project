@@ -44,9 +44,13 @@ module.exports = {
       },
       width: {
         disc: "calc(100vw - 10px)",
+        discdesktop: "calc(100vw - 150px)",
       },
       margin: {
         center: "0 auto",
+      },
+      dropShadow: {
+        bay: "2px 4px 20px rgba(255, 216, 80, 0.3)",
       },
     },
   },

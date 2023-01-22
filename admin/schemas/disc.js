@@ -49,6 +49,11 @@ export default {
       title: "Translation",
     },
     {
+      name: "spanishTranslation",
+      type: "string",
+      title: "Spanish Translation",
+    },
+    {
       name: "context",
       type: "string",
       title: "Context",
@@ -57,6 +62,12 @@ export default {
       name: "credits",
       type: "string",
       title: "Credits",
+    },
+    {
+      name: "link",
+      type: "url",
+      title: "Link",
+      description: "Include 'https://' in the URL",
     },
   ],
   orderings: [

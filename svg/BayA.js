@@ -2,7 +2,20 @@ import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-const BayA = ({ zoom, handleDiscClick, mapRef }) => {
+const BayA = ({ zoom, handleDiscClick, mapRef, isMedium, isSmall }) => {
+  console.log("isSmall? ", isSmall);
+  const map = {
+    hide: {
+      scale: 1,
+      opacity: 0,
+      transition: { duration: 2 },
+    },
+    show: {
+      scale: zoom / 100,
+      opacity: 1,
+      transition: { duration: 2 },
+    },
+  };
   return (
     <motion.svg
       width="2158"
@@ -11,12 +24,13 @@ const BayA = ({ zoom, handleDiscClick, mapRef }) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
-      intial={{ scale: 0.85, x: "-25%", opacity: 0 }}
-      animate={{ scale: zoom / 100, x: "-25%", opacity: 1 }}
-      transition={{ x: { delay: 1, duration: 2 }, opacity: { duration: 5 } }}
-      className="select-none"
+      variants={map}
+      initial={"hide"}
+      animate={"show"}
+      className="bay drop-shadow-bay select-none z-30 hover:cursor-grab absolute left-[-50%] origin-center "
       drag
-      dragConstraints={{ top: -25, left: -1500, right: 0, bottom: 25 }}
+      // dragConstraints={mapRef}
+      dragConstraints={{ top: -100, left: -700, right: 700, bottom: 100 }}
     >
       <g clip-path="url(#clip0_792_7564)">
         <path
