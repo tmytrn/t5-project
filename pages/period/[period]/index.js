@@ -13,6 +13,7 @@ import UpArrow from "svg/UpArrow";
 import DownArrow from "svg/DownArrow";
 import InstructionsContext from "components/InstructionsContext";
 import { useIsSmall, useIsMedium } from "@lib/index";
+import BayATest from "svg/BayATest";
 
 const Period = ({ period, data }) => {
   const isSmall = useIsSmall();
@@ -153,7 +154,12 @@ const Period = ({ period, data }) => {
             />
           </motion.div>
 
-          <div className="zoom-container absolute z-30">
+          <motion.div
+            className="zoom-container absolute z-30"
+            variants={variants}
+            initial={"hidden"}
+            animate={isDiscOpen ? "hidden" : "visible"}
+          >
             <span className="rotate-90 md:rotate-0">
               <ZoomOut />
             </span>
@@ -169,7 +175,7 @@ const Period = ({ period, data }) => {
               }}
             ></input>
             <ZoomIn />
-          </div>
+          </motion.div>
           <motion.div
             className="md:hidden flex flex-col w-full absolute bottom-0 left-0"
             variants={variants}
