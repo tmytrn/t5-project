@@ -41,7 +41,7 @@ const Disc = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
             </a>
           </motion.div>
         ) : null}
-        <div className="h-discscroll overflow-y-scroll pb-36 md:pb-12 hide-scrollbar">
+        <div className="h-discscroll overflow-y-scroll overflow-x-hidden pb-36 md:pb-12 hide-scrollbar">
           <div className="font-sans text-[22px] uppercase text-center pb-8">
             {data?.country}
           </div>
