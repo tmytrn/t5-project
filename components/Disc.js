@@ -152,7 +152,7 @@ const DiscWrapper = ({
   const variants = isSmall
     ? {
         visible: {
-          y: "-90%",
+          y: "calc(-100% + 80px)",
           transition: {
             duration: 0.5,
           },

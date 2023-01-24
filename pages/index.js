@@ -128,15 +128,17 @@ const Home = ({ periods, periodsReverse }) => {
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
       <main
-        className="h-full md:h-screen d:flex md:flex-col md:justify-end pt-[172px] md:pt-[350px] px-5 md:px-0 border-solid border-saddle w-full bg-transparent overflow-hidden"
+        className="h-full md:h-screen d:flex md:flex-col md:justify-end pt-[172px] md:pt-[250px] px-5 md:px-0 border-solid border-saddle w-full bg-transparent overflow-hidden"
         ref={ref}
       >
-        <div className={"bg-branch hidden md:block w-full h-full"}>
+        <div className={"bg-branch hidden md:block w-full h-full md:pt-12"}>
           <Swiper
             slidesPerView={"auto"}
             spaceBetween={43}
             initialSlide={0}
             centeredSlides={true}
+            slideToClickedSlide={true}
+            shortSwipes={false}
             className={"mySwiper w-full h-full select-none"}
             onSlideChange={(i) => {
               // setSelectedPeriod(i.realIndex);
@@ -159,14 +161,14 @@ const Home = ({ periods, periodsReverse }) => {
               >
                 <div className="text-saddle flex flex-col h-full justify-start hover:bg-sunset pt-4">
                   {/* <BayThumbnail /> */}
-                  <div className="relative w-[670px] h-[274px] select-none">
+                  <div className="relative select-none w-full h-[350px]">
                     <img
                       src="/images/thumbnailWhite.png"
-                      className="absolute top-0 left-0 "
+                      className="absolute top-0 left-[calc(50%-372.5px)] w-[745px] h-[304px]"
                     />
                     <motion.img
                       src="/images/thumbnailColor.png"
-                      className="absolute top-0 left-0 "
+                      className="absolute top-0 left-[calc(50%-372.5px)]  w-[745px] h-[304px]"
                       variants={opacity}
                       animate={
                         !isChanging && selectedPeriod == key ? "show" : "hidden"

@@ -44,12 +44,12 @@ const Header = ({ page, data }) => {
         </div>
       ) : page == "home" ? (
         <>
-          <div className="flex flex-col justify-between align-top p-5 sunset h-auto md:h-[350px]">
-            <p className="font-sans text-center"> WELCOME TO</p>
+          <div className="flex flex-col justify-between align-top p-5 sunset h-auto md:h-[275px]">
+            <p className="font-sans text-center text-2xl"> WELCOME TO</p>
             <h1 className=" font-serif text-6xl md:text-[180px] text-opacity-90 tracking-tightest text-center leading-[60px]">
               a mur<i>mur</i>ation,
             </h1>
-            <div className=" font-sans text-base md:text-xl text-center tracking-tight">
+            <div className=" font-sans text-base md:text-2xl text-center tracking-tight">
               Start your journey here{" "}
               <span className="block md:inline-block">
                 by choosing an era below.
