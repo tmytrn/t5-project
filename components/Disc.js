@@ -85,11 +85,13 @@ const Disc = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
                 <p className="font-sans uppercase text-md pb-4">
                   Original Text
                 </p>
-                <div className={data.alignRight ? "text-right" : "text-left"}>
-                  <PortableText
-                    className="italic text-5xl"
-                    value={data?.quote}
-                  />
+                <div
+                  className={
+                    data.alignRight
+                      ? "text-right italic text-5xl"
+                      : "text-left italic text-5xl"
+                  }>
+                  <PortableText value={data?.quote} />
                 </div>
               </div>
             )}
