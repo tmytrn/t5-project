@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { slugify } from "util/utiliities";
 import DropdownArrow from "svg/DropdownArrow";
+import { PortableText } from "@portabletext/react";
 
 const Disc = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
   const [isEnglish, setIsEnglish] = useState(true);
@@ -18,8 +19,7 @@ const Disc = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
       isDiscOpen={isDiscOpen}
       setIsDiscOpen={setIsDiscOpen}
       isSmall={isSmall}
-      isData={data ? true : false}
-    >
+      isData={data ? true : false}>
       <div className="px-8 md:px-24 text-saddle">
         {!data && (
           <div className="flex flex-col justify-center text-center pt-[16px] font-sans">
@@ -33,8 +33,7 @@ const Disc = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
             onClick={() => setIsDiscOpen(false)}
             variants={opacity}
             initial={"hidden"}
-            animate={isDiscOpen ? "visible" : "hidden"}
-          >
+            animate={isDiscOpen ? "visible" : "hidden"}>
             <a className="font-sans inline">CLOSE</a>
             <a className="text-center flex justify-center pb-[12px]  inline">
               <DropdownArrow />
@@ -56,8 +55,7 @@ const Disc = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
                   }
                   onClick={() => {
                     setIsEnglish(true);
-                  }}
-                >
+                  }}>
                   ENGLISH
                 </a>
                 <a
@@ -68,8 +66,7 @@ const Disc = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
                   }
                   onClick={() => {
                     setIsEnglish(false);
-                  }}
-                >
+                  }}>
                   ESPAÑOL
                 </a>
               </div>
@@ -83,12 +80,17 @@ const Disc = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
                     }”`}
               </div>
             </div>
-            {data?.translation && (
+            {data?.quote && (
               <div className="md:w-1/3 pb-8 md:pb-4 lg:pb-2">
                 <p className="font-sans uppercase text-md pb-4">
                   Original Text
                 </p>
-                <div className="italic text-5xl">{data?.quote}</div>
+                <div className={data.alignRight ? "text-right" : "text-left"}>
+                  <PortableText
+                    className="italic text-5xl"
+                    value={data?.quote}
+                  />
+                </div>
               </div>
             )}
           </div>
@@ -105,15 +107,18 @@ const Disc = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
             </div>
           )}
           {data?.context && (
-            <div className="font-sans uppercase text-md pb-4">
-              <p>Context</p>
-              <p className="normal-case">{data.context}</p>
+            <div className="font-sans text-md pb-4">
+              <p className="uppercase">Context</p>
+              <PortableText className="normal-case" value={data.context} />
             </div>
           )}
           {data?.credits && (
             <div className="font-sans uppercase text-md pb-4">
               <p>Credits</p>
-              <p className="normal-case text-xs">{data.credits}</p>
+              <PortableText
+                className="normal-case text-xs"
+                value={data.credits}
+              />
             </div>
           )}
         </div>
@@ -186,8 +191,7 @@ const DiscWrapper = ({
       animate={isDiscOpen && isData ? "visible" : "hidden"}
       onClick={() => {
         !isSmall && !isDiscOpen && isData ? setIsDiscOpen(true) : null;
-      }}
-    >
+      }}>
       <div className={colorString(color)}>{children}</div>
     </motion.div>
   );

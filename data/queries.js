@@ -24,6 +24,7 @@ export const periodPageQuery = `
     quote,
     size,
     translation,
+    alignRight,
   }
   }
   `;

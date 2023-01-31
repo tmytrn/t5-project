@@ -40,8 +40,18 @@ export default {
     },
     {
       name: "quote",
-      type: "string",
+      type: "array",
       title: "Quote",
+      of: [
+        {
+          type: "block",
+        },
+      ],
+    },
+    {
+      name: "alignRight",
+      type: "boolean",
+      title: "Align Quote to Right",
     },
     {
       name: "translation",
@@ -55,13 +65,23 @@ export default {
     },
     {
       name: "context",
-      type: "string",
+      type: "array",
       title: "Context",
+      of: [
+        {
+          type: "block",
+        },
+      ],
     },
     {
       name: "credits",
-      type: "string",
+      type: "array",
       title: "Credits",
+      of: [
+        {
+          type: "block",
+        },
+      ],
     },
     {
       name: "link",
