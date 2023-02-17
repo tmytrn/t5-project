@@ -6,14 +6,14 @@ import Link from "next/link";
 import Disc from "../../../components/Disc";
 import { useState, useRef, useContext } from "react";
 import { motion, AnimatePresence, useMotionValue } from "framer-motion";
-import BayA from "../../../svg/BayA";
+import Bay from "../../../bays/Bay";
 import ZoomIn from "svg/ZoomIn";
 import ZoomOut from "svg/ZoomOut";
 import UpArrow from "svg/UpArrow";
 import DownArrow from "svg/DownArrow";
 import InstructionsContext from "components/InstructionsContext";
 import { useIsSmall, useIsMedium } from "@lib/index";
-import BayATest from "svg/BayATest";
+import { useOutsideClick } from "@lib/index";
 
 const Period = ({ period, data }) => {
   const isSmall = useIsSmall();
@@ -24,6 +24,7 @@ const Period = ({ period, data }) => {
   const { mapInstructionsDidRun, setMapInstructionsDidRun } =
     useContext(InstructionsContext);
   const zoomRef = useRef(null);
+  const discRef = useRef(null);
   data = data[0];
   const discs = data.discs;
   const handleDiscClick = (disc) => {
@@ -40,8 +41,8 @@ const Period = ({ period, data }) => {
         hidden: { opacity: 0 },
       }
     : {
-        visible: { filter: "blur(0px)", transition: { duration: 1 } },
-        hidden: { filter: "blur(3px)", transition: { duration: 1 } },
+        visible: { zIndex: 10, transition: { duration: 1 } },
+        hidden: { zIndex: 30, transition: { duration: 1 } },
       };
 
   const blur = {
@@ -52,6 +53,7 @@ const Period = ({ period, data }) => {
   useEffect(() => {
     setZoom(isSmall ? 85 : 75);
   }, []);
+
   return (
     <>
       <Head>
@@ -62,7 +64,7 @@ const Period = ({ period, data }) => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="absolute left-0 top-0 h-screen w-full overflow-hidden bg-sunset select-none">
+      <main className="absolute left-0 top-0 h-full w-full overflow-hidden bg-sunset select-none">
         {!mapInstructionsDidRun && isSmall ? (
           <div className="absolute z-[98] h-screen w-full left-0 top-[56px] flex flex-col justify-center align-middle text-saddle bg-platinum bg-opacity-60">
             <div className="pb-12 text-base">
@@ -77,8 +79,7 @@ const Period = ({ period, data }) => {
               className="underline font-sans uppercase text-center"
               onClick={() => {
                 setMapInstructionsDidRun(true);
-              }}
-            >
+              }}>
               Got it
             </a>
           </div>
@@ -91,8 +92,7 @@ const Period = ({ period, data }) => {
         <motion.div
           className="hidden md:block absolute left-[80px] top-[80px] font-sans"
           variants={blur}
-          animate={isDiscOpen ? "show" : "hidden"}
-        >
+          animate={isDiscOpen ? "show" : "hidden"}>
           <p>Move around to see the entire map.</p>
           <p>Click on the discs to see its meaning.</p>
         </motion.div>
@@ -102,13 +102,11 @@ const Period = ({ period, data }) => {
             mapInstructionsDidRun || isMedium
               ? " transition-all"
               : "blur-sm transition-all"
-          }
-        >
+          }>
           <motion.div
             variants={variants}
             initial={"hidden"}
-            animate={isDiscOpen ? "hidden" : "visible"}
-          >
+            animate={isDiscOpen ? "hidden" : "visible"}>
             <div className="md:hidden block absolute w-full h-[58px] period-gradient z-10 top-[56px]"></div>
             <div className="md:hidden block font-serif absolute w-full text-center text-[190px] top-[24px] left-0 stroked-text z-[0] ">
               {start}
@@ -119,9 +117,13 @@ const Period = ({ period, data }) => {
             </div>
           </motion.div>
 
-          {data.future && (
-            <div className="mt-[56px] relative w-full font-sans py-1 z-40">
-              <div className="absolute  w-full flex flex-col items-center snap-center justify-center z-40">
+          {data.future && isSmall ? (
+            <motion.div
+              className="block md:hidden mt-[56px] relative w-full font-sans py-1 z-40"
+              variants={variants}
+              initial={"hidden"}
+              animate={isDiscOpen ? "hidden" : "visible"}>
+              <div className="absolute w-full flex flex-col items-center justify-center z-40">
                 <Link href={`/period/${data.future}`}>
                   <a>
                     <UpArrow />
@@ -133,19 +135,39 @@ const Period = ({ period, data }) => {
                   </a>
                 </Link>
               </div>
-            </div>
-          )}
+            </motion.div>
+          ) : null}
+          {data.past && isMedium ? (
+            <motion.div
+              className="absolute top-0 right-0 h-full font-sans w-auto z-40 flex flex-row items-center justify-center pr-12"
+              variants={variants}
+              initial={"hidden"}
+              animate={isDiscOpen ? "hidden" : "visible"}>
+              <Link href={`/period/${data.future}`}>
+                <motion.a className="z-40 rotate-[90deg] mr-[-24px]">
+                  <span className="uppercase  text-saddle py-1  text-center">
+                    To the Future
+                  </span>
+                </motion.a>
+              </Link>
+              <Link href={`/period/${data.future}`}>
+                <a className="rotate-90">
+                  <UpArrow />
+                </a>
+              </Link>
+            </motion.div>
+          ) : null}
 
           <motion.div
             className={
-              "absolute z-30 left-0 top-0 w-full h-full flex justify-center align-center "
+              "relative z-30 left-0 top-0 w-full h-screen flex justify-center align-start"
             }
             variants={variants}
             initial={"hidden"}
             animate={isDiscOpen ? "hidden" : "visible"}
-            ref={zoomRef}
-          >
-            <BayA
+            ref={zoomRef}>
+            <Bay
+              period={period}
               mapRef={zoomRef}
               zoom={zoom}
               handleDiscClick={handleDiscClick}
@@ -158,8 +180,7 @@ const Period = ({ period, data }) => {
             className="zoom-container absolute z-30"
             variants={variants}
             initial={"hidden"}
-            animate={isDiscOpen ? "hidden" : "visible"}
-          >
+            animate={isDiscOpen ? "hidden" : "visible"}>
             <span className="rotate-90 md:rotate-0">
               <ZoomOut />
             </span>
@@ -172,43 +193,60 @@ const Period = ({ period, data }) => {
               defaultValue="85"
               onChange={() => {
                 setZoom(zoomRef.current.value);
-              }}
-            ></input>
+              }}></input>
             <ZoomIn />
           </motion.div>
           <motion.div
-            className="md:hidden flex flex-col w-full absolute bottom-0 left-0"
+            className="md:hidden flex flex-col w-full absolute bottom-0 left-0 "
             variants={variants}
             initial={"hidden"}
-            animate={isDiscOpen ? "hidden" : "visible"}
-          >
-            <div className="font-serif absolute w-full text-center text-[190px] bottom-[-60px] left-0 stroked-text z-[0]">
+            animate={isDiscOpen ? "hidden" : "visible"}>
+            <div className="font-serif absolute w-full text-center text-[190px] bottom-[-60px] left-0 stroked-text z-[-1]">
               {end}
             </div>
             <div className=" absolute w-full bottom-0 left-0 period-gradient-bottom z-10 h-[78px]"></div>
-            {data.past && (
-              <div className="py-2 font-sans w-full pb-4 z-30 flex flex-col items-center justify-center">
-                <Link href={`/period/${data.past}`}>
-                  <a className="">
-                    <span className="uppercase  text-saddle py-1  text-center">
-                      To the Past
-                    </span>
-                  </a>
-                </Link>
-                <Link href={`/period/${data.past}`}>
-                  <a>
-                    <DownArrow />
-                  </a>
-                </Link>
-              </div>
-            )}
           </motion.div>
+          {data.past && isSmall ? (
+            <motion.div className="absolute bottom-0 left-0 py-2 font-sans w-full pb-4 z-40 flex flex-col items-center justify-center">
+              <Link href={`/period/${data.past}`}>
+                <a className="z-40">
+                  <span className="uppercase  text-saddle py-1  text-center">
+                    To the Past
+                  </span>
+                </a>
+              </Link>
+              <Link href={`/period/${data.past}`}>
+                <a>
+                  <DownArrow />
+                </a>
+              </Link>
+            </motion.div>
+          ) : null}
+          {data.past && isMedium ? (
+            <motion.div
+              className="absolute top-0 left-0 h-full font-sans w-auto z-40 flex flex-row items-center justify-center pl-12"
+              variants={variants}
+              initial={"hidden"}
+              animate={isDiscOpen ? "hidden" : "visible"}>
+              <Link href={`/period/${data.past}`}>
+                <a className="rotate-90">
+                  <DownArrow />
+                </a>
+              </Link>
+              <Link href={`/period/${data.past}`}>
+                <motion.a className="z-40 rotate-[270deg] ml-[-24px]">
+                  <span className="uppercase  text-saddle py-1  text-center">
+                    To the Past
+                  </span>
+                </motion.a>
+              </Link>
+            </motion.div>
+          ) : null}
           <motion.div
             className="absolute w-full bottom-[54px] flex justify-between z-30"
             variants={variants}
             initial={"hidden"}
-            animate={isDiscOpen ? "hidden" : "visible"}
-          >
+            animate={isDiscOpen ? "hidden" : "visible"}>
             <span className="border-saddle border-solid border-t-[1px] md:border-t-2 w-4"></span>
             <span className="border-saddle border-solid border-t-[1px] md:border-t-2 w-4"></span>
           </motion.div>

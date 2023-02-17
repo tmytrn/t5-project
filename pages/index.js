@@ -16,10 +16,10 @@ import UpArrow from "svg/UpArrow";
 import BayThumbnail from "svg/BayThumbnail";
 import SelectorDesktop from "svg/SelectorDesktop";
 const Home = ({ periods, periodsReverse }) => {
+  console.log(periods);
   const ref = useRef();
   const [selectedPeriod, setSelectedPeriod] = useState(0);
   const [isChanging, setChanging] = useState(false);
-  const [selectedLink, setSelectedLink] = useState("/period/2020-2040");
 
   const opacity = {
     hidden: { opacity: 0, transition: { duration: 0.001 } },
@@ -45,7 +45,7 @@ const Home = ({ periods, periodsReverse }) => {
     show: {
       background: "#F5DD9D",
       opacity: 1,
-      color: "#E2F0F8",
+      color: "#5B3B0B",
       transition: { duration: 0.5, delay: 0.5 },
     },
   };
@@ -128,17 +128,15 @@ const Home = ({ periods, periodsReverse }) => {
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
       <main
-        className="h-full md:h-screen d:flex md:flex-col md:justify-end pt-[172px] md:pt-[250px] px-5 md:px-0 border-solid border-saddle w-full bg-transparent overflow-hidden"
-        ref={ref}
-      >
-        <div className={"bg-branch hidden md:block w-full h-full md:pt-12"}>
+        className="h-full md:h-screen d:flex md:flex-col md:justify-end pt-[172px] md:pt-[124px] px-5 md:px-0 border-solid border-saddle w-full bg-transparent overflow-hidden"
+        ref={ref}>
+        <div className={"bg-branch hidden md:block w-full h-full"}>
           <Swiper
             slidesPerView={"auto"}
-            spaceBetween={43}
+            spaceBetween={24}
             initialSlide={0}
             centeredSlides={true}
             slideToClickedSlide={true}
-            shortSwipes={false}
             className={"mySwiper w-full h-full select-none"}
             onSlideChange={(i) => {
               // setSelectedPeriod(i.realIndex);
@@ -152,59 +150,68 @@ const Home = ({ periods, periodsReverse }) => {
             onTouchEnd={(i) => {
               setChanging(false);
               setSelectedPeriod(i.realIndex);
-            }}
-          >
+            }}>
             {periodsReverse.map((period, key) => (
               <SwiperSlide
-                className="w-[745px] flex justify-center items-center relative shrink-0 transition-transform md:cursor-grab"
-                key={key}
-              >
-                <div className="text-saddle flex flex-col h-full justify-start hover:bg-sunset pt-4">
+                className="w-[800px] 2xl:w-[1024px] flex justify-center items-center relative shrink-0 transition-transform md:cursor-grab"
+                key={key}>
+                <div className="text-saddle flex flex-col h-full justify-between hover:bg-sunset ">
                   {/* <BayThumbnail /> */}
-                  <div className="relative select-none w-full h-[350px]">
+                  <div className="relative select-none w-full h-full">
                     <img
-                      src="/images/thumbnailWhite.png"
-                      className="absolute top-0 left-[calc(50%-372.5px)] w-[745px] h-[304px]"
+                      src={period.inactiveImage}
+                      className="absolute top-0 left-[calc(50%-400px)] 2xl:left-[calc(50%-512px)] select-none pointer-events-none"
                     />
-                    <motion.img
-                      src="/images/thumbnailColor.png"
-                      className="absolute top-0 left-[calc(50%-372.5px)]  w-[745px] h-[304px]"
-                      variants={opacity}
-                      animate={
-                        !isChanging && selectedPeriod == key ? "show" : "hidden"
-                      }
-                    />
+                    <Link
+                      href={
+                        !isChanging && selectedPeriod == key
+                          ? `/period/${period.period}`
+                          : `#`
+                      }>
+                      <motion.img
+                        variants={opacity}
+                        animate={
+                          !isChanging && selectedPeriod == key
+                            ? "show"
+                            : "hidden"
+                        }
+                        src={period.activeImage}
+                        className={
+                          !isChanging && selectedPeriod == key
+                            ? `absolute top-0 left-[calc(50%-400px)] 2xl:left-[calc(50%-512px)] hover:cursor-pointer`
+                            : `absolute top-0 left-[calc(50%-400px)] 2xl:left-[calc(50%-512px)] pointer-events-none`
+                        }></motion.img>
+                    </Link>
                   </div>
                   <motion.div
-                    className="w-[745px] text-[90px] text-center grow flex flex-col justify-center"
+                    className="w-[800px] 2xl:w-[1024px] text-[90px] text-center flex flex-col justify-center"
                     variants={desktopSelector}
                     animate={
                       !isChanging && selectedPeriod == key ? "show" : "hidden"
-                    }
-                  >
-                    <a
+                    }>
+                    <Link
                       className="leading-[60px] inline"
-                      href={`/period/2020-2040`}
-                    >
+                      href={
+                        !isChanging && selectedPeriod == key
+                          ? `/period/${period.period}`
+                          : `#`
+                      }>
                       {period.period}
-                    </a>
+                    </Link>
 
                     <motion.span
                       className="h-[60px] flex flex-col justify-start"
-                      variants={desktopEnter}
-                    >
-                      <a
-                        className="inline font-sans text-2xl color-saddle hover:underline hover:cursor-pointer"
-                        href={`/period/2020-2040`}
-                      >
-                        ENTER
-                      </a>
-                      <a
-                        className="flex justify-center text-center hover:cursor-pointer"
-                        href={`/period/2020-2040`}
-                      >
-                        <SelectorDesktop />
-                      </a>
+                      variants={desktopEnter}>
+                      <Link href={`/period/${period.period}`} legacyBehavior>
+                        <a className="inline font-sans text-2xl color-saddle hover:underline hover:cursor-pointer">
+                          ENTER
+                        </a>
+                      </Link>
+                      <Link href={`/period/${period.period}`} legacyBehavior>
+                        <a className="flex justify-center text-center hover:cursor-pointer">
+                          <SelectorDesktop />
+                        </a>
+                      </Link>
                     </motion.span>
                   </motion.div>
                 </div>
@@ -218,8 +225,7 @@ const Home = ({ periods, periodsReverse }) => {
           animate="show"
           className={
             " md:hidden absolute left-0 top-0 h-screen w-full bg-transparent overflow-hidden"
-          }
-        >
+          }>
           <Swiper
             direction={"vertical"}
             slidesPerView={"auto"}
@@ -239,24 +245,21 @@ const Home = ({ periods, periodsReverse }) => {
               setChanging(false);
               setSelectedPeriod(i.realIndex);
             }}
-            className={"w-full h-full"}
-          >
+            className={"w-full h-full"}>
             <div className=" md:hidden absolute left-0 top-[calc(50%-54px)] pl-[17px] h-[108px] selector w-full flex justify-start items-center select-none">
               <span className="flex w-1/2 items center z-30 ">
                 <Selector />
                 <motion.span
                   className="font-sans uppercase ml-2 leading-[18px] pb-1 border-b-[1px] border-b-solid border-saddle"
                   variants={enter}
-                  animate={isChanging ? "hidden" : "show"}
-                >
+                  animate={isChanging ? "hidden" : "show"}>
                   Enter
                 </motion.span>
               </span>
               <motion.span
                 className="w-1/2 ml-[-20px] z-30 "
                 variants={opacity}
-                animate={isChanging ? "show" : "hidden"}
-              >
+                animate={isChanging ? "show" : "hidden"}>
                 <Hyphen />
               </motion.span>
             </div>
@@ -264,8 +267,7 @@ const Home = ({ periods, periodsReverse }) => {
             {periods.map((period, key) => (
               <SwiperSlide
                 className="last:border-b-solid last:border-b-[1px] last:border-b-white h-[108px]"
-                key={key}
-              >
+                key={key}>
                 <motion.div
                   variants={saddle}
                   initial={"initial"}
@@ -274,33 +276,33 @@ const Home = ({ periods, periodsReverse }) => {
                   }
                   className={
                     "h-[108px] flex justify-center w-full border-t-white border-solid border-t-[1px]  "
-                  }
-                >
-                  <motion.a
-                    className={
-                      "w-full flex justify-between text-7xl pl-1 tracking-tightest text-left m-center max-w-[302px] py-6 "
-                    }
-                    variants={opacities}
-                    animate={
-                      selectedPeriod == key
-                        ? "full"
-                        : key == selectedPeriod + 1 || key == selectedPeriod - 1
-                        ? "eighty"
-                        : key == selectedPeriod + 2 || key == selectedPeriod - 2
-                        ? "thirty"
-                        : "ten"
-                    }
-                    href={`/period/2020-2040`}
-                    //TODO: make this a dynamic route
-                  >
-                    <motion.span className="mr-auto w-[142px] leading-[60px]">
-                      {period.period.split("-")[0]}
-                    </motion.span>
+                  }>
+                  <Link href={`/period/${period.period}`}>
+                    <motion.a
+                      className={
+                        "w-full flex justify-between text-7xl pl-1 tracking-tightest text-left m-center max-w-[302px] py-6 "
+                      }
+                      variants={opacities}
+                      animate={
+                        selectedPeriod == key
+                          ? "full"
+                          : key == selectedPeriod + 1 ||
+                            key == selectedPeriod - 1
+                          ? "eighty"
+                          : key == selectedPeriod + 2 ||
+                            key == selectedPeriod - 2
+                          ? "thirty"
+                          : "ten"
+                      }>
+                      <motion.span className="mr-auto w-[142px] leading-[60px]">
+                        {period.period.split("-")[0]}
+                      </motion.span>
 
-                    <motion.span className="ml-auto leading-[60px]">
-                      {period.period.split("-")[1]}
-                    </motion.span>
-                  </motion.a>
+                      <motion.span className="ml-auto leading-[60px]">
+                        {period.period.split("-")[1]}
+                      </motion.span>
+                    </motion.a>
+                  </Link>
                 </motion.div>
               </SwiperSlide>
             ))}

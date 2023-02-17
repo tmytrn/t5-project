@@ -7,6 +7,8 @@ export const discQuery = `
 export const periodQuery = `
 *[_type == "period"] | order(period desc){
 period,
+"activeImage": activeImage.asset->url,
+"inactiveImage": inactiveImage.asset->url,
 }
 `;
 

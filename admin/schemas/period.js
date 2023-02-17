@@ -28,6 +28,16 @@ export default {
         },
       ],
     },
+    {
+      name: "activeImage",
+      type: "image",
+      title: "Active Image",
+    },
+    {
+      name: "inactiveImage",
+      type: "image",
+      title: "Inactive Image",
+    },
   ],
   // orderings: [
   //   {

@@ -22,16 +22,15 @@ const Header = ({ page, data }) => {
               className="flex justify-center items-center w-[24px] h-[24px]"
               onClick={() => {
                 setIsNavOpen(false);
-              }}
-            >
+              }}>
               {isNavOpen ? <Close /> : <Hamburger />}
             </a>
           </div>
           <div className="block w-full h-screen md:absolute md:w-[450px] top-[56px] right-0 sunset">
-            <div className="w-full mt-12 uppercase text-center font-sans border-t-[1px] py-6 border-white border-solid color-saddle">
+            <div className="w-full mt-12 uppercase text-center font-sans border-t-[1px] py-6 border-white border-solid color-saddle border-b-[1px]">
               About
             </div>
-            <div className="w-full uppercase text-center font-sans border-t-[1px] py-6 border-white  border-solid color-saddle">
+            {/* <div className="w-full uppercase text-center font-sans border-t-[1px] py-6 border-white  border-solid color-saddle">
               Photo Gallery
             </div>
             <div className="w-full uppercase text-center font-sans border-t-[1px] py-6 border-white  border-solid color-saddle">
@@ -39,17 +38,16 @@ const Header = ({ page, data }) => {
             </div>
             <div className="w-full uppercase text-center font-sans border-t-[1px] border-b-[1px] py-6 border-white  border-solid color-saddle">
               News + Press
-            </div>
+            </div> */}
           </div>
         </div>
       ) : page == "home" ? (
         <>
-          <div className="flex flex-col justify-between align-top p-5 sunset h-auto md:h-[275px]">
-            <p className="font-sans text-center text-2xl"> WELCOME TO</p>
-            <h1 className=" font-serif text-6xl md:text-[180px] text-opacity-90 tracking-tightest text-center leading-[60px]">
+          <div className="flex flex-col justify-between align-top p-5 sunset h-auto md:h-[124px]">
+            <h1 className=" font-serif text-4xl md:text-6xl text-opacity-90 tracking-tightest text-center leading-[60px]">
               a mur<i>mur</i>ation,
             </h1>
-            <div className=" font-sans text-base md:text-2xl text-center tracking-tight">
+            <div className=" font-sans text-base md:text-md text-center tracking-tight">
               Start your journey here{" "}
               <span className="block md:inline-block">
                 by choosing an era below.
@@ -70,8 +68,7 @@ const Header = ({ page, data }) => {
               className="flex justify-center items-center "
               onClick={() => {
                 setIsNavOpen(true);
-              }}
-            >
+              }}>
               {isNavOpen ? <Close /> : <Hamburger />}
             </a>
           </div>
