@@ -39,7 +39,7 @@ const Disc = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
           </motion.div>
         ) : null}
         <div className="h-discscroll overflow-y-scroll overflow-x-hidden pb-36 md:pb-12 hide-scrollbar">
-          <div className="font-sans text-base uppercase text-center pb-4">
+          <div className="font-sans text-xl uppercase text-center pb-4">
             {data?.country}
           </div>
           <div className="flex flex-col md:flex-row justify-between">
@@ -68,14 +68,20 @@ const Disc = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
                   ESPAÑOL
                 </a>
               </div>
-              <div className="text-4xl pb-8 md:pb-4 lg:pb-2 leading-[52px] ">
-                {isEnglish
-                  ? `“${data?.translation}”`
-                  : `“${
-                      data?.spanishTranslation
-                        ? data.spanishTranslation
-                        : "No Translation"
-                    }”`}
+              <div className="text-4xl pb-8 md:pb-4 lg:pb-4 leading-[52px] ">
+                {isEnglish ? (
+                  data?.translation ? (
+                    `“${data.translation}”`
+                  ) : (
+                    <PortableText value={data?.quote} />
+                  )
+                ) : (
+                  `“${
+                    data?.spanishTranslation
+                      ? data.spanishTranslation
+                      : "No Translation"
+                  }”`
+                )}
               </div>
             </div>
             {data?.quote && (
@@ -159,7 +165,7 @@ const DiscWrapper = ({
   const variants = isSmall
     ? {
         visible: {
-          y: "calc(-100% + 72px)",
+          y: "calc(-100%)",
           transition: {
             duration: 0.5,
           },
@@ -190,32 +196,28 @@ const DiscWrapper = ({
     hidden: {
       backdropFilter: "blur(0px)",
       zIndex: 0,
-      transition: { duration: 1, delay: 1 },
+      transition: { duration: 1 },
     },
     show: {
       backdropFilter: "blur(3px)",
       zIndex: 30,
       transition: { duration: 1 },
     },
-    exit: {
-      zIndex: 0,
-      transition: { duration: 1 },
-    },
   };
 
   return (
-    <motion.div
-      ref={discbackgroundRef}
-      className="w-full h-screen relative"
-      variants={blur}
-      initial={"hidden"}
-      animate={isDiscOpen && isData ? "show" : "hidden"}
-      onClick={() => {
-        setIsDiscOpen(false);
-      }}>
+    <motion.div ref={discbackgroundRef} className="w-full h-screen relative">
+      <motion.div
+        className="w-full h-full top-[56px] absolute"
+        variants={blur}
+        initial={"hidden"}
+        animate={isDiscOpen ? "show" : "hidden"}
+        onClick={() => {
+          setIsDiscOpen(false);
+        }}></motion.div>
       <motion.div
         ref={discRef}
-        className="absolute w-full h-disc top-[100%] left-0  md:bg-transparent rounded-[15px] flex justify-center"
+        className="absolute w-full h-disc top-[100%] left-0  md:bg-transparent rounded-[15px] flex justify-center z-40"
         variants={variants}
         initial={"initial"}
         animate={isDiscOpen && isData ? "visible" : "hidden"}

@@ -16,6 +16,7 @@ import { useIsSmall, useIsMedium } from "@lib/index";
 import { useOutsideClick } from "@lib/index";
 
 const Period = ({ period, data }) => {
+  console.log(data);
   const isSmall = useIsSmall();
   const isMedium = useIsMedium();
   const [isDiscOpen, setIsDiscOpen] = useState(false);
@@ -116,6 +117,16 @@ const Period = ({ period, data }) => {
               <span className="border-saddle border-solid border-t-[1px] md:border-t-2 w-4"></span>
             </div>
           </motion.div>
+          <motion.div
+            className="md:hidden flex flex-col w-full absolute bottom-0 left-0 "
+            variants={variants}
+            initial={"hidden"}
+            animate={isDiscOpen ? "hidden" : "visible"}>
+            <div className="font-serif absolute w-full text-center text-[190px] bottom-[-60px] left-0 stroked-text z-[0]">
+              {end}
+            </div>
+            <div className=" absolute w-full bottom-0 left-0 period-gradient-bottom z-10 h-[78px]"></div>
+          </motion.div>
 
           {data.future && isSmall ? (
             <motion.div
@@ -137,30 +148,10 @@ const Period = ({ period, data }) => {
               </div>
             </motion.div>
           ) : null}
-          {data.past && isMedium ? (
-            <motion.div
-              className="absolute top-0 right-0 h-full font-sans w-auto z-40 flex flex-row items-center justify-center pr-12"
-              variants={variants}
-              initial={"hidden"}
-              animate={isDiscOpen ? "hidden" : "visible"}>
-              <Link href={`/period/${data.future}`}>
-                <motion.a className="z-40 rotate-[90deg] mr-[-24px]">
-                  <span className="uppercase  text-saddle py-1  text-center">
-                    To the Future
-                  </span>
-                </motion.a>
-              </Link>
-              <Link href={`/period/${data.future}`}>
-                <a className="rotate-90">
-                  <UpArrow />
-                </a>
-              </Link>
-            </motion.div>
-          ) : null}
 
           <motion.div
             className={
-              "relative z-30 left-0 top-0 w-full h-screen flex justify-center align-start"
+              "relative  left-0 top-0 w-full h-screen flex justify-center align-start"
             }
             variants={variants}
             initial={"hidden"}
@@ -196,18 +187,12 @@ const Period = ({ period, data }) => {
               }}></input>
             <ZoomIn />
           </motion.div>
-          <motion.div
-            className="md:hidden flex flex-col w-full absolute bottom-0 left-0 "
-            variants={variants}
-            initial={"hidden"}
-            animate={isDiscOpen ? "hidden" : "visible"}>
-            <div className="font-serif absolute w-full text-center text-[190px] bottom-[-60px] left-0 stroked-text z-[-1]">
-              {end}
-            </div>
-            <div className=" absolute w-full bottom-0 left-0 period-gradient-bottom z-10 h-[78px]"></div>
-          </motion.div>
           {data.past && isSmall ? (
-            <motion.div className="absolute bottom-0 left-0 py-2 font-sans w-full pb-4 z-40 flex flex-col items-center justify-center">
+            <motion.div
+              className="absolute bottom-0 left-0 py-2 font-sans w-full pb-4 z-40 flex flex-col items-center justify-center"
+              variants={variants}
+              initial={"hidden"}
+              animate={isDiscOpen ? "hidden" : "visible"}>
               <Link href={`/period/${data.past}`}>
                 <a className="z-40">
                   <span className="uppercase  text-saddle py-1  text-center">
@@ -239,6 +224,27 @@ const Period = ({ period, data }) => {
                     To the Past
                   </span>
                 </motion.a>
+              </Link>
+            </motion.div>
+          ) : null}
+
+          {data.future && isMedium ? (
+            <motion.div
+              className="absolute top-0 right-0 h-full font-sans w-auto z-40 flex flex-row items-center justify-center pr-12"
+              variants={variants}
+              initial={"hidden"}
+              animate={isDiscOpen ? "hidden" : "visible"}>
+              <Link href={`/period/${data.future}`}>
+                <motion.a className="z-40 rotate-[90deg] mr-[-24px]">
+                  <span className="uppercase  text-saddle py-1  text-center">
+                    To the Future
+                  </span>
+                </motion.a>
+              </Link>
+              <Link href={`/period/${data.future}`}>
+                <a className="rotate-90">
+                  <UpArrow />
+                </a>
               </Link>
             </motion.div>
           ) : null}

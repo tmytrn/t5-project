@@ -20,6 +20,7 @@ module.exports = {
       "5xl": "48px",
       "6xl": "64px",
       "7xl": "72px",
+      "8xl": "90px",
     },
     fontFamily: {
       serif: ["PP Editorial New", "serif"],
