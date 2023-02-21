@@ -26,6 +26,7 @@ export const periodPageQuery = `
     quote,
     size,
     translation,
+    spanishTranslation,
     alignRight,
   }
   }
