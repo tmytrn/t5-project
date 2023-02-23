@@ -18,7 +18,7 @@ const Disc = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
       setIsDiscOpen={setIsDiscOpen}
       isSmall={isSmall}
       isData={data ? true : false}>
-      <div className="px-4 md:px-24 text-saddle">
+      <div className="px-4 md:px-16 lg:px-28 text-saddle">
         {!data && (
           <div className="flex flex-col justify-center text-center pt-[16px] font-sans">
             What does this mean? Click the disk to see it from here.
@@ -43,7 +43,7 @@ const Disc = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
             {data?.country}
           </div>
           <div className="flex flex-col md:flex-row justify-between">
-            <div className="md:w-2/3">
+            <div className="md:w-2/3 md:pr-12">
               <div className="flex w-full md:w-[302px] mb-4 font-sans text-center border-[1px] border-solid border-saddle ">
                 <a
                   className={
@@ -101,20 +101,20 @@ const Disc = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
             )}
           </div>
           {data?.contributor && (
-            <div className="font-sans uppercase text-base pb-4">
-              <p>Contributor</p>
+            <div className="font-sans text-base pb-4">
+              <p className="underline uppercase">Contributor</p>
               <p>{data?.contributor}</p>
             </div>
           )}
           {data?.organization && (
             <div className="font-sans uppercase text-base pb-4">
-              <p>Organization</p>
+              <p className="underline">Organization</p>
               <p>{data.organization}</p>
             </div>
           )}
           {data?.context && (
             <div className="font-sans text-base pb-4">
-              <p className="uppercase">Context</p>
+              <p className="uppercase underline">Context</p>
               <PortableText className="normal-case" value={data.context} />
             </div>
           )}
@@ -136,19 +136,19 @@ const Disc = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
 const colorString = (color) => {
   switch (color) {
     case "desert tan":
-      return "absolute w-disc md:w-discdesktop h-disc bg-deserttan/[0.6] md:bg-deserttan/[0.8] rounded-[15px] border-solid border-saddle border-[1px] ";
+      return "absolute w-disc md:w-discdesktop h-disc bg-deserttan/[0.6] md:bg-deserttan/[0.8] rounded-[15px]  ";
     case "old penny":
-      return "absolute w-disc md:w-discdesktop h-disc bg-oldpenny/[0.6] md:bg-oldpenny/[0.8] rounded-[15px] border-solid border-saddle border-[1px]";
+      return "absolute w-disc md:w-discdesktop h-disc bg-oldpenny/[0.6] md:bg-oldpenny/[0.8] rounded-[15px] ";
     case "new penny":
-      return "absolute w-disc md:w-discdesktop h-disc bg-newpenny/[0.6] md:bg-newpenny/[0.8] rounded-[15px] border-solid border-saddle border-[1px]";
+      return "absolute w-disc md:w-discdesktop h-disc bg-newpenny/[0.6] md:bg-newpenny/[0.8] rounded-[15px] ";
     case "pewter":
-      return "absolute w-disc md:w-discdesktop h-disc bg-pewter/[0.6] md:bg-pewter/[0.8] rounded-[15px] border-solid border-saddle border-[1px]";
+      return "absolute w-disc md:w-discdesktop h-disc bg-pewter/[0.6] md:bg-pewter/[0.8] rounded-[15px] ";
     case "moss green":
-      return "absolute w-disc md:w-discdesktop h-disc bg-mossgreen/[0.6] md:bg-mossgreen/[0.8] rounded-[15px] border-solid border-saddle border-[1px]";
+      return "absolute w-disc md:w-discdesktop h-disc bg-mossgreen/[0.6] md:bg-mossgreen/[0.8] rounded-[15px] ";
     case "clear":
-      return "absolute w-disc md:w-discdesktop h-disc bg-clear/[0.6] md: bg-clear/[0.8] rounded-[15px] border-solid border-saddle border-[1px]";
+      return "absolute w-disc md:w-discdesktop h-disc bg-clear/[0.6] md: bg-clear/[0.8] rounded-[15px] ";
     case "olive drab":
-      return "absolute w-disc md:w-discdesktop h-disc bg-olivedrab/[0.6] md:bg-olivedrab/[0.8] rounded-[15px] border-solid border-saddle border-[1px]";
+      return "absolute w-disc md:w-discdesktop h-disc bg-olivedrab/[0.6] md:bg-olivedrab/[0.8] rounded-[15px] ";
   }
 };
 

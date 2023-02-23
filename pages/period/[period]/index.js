@@ -50,6 +50,16 @@ const Period = ({ period, data }) => {
     hidden: { filter: "blur(0px)", transition: { duration: 1 } },
     show: { filter: "blur(3px)", transition: { duration: 1 } },
   };
+  const strokedText = {
+    show: {
+      color: "rgba(91, 59, 11, 0)",
+      opacity: 1,
+    },
+    hidden: {
+      color: "rgba(91, 59, 11, 0.9)",
+      opacity: 0.45,
+    },
+  };
 
   useEffect(() => {
     setZoom(isSmall ? 85 : 75);
@@ -86,9 +96,12 @@ const Period = ({ period, data }) => {
           </div>
         ) : null}
 
-        <div className="hidden absolute bottom-[80px] md:flex justify-center align-bottom left-0 lg:text-[240px] xl:text-[360px] w-full md:text-saddle opacity-50">
+        <motion.div
+          className="hidden absolute bottom-[80px] md:flex justify-center align-bottom left-0 lg:text-[240px] xl:text-[360px] w-full stroked-saddle"
+          variants={strokedText}
+          animate={isDiscOpen ? "show" : "hidden"}>
           <p className="w-full text-center h-[360px] ">{period}</p>
-        </div>
+        </motion.div>
 
         <motion.div
           className="hidden md:block absolute left-[80px] top-[80px] font-sans"
