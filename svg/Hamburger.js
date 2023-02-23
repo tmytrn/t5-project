@@ -7,17 +7,16 @@ const Hamburger = () => {
       height="11"
       viewBox="0 0 23 11"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+      xmlns="http://www.w3.org/2000/svg">
       <path
         d="M0 1H23"
-        stroke="#5B3B0B"
+        stroke="#684C21"
         stroke-opacity="0.9"
         className="origin-center"
       />
       <path
         d="M0 10H23"
-        stroke="#5B3B0B"
+        stroke="#684C21"
         stroke-opacity="0.9"
         className="origin-center"
       />

@@ -86,8 +86,8 @@ const Period = ({ period, data }) => {
           </div>
         ) : null}
 
-        <div className="hidden absolute bottom-[80px] md:flex justify-center align-bottom left-0 text-[360px] w-full stroked-text opacity-30">
-          <p className="w-full stroked-text text-center h-[360px] ">{period}</p>
+        <div className="hidden absolute bottom-[80px] md:flex justify-center align-bottom left-0 lg:text-[240px] xl:text-[360px] w-full md:text-saddle opacity-50">
+          <p className="w-full text-center h-[360px] ">{period}</p>
         </div>
 
         <motion.div
@@ -109,7 +109,7 @@ const Period = ({ period, data }) => {
             initial={"hidden"}
             animate={isDiscOpen ? "hidden" : "visible"}>
             <div className="md:hidden block absolute w-full h-[58px] period-gradient z-10 top-[56px]"></div>
-            <div className="md:hidden block font-serif absolute w-full text-center text-[190px] top-[24px] left-0 stroked-text z-[0] ">
+            <div className="md:hidden block font-serif absolute w-full text-center text-[190px] top-[24px] left-0 z-[0] stroked-text">
               {start}
             </div>
             <div className="absolute w-full top-[90px] flex justify-between z-30">
@@ -122,7 +122,7 @@ const Period = ({ period, data }) => {
             variants={variants}
             initial={"hidden"}
             animate={isDiscOpen ? "hidden" : "visible"}>
-            <div className="font-serif absolute w-full text-center text-[190px] bottom-[-60px] left-0 stroked-text z-[0]">
+            <div className="font-serif absolute w-full text-center text-[190px] bottom-[-60px] left-0  z-[0] stroked-text">
               {end}
             </div>
             <div className=" absolute w-full bottom-0 left-0 period-gradient-bottom z-10 h-[78px]"></div>

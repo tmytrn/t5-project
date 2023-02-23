@@ -6,18 +6,27 @@ import Hamburger from "../svg/Hamburger";
 import Close from "../svg/Close";
 import { useState } from "react";
 import React from "react";
+import Logo from "../svg/Logo";
 
 const Header = ({ page, data }) => {
   const { loaderDidRun } = useContext(LoaderContext);
   const [isNavOpen, setIsNavOpen] = useState(false);
   return (
-    <nav className="w-full fixed left-0 top-0 text-saddle z-[99] h-[56px] md:h-auto">
+    <nav className="w-full fixed left-0 top-0 text-saddle z-[99] h-[56px] md:h-auto ">
       {isNavOpen ? (
-        <div className="w-full h-screen flex flex-col justify-start items-center">
-          <div className="w-full flex flex-row md:flex-row justify-between items-center p-4 z-20 sunset">
-            <p className="font-serif text-left text-base">
-              a mur<i>mur</i>ation
-            </p>
+        <div className="w-full h-screen flex flex-col justify-start items-center ">
+          <div className="w-full flex flex-row md:flex-row justify-between md:justify-center items-center p-4 z-20 nav-gradient">
+            <div className="md:w-full">
+              <div>
+                <Link href="/" legacyBehavior>
+                  <a className="block w-[124px] mx-auto">
+                    <div className="w-[124px] md:ml-[11.5px]">
+                      <Logo />
+                    </div>
+                  </a>
+                </Link>{" "}
+              </div>
+            </div>
             <a
               className="flex justify-center items-center w-[24px] h-[24px]"
               onClick={() => {
@@ -43,11 +52,9 @@ const Header = ({ page, data }) => {
         </div>
       ) : page == "home" ? (
         <>
-          <div className="flex flex-col justify-between align-top p-5 sunset h-auto md:h-[128px]">
-            <h1 className=" font-serif text-5xl md:text-8xl text-opacity-90 tracking-tightest text-center leading-[72px]">
-              a mur<i>mur</i>ation,
-            </h1>
-            <div className=" font-sans text-base md:text-base text-center tracking-tight">
+          <div className="flex flex-col justify-between align-top p-5 bg-transparent h-auto md:h-[128px]">
+            <Logo />
+            <div className="pt-2 font-sans text-base md:text-base text-center tracking-tight text-iceberg">
               Start your journey here{" "}
               <span className="block md:inline-block">
                 by choosing an era below.
@@ -57,15 +64,21 @@ const Header = ({ page, data }) => {
         </>
       ) : (
         <>
-          <div className="absolute w-full flex flex-row justify-between items-center p-4 nav-gradient z-20">
-            <Link href="/">
-              <a className="font-serif text-left text-base">
-                a mur<i>mur</i>ation
-              </a>
-            </Link>
+          <div className="absolute w-full h-[56px] flex flex-row justify-between md:justify-center items-center p-4 nav-gradient z-20 ">
+            <div className="md:w-full">
+              <div>
+                <Link href="/" legacyBehavior>
+                  <a className="block w-[124px] mx-auto">
+                    <div className="w-[124px] md:ml-[11.5px]">
+                      <Logo />
+                    </div>
+                  </a>
+                </Link>{" "}
+              </div>
+            </div>
 
             <a
-              className="flex justify-center items-center "
+              className="flex justify-center items-center"
               onClick={() => {
                 setIsNavOpen(true);
               }}>

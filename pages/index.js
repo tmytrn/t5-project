@@ -12,12 +12,12 @@ import Selector from "svg/Selector";
 import Hyphen from "svg/Hyphen";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
-import UpArrow from "svg/UpArrow";
-import BayThumbnail from "svg/BayThumbnail";
-import SelectorDesktop from "svg/SelectorDesktop";
+import { useIsMedium, useIsSmall } from "@lib/index";
 const Home = ({ periods, periodsReverse }) => {
   console.log(periods);
   const ref = useRef();
+  const isSmall = useIsSmall();
+  const isMedium = useIsMedium();
   const [selectedPeriod, setSelectedPeriod] = useState(0);
   const [isChanging, setChanging] = useState(false);
 
@@ -38,14 +38,12 @@ const Home = ({ periods, periodsReverse }) => {
 
   const desktopSelector = {
     hidden: {
-      background: "transparent",
-      opacity: 0.5,
+      opacity: 0.9,
       transition: { duration: 0.001 },
     },
     show: {
-      background: "#F5DD9D",
       opacity: 1,
-      color: "#5B3B0B",
+      color: "#684C21",
       transition: { duration: 0.5, delay: 0.5 },
     },
   };
@@ -56,7 +54,7 @@ const Home = ({ periods, periodsReverse }) => {
     },
     show: {
       opacity: 1,
-      color: "#5B3B0B",
+      color: "#684C21",
       transition: { duration: 0.5, delay: 0.5 },
     },
   };
@@ -64,31 +62,16 @@ const Home = ({ periods, periodsReverse }) => {
   const saddle = {
     hidden: {
       opacity: 1,
-      backgroundColor: "transparent",
-      color: "#5B3B0B",
-      backdropFilter: "blur(0px)",
+      color: "transparent",
       transition: { duration: 0.001 },
     },
     show: {
       opacity: 1,
-      backgroundColor: "#E7CD89",
-      color: "#B2A875",
-      backdropFilter: "blur(3px)",
-      transition: { duration: 0.5 },
+      color: "#684C21",
+      transition: { duration: 1 },
     },
     initial: {
       opacity: 0,
-    },
-  };
-
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.5,
-        duration: 1,
-      },
     },
   };
 
@@ -130,101 +113,85 @@ const Home = ({ periods, periodsReverse }) => {
       <main
         className="h-full md:h-screen d:flex md:flex-col md:justify-end pt-[172px] md:pt-[124px] px-5 md:px-0 border-solid border-saddle w-full bg-transparent overflow-hidden"
         ref={ref}>
-        <div className={"bg-branch hidden md:block w-full h-full"}>
-          <Swiper
-            slidesPerView={"auto"}
-            spaceBetween={24}
-            initialSlide={0}
-            centeredSlides={true}
-            slideToClickedSlide={true}
-            className={"mySwiper w-full h-full select-none"}
-            onSlideChange={(i) => {
-              // setSelectedPeriod(i.realIndex);
-              setChanging(false);
-              setSelectedPeriod(i.realIndex);
-            }}
-            onSliderMove={(i, e) => {
-              setChanging(true);
-              setSelectedPeriod(getCenterIndex(i.progress));
-            }}
-            onTouchEnd={(i) => {
-              setChanging(false);
-              setSelectedPeriod(i.realIndex);
-            }}>
-            {periodsReverse.map((period, key) => (
-              <SwiperSlide
-                className="w-[800px] 2xl:w-[1024px] flex justify-center items-center relative shrink-0 transition-transform md:cursor-grab"
-                key={key}>
-                <div className="text-saddle flex flex-col h-full justify-between hover:bg-sunset ">
-                  {/* <BayThumbnail /> */}
-                  <div className="relative select-none w-full h-full">
-                    <img
-                      src={period.inactiveImage}
-                      className="absolute top-0 left-[calc(50%-400px)] 2xl:left-[calc(50%-512px)] select-none pointer-events-none"
-                    />
-                    <Link
-                      href={
-                        !isChanging && selectedPeriod == key
-                          ? `/period/${period.period}`
-                          : `#`
+        {isMedium && (
+          <div className={"bg-branch hidden md:block w-full h-full"}>
+            <Swiper
+              slidesPerView={"auto"}
+              spaceBetween={24}
+              initialSlide={0}
+              centeredSlides={true}
+              slideToClickedSlide={true}
+              className={"mySwiper w-full h-full select-none"}
+              onSlideChange={(i) => {
+                // setSelectedPeriod(i.realIndex);
+                setChanging(false);
+                setSelectedPeriod(i.realIndex);
+              }}
+              onSliderMove={(i, e) => {
+                setChanging(true);
+                setSelectedPeriod(getCenterIndex(i.progress));
+              }}
+              onTouchEnd={(i) => {
+                setChanging(false);
+                setSelectedPeriod(i.realIndex);
+              }}>
+              {periodsReverse.map((period, key) => (
+                <SwiperSlide className="w-[800px] 2xl:w-[1024px] flex justify-center items-center relative shrink-0 transition-transform md:cursor-grab">
+                  <div
+                    className=" flex flex-col h-full justify-between hover:bg-sunset "
+                    key={key}>
+                    {/* <BayThumbnail /> */}
+                    <div className="relative select-none w-full h-full">
+                      <img
+                        src={period.inactiveImage}
+                        className="absolute top-0 left-[calc(50%-400px)] 2xl:left-[calc(50%-512px)] select-none pointer-events-none"
+                      />
+                      <Link
+                        href={
+                          !isChanging && selectedPeriod == key
+                            ? `/period/${period.period}`
+                            : `#`
+                        }>
+                        <motion.img
+                          variants={opacity}
+                          animate={
+                            !isChanging && selectedPeriod == key
+                              ? "show"
+                              : "hidden"
+                          }
+                          src={period.activeImage}
+                          className={
+                            !isChanging && selectedPeriod == key
+                              ? `absolute top-0 left-[calc(50%-400px)] 2xl:left-[calc(50%-512px)] hover:cursor-pointer`
+                              : `absolute top-0 left-[calc(50%-400px)] 2xl:left-[calc(50%-512px)] pointer-events-none`
+                          }></motion.img>
+                      </Link>
+                    </div>
+                    <motion.div
+                      className="w-[800px] 2xl:w-[1024px] text-[90px] text-center flex flex-col justify-center stroked-saddle text-transparent"
+                      variants={desktopSelector}
+                      animate={
+                        !isChanging && selectedPeriod == key ? "show" : "hidden"
                       }>
-                      <motion.img
-                        variants={opacity}
-                        animate={
+                      <Link
+                        className="leading-[60px] inline"
+                        href={
                           !isChanging && selectedPeriod == key
-                            ? "show"
-                            : "hidden"
-                        }
-                        src={period.activeImage}
-                        className={
-                          !isChanging && selectedPeriod == key
-                            ? `absolute top-0 left-[calc(50%-400px)] 2xl:left-[calc(50%-512px)] hover:cursor-pointer`
-                            : `absolute top-0 left-[calc(50%-400px)] 2xl:left-[calc(50%-512px)] pointer-events-none`
-                        }></motion.img>
-                    </Link>
+                            ? `/period/${period.period}`
+                            : `#`
+                        }>
+                        {period.period}
+                      </Link>
+                    </motion.div>
                   </div>
-                  <motion.div
-                    className="w-[800px] 2xl:w-[1024px] text-[90px] text-center flex flex-col justify-center"
-                    variants={desktopSelector}
-                    animate={
-                      !isChanging && selectedPeriod == key ? "show" : "hidden"
-                    }>
-                    <Link
-                      className="leading-[60px] inline"
-                      href={
-                        !isChanging && selectedPeriod == key
-                          ? `/period/${period.period}`
-                          : `#`
-                      }>
-                      {period.period}
-                    </Link>
-
-                    <motion.span
-                      className="h-[60px] flex flex-col justify-start"
-                      variants={desktopEnter}>
-                      <Link href={`/period/${period.period}`} legacyBehavior>
-                        <a className="inline font-sans text-2xl color-saddle hover:underline hover:cursor-pointer">
-                          ENTER
-                        </a>
-                      </Link>
-                      <Link href={`/period/${period.period}`} legacyBehavior>
-                        <a className="flex justify-center text-center hover:cursor-pointer">
-                          <SelectorDesktop />
-                        </a>
-                      </Link>
-                    </motion.span>
-                  </motion.div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        )}
         <motion.div
-          variants={container}
-          initial="hidden"
-          animate="show"
           className={
-            " md:hidden absolute left-0 top-0 h-screen w-full bg-transparent overflow-hidden"
+            " md:hidden absolute left-0 top-0 h-screen w-full bg-transparent bg-branch overflow-hidden"
           }>
           <Swiper
             direction={"vertical"}
@@ -249,25 +216,13 @@ const Home = ({ periods, periodsReverse }) => {
             <div className=" md:hidden absolute left-0 top-[calc(50%-54px)] pl-[17px] h-[108px] selector w-full flex justify-start items-center select-none">
               <span className="flex w-1/2 items center z-30 ">
                 <Selector />
-                <motion.span
-                  className="font-sans uppercase ml-2 leading-[18px] pb-1 border-b-[1px] border-b-solid border-saddle"
-                  variants={enter}
-                  animate={isChanging ? "hidden" : "show"}>
-                  Enter
-                </motion.span>
               </span>
-              <motion.span
-                className="w-1/2 ml-[-20px] z-30 "
-                variants={opacity}
-                animate={isChanging ? "show" : "hidden"}>
+              <motion.span className="w-1/2 ml-[-20px] z-30 ">
                 <Hyphen />
               </motion.span>
             </div>
-
             {periods.map((period, key) => (
-              <SwiperSlide
-                className="last:border-b-solid last:border-b-[1px] last:border-b-white h-[108px]"
-                key={key}>
+              <SwiperSlide className="last:border-b-solid last:border-b-[1px] last:border-b-white h-[108px]">
                 <motion.div
                   variants={saddle}
                   initial={"initial"}
@@ -275,7 +230,7 @@ const Home = ({ periods, periodsReverse }) => {
                     selectedPeriod == key && !isChanging ? "show" : "hidden"
                   }
                   className={
-                    "h-[108px] flex justify-center w-full border-t-white border-solid border-t-[1px]  "
+                    "h-[108px] flex justify-center w-full border-t-white border-solid border-t-[1px] stroked-saddle"
                   }>
                   <Link href={`/period/${period.period}`}>
                     <motion.a
@@ -292,13 +247,13 @@ const Home = ({ periods, periodsReverse }) => {
                           : key == selectedPeriod + 2 ||
                             key == selectedPeriod - 2
                           ? "thirty"
-                          : "ten"
+                          : "thirty"
                       }>
                       <motion.span className="mr-auto w-[142px] leading-[60px]">
                         {period.period.split("-")[0]}
                       </motion.span>
 
-                      <motion.span className="ml-auto leading-[60px]">
+                      <motion.span className="ml-auto leading-[60px] ">
                         {period.period.split("-")[1]}
                       </motion.span>
                     </motion.a>

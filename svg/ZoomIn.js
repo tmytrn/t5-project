@@ -6,13 +6,12 @@ const ZoomIn = () => {
       height="16"
       viewBox="0 0 16 16"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+      xmlns="http://www.w3.org/2000/svg">
       <circle
         cx="8"
         cy="8"
         r="7"
-        fill="#5B3B0B"
+        fill="#684C21"
         fill-opacity="0.9"
         stroke="#E2F0F8"
         stroke-width="2"
@@ -33,12 +32,12 @@ const ZoomIn = () => {
         stroke="#FFF3CF"
         stroke-width="2"
       />
-      <circle cx="8" cy="8" r="8" fill="#5B3B0B" fill-opacity="0.9" />
+      <circle cx="8" cy="8" r="8" fill="#684C21" fill-opacity="0.9" />
       <circle
         cx="8"
         cy="8"
         r="7"
-        stroke="#5B3B0B"
+        stroke="#684C21"
         stroke-opacity="0.9"
         stroke-width="2"
       />

@@ -29,7 +29,7 @@ module.exports = {
     extend: {
       colors: {
         platinum: "#FFF3CF",
-        saddle: "#5B3B0B",
+        saddle: "#684C21",
         iceberg: "#E2F0F8",
         mossgreen: "#959538",
         olivedrab: "#87897C",

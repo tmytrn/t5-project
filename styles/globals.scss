@@ -6,7 +6,14 @@ html,
 body {
   padding: 0;
   margin: 0;
-  background: linear-gradient(180deg, #fff3cf 0%, #e2f0f8 75.52%);
+  background: linear-gradient(
+      180deg,
+      rgba(35, 99, 193, 0.6) 30.01%,
+      rgba(193, 186, 154, 0.6) 70.42%,
+      rgba(226, 240, 248, 0.414) 93.96%,
+      rgba(226, 240, 248, 0.414) 93.96%
+    ),
+    rgba(255, 255, 255, 0.85);
   background-repeat: none;
   height: 100vh;
   // overflow: hidden;
@@ -15,7 +22,14 @@ body {
     Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
     sans-serif;
   @media only screen and (min-width: 600px) {
-    background: linear-gradient(270deg, #fff3cf 0%, #e2f0f8 75.52%);
+    background: linear-gradient(
+        180deg,
+        rgba(35, 99, 193, 0.6) 30.01%,
+        rgba(193, 186, 154, 0.6) 70.42%,
+        rgba(226, 240, 248, 0.414) 93.96%,
+        rgba(226, 240, 248, 0.414) 93.96%
+      ),
+      rgba(255, 255, 255, 0.85);
   }
 }
 
@@ -28,11 +42,13 @@ body {
 }
 
 .bg-sunset {
-  background: linear-gradient(180deg, #fff3cf 0%, #e2f0f8 75.52%);
+  background: linear-gradient(270.22deg, #fffaea 44.79%, #bde7ff 123.77%);
   background-repeat: none;
   @media only screen and (min-width: 600px) {
-    background: linear-gradient(270deg, #fff3cf 0%, #e2f0f8 75.52%);
+    background: linear-gradient(270.22deg, #fffaea 44.79%, #bde7ff 123.77%);
   }
+}
+.bg-sunset-blue {
 }
 
 .sunset {
@@ -42,7 +58,15 @@ body {
       rgba(255, 239, 191, 0.69) 100%
     ),
     rgba(255, 255, 255, 0.85);
-  box-shadow: 0px 4px 30px #ffe79c;
+}
+.sunset-blue {
+  background: linear-gradient(
+      180deg,
+      rgba(35, 99, 193, 0.6) 30.01%,
+      rgba(193, 186, 154, 0.6) 45.6%,
+      rgba(226, 240, 248, 0.414) 65.34%
+    ),
+    rgba(255, 255, 255, 0.85);
 }
 
 a {
@@ -140,8 +164,8 @@ a {
     padding: 0 4px;
     // outline: none;
     &::-webkit-slider-runnable-track {
-      background-color: #5b3b0b;
-      color: #5b3b0b;
+      background-color: #684c21;
+      color: #684c21;
       height: 1px;
       user-select: none;
     }
@@ -149,10 +173,10 @@ a {
       -webkit-appearance: none;
       appearance: none;
       background-color: #fff3cf;
-      border: 1px solid #5b3b0b;
+      border: 1px solid #684c21;
       cursor: pointer;
-      // color: #5b3b0b;
-      // border: 1px solid #5b3b0b;
+      // color: #684C21;
+      // border: 1px solid #684C21;
       height: 16px;
       width: 16px;
       margin: -7.5px 0;
@@ -173,6 +197,10 @@ a {
 .stroked-text {
   color: transparent;
   -webkit-text-stroke: 1px black;
+}
+.stroked-saddle {
+  color: transparent;
+  -webkit-text-stroke: 1px #684c21;
 }
 .period-gradient {
   background: linear-gradient(
