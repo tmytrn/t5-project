@@ -1,8 +1,3 @@
-const nextConfig = {
-  reactStrictMode: false,
-  swcMinify: true,
-};
-
 const STUDIO_REWRITE = {
   source: "/admin/:path*",
   destination:
@@ -13,13 +8,13 @@ const STUDIO_REWRITE = {
 
 module.exports = {
   rewrites: () => [STUDIO_REWRITE],
-  nextConfig,
+  reactStrictMode: false,
+  swcMinify: true,
   images: {
     remotePatterns: [
       {
         protocol: "https",
         hostname: "cdn.sanity.io",
-        port: "",
       },
     ],
   },
