@@ -14,4 +14,13 @@ const STUDIO_REWRITE = {
 module.exports = {
   rewrites: () => [STUDIO_REWRITE],
   nextConfig,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+        port: "",
+      },
+    ],
+  },
 };

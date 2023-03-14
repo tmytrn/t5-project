@@ -36,7 +36,11 @@ const Bay = ({ period, zoom, handleDiscClick, isMedium, isSmall }) => {
       className="bay drop-shadow-bay z-30 hover:cursor-grab absolute origin-center"
       drag
       // dragConstraints={mapRef}
-      dragConstraints={{ top: -200, left: -700, right: 700, bottom: 200 }}>
+      dragConstraints={
+        isSmall
+          ? { top: -200, left: -800, right: 800, bottom: 200 }
+          : { top: -200, left: -700, right: 700, bottom: 200 }
+      }>
       {
         {
           "2020-2040": <BayA handleDiscClick={handleDiscClick} />,

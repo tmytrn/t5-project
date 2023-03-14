@@ -18,4 +18,9 @@ export const getPeriodPage = async (period) => {
   return data;
 };
 
+export const getAboutPage = async () => {
+  const data = await getClient().fetch(queries.aboutPageQuery);
+  return data;
+};
+
 export { queries };

@@ -32,6 +32,23 @@ export const periodPageQuery = `
   }
   `;
 
+export const aboutPageQuery = `
+*[_id=="aboutPage"]{
+  heroText,
+  "heroImage": heroImage.asset->url,
+  "heroImageAlt": heroImage.alt,
+  aboutText,
+  conceptText,
+  "conceptImage": conceptImage.asset->url,
+  "conceptImageAlt": conceptImage.alt,
+  technicalText,
+  "technicalImage": technicalImage.asset->url,
+  "technicalImageAlt": technicalImage.alt,
+  furtherReadings,
+  researchLinks,
+  }
+  `;
+
 export const metaData = `
 *[_type == "siteconfig"]{
   title,

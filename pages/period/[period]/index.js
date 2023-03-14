@@ -16,12 +16,14 @@ import { useIsSmall, useIsMedium } from "@lib/index";
 import { useOutsideClick } from "@lib/index";
 
 const Period = ({ period, data }) => {
-  console.log(data);
+  // console.log(data);
   const isSmall = useIsSmall();
   const isMedium = useIsMedium();
   const [isDiscOpen, setIsDiscOpen] = useState(false);
   const [currentDisc, setCurentDisc] = useState();
-  const [zoom, setZoom] = useState(100);
+  const [isPastHover, setIsPastHover] = useState(false);
+  const [isFutureHover, setIsFutureHover] = useState(false);
+  const [zoom, setZoom] = useState(75);
   const { mapInstructionsDidRun, setMapInstructionsDidRun } =
     useContext(InstructionsContext);
   const zoomRef = useRef(null);
@@ -35,6 +37,11 @@ const Period = ({ period, data }) => {
   };
   const start = period.split("-")[1];
   const end = period.split("-")[0];
+
+  const opacity = {
+    visible: { opacity: 1, transition: { duration: 0.5 } },
+    hidden: { opacity: 0, transition: { duration: 0.5 } },
+  };
 
   const variants = isSmall
     ? {
@@ -61,9 +68,18 @@ const Period = ({ period, data }) => {
     },
   };
 
-  useEffect(() => {
-    setZoom(isSmall ? 85 : 75);
-  }, []);
+  const bgBlur = {
+    hidden: {
+      backdropFilter: "blur(0px)",
+      transition: { duration: 1 },
+      zIndex: 0,
+    },
+    show: {
+      backdropFilter: "blur(3px)",
+      transition: { duration: 1 },
+      zIndex: 10,
+    },
+  };
 
   return (
     <>
@@ -75,6 +91,12 @@ const Period = ({ period, data }) => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <style global jsx>{`
+        html,
+        body {
+          overflow: hidden;
+        }
+      `}</style>
       <main className="absolute left-0 top-0 h-full w-full overflow-hidden bg-sunset select-none">
         {!mapInstructionsDidRun && isSmall ? (
           <div className="absolute z-[98] h-screen w-full left-0 top-[56px] flex flex-col justify-center align-middle text-saddle bg-platinum bg-opacity-60">
@@ -97,7 +119,7 @@ const Period = ({ period, data }) => {
         ) : null}
 
         <motion.div
-          className="hidden absolute bottom-[80px] md:flex justify-center align-bottom left-0 lg:text-[240px] xl:text-[360px] w-full stroked-saddle"
+          className="hidden absolute bottom-[0px] md:flex justify-center align-bottom left-0 md:text-[204px] xl:text-[240px] w-full stroked-saddle"
           variants={strokedText}
           animate={isDiscOpen ? "show" : "hidden"}>
           <p className="w-full text-center h-[360px] ">{period}</p>
@@ -130,8 +152,9 @@ const Period = ({ period, data }) => {
               <span className="border-saddle border-solid border-t-[1px] md:border-t-2 w-4"></span>
             </div>
           </motion.div>
+
           <motion.div
-            className="md:hidden flex flex-col w-full absolute bottom-0 left-0 "
+            className="md:hidden flex flex-col w-full absolute bottom-0 left-0"
             variants={variants}
             initial={"hidden"}
             animate={isDiscOpen ? "hidden" : "visible"}>
@@ -164,7 +187,7 @@ const Period = ({ period, data }) => {
 
           <motion.div
             className={
-              "relative  left-0 top-0 w-full h-screen flex justify-center align-start"
+              "relative left-0 top-0 w-full h-screen flex justify-center align-start"
             }
             variants={variants}
             initial={"hidden"}
@@ -193,8 +216,8 @@ const Period = ({ period, data }) => {
               ref={zoomRef}
               className="map-zoom"
               min="50"
-              max="100"
-              defaultValue="85"
+              max="125"
+              defaultValue={zoom}
               onChange={() => {
                 setZoom(zoomRef.current.value);
               }}></input>
@@ -220,47 +243,96 @@ const Period = ({ period, data }) => {
               </Link>
             </motion.div>
           ) : null}
+
+          {isMedium && (
+            <motion.div
+              className="w-full h-full top-[56px] absolute z-0"
+              variants={bgBlur}
+              initial={"hidden"}
+              animate={
+                isPastHover || isFutureHover ? "show" : "hidden"
+              }></motion.div>
+          )}
+
+          {/* <motion.div className="absolute top-[56px] w-full h-full blur-sm bg-transparent"></motion.div> */}
           {data.past && isMedium ? (
             <motion.div
-              className="absolute top-0 left-0 h-full font-sans w-auto z-40 flex flex-row items-center justify-center pl-12"
+              className="absolute top-0 left-0 h-full font-sans w-auto z-40 flex flex-row items-center justify-center px-12"
               variants={variants}
               initial={"hidden"}
-              animate={isDiscOpen ? "hidden" : "visible"}>
+              animate={isDiscOpen ? "hidden" : "visible"}
+              onHoverStart={() => {
+                setIsPastHover(true);
+              }}
+              onHoverEnd={() => {
+                setIsPastHover(false);
+              }}>
               <Link href={`/period/${data.past}`}>
-                <a className="rotate-90">
-                  <DownArrow />
+                <a>
+                  <motion.div
+                    className="absolute top-0 left-0 w-full h-full"
+                    variants={opacity}
+                    initial={"hidden"}
+                    animate={isPastHover ? "visible" : "hidden"}
+                  />
+                  <motion.div className="inline-flex">
+                    <a className="rotate-90">
+                      <DownArrow />
+                    </a>
+                    <motion.a
+                      className="z-40 rotate-[270deg] ml-[-24px]"
+                      variants={opacity}
+                      initial={"hidden"}
+                      animate={isPastHover ? "visible" : "hidden"}>
+                      <span className="uppercase  text-saddle py-1  text-center">
+                        To the Past
+                      </span>
+                    </motion.a>
+                  </motion.div>
                 </a>
-              </Link>
-              <Link href={`/period/${data.past}`}>
-                <motion.a className="z-40 rotate-[270deg] ml-[-24px]">
-                  <span className="uppercase  text-saddle py-1  text-center">
-                    To the Past
-                  </span>
-                </motion.a>
               </Link>
             </motion.div>
           ) : null}
 
           {data.future && isMedium ? (
             <motion.div
-              className="absolute top-0 right-0 h-full font-sans w-auto z-40 flex flex-row items-center justify-center pr-12"
+              className="absolute top-0 right-0 h-full font-sans w-auto z-40 flex flex-row items-center justify-center px-12 "
               variants={variants}
               initial={"hidden"}
-              animate={isDiscOpen ? "hidden" : "visible"}>
+              animate={isDiscOpen ? "hidden" : "visible"}
+              onHoverStart={() => {
+                setIsFutureHover(true);
+              }}
+              onHoverEnd={() => {
+                setIsFutureHover(false);
+              }}>
               <Link href={`/period/${data.future}`}>
-                <motion.a className="z-40 rotate-[90deg] mr-[-24px]">
-                  <span className="uppercase  text-saddle py-1  text-center">
-                    To the Future
-                  </span>
-                </motion.a>
-              </Link>
-              <Link href={`/period/${data.future}`}>
-                <a className="rotate-90">
-                  <UpArrow />
+                <a>
+                  <motion.div
+                    className="absolute top-0 left-0 w-full h-full"
+                    variants={opacity}
+                    initial={"hidden"}
+                    animate={isFutureHover ? "visible" : "hidden"}
+                  />
+                  <motion.div className="inline-flex">
+                    <motion.a
+                      className="z-40 rotate-[90deg] mr-[-24px]"
+                      variants={opacity}
+                      initial={"hidden"}
+                      animate={isFutureHover ? "visible" : "hidden"}>
+                      <span className="uppercase  text-saddle py-1  text-center">
+                        To the Future
+                      </span>
+                    </motion.a>
+                    <a className="rotate-90">
+                      <UpArrow />
+                    </a>
+                  </motion.div>
                 </a>
               </Link>
             </motion.div>
           ) : null}
+
           <motion.div
             className="absolute w-full bottom-[54px] flex justify-between z-30"
             variants={variants}

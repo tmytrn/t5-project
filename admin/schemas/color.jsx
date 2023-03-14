@@ -16,18 +16,16 @@ export default {
       title: "name",
       hex: "hex",
     },
-    prepare(selection) {
-      const { title, hex } = selection;
+    prepare({ title, hex }) {
       return {
         title: title,
         media: (
-          <div
+          <span
             style={{
               width: "32px",
               height: "32px",
               backgroundColor: hex,
-            }}
-          />
+            }}></span>
         ),
       };
     },

@@ -18,7 +18,7 @@ const Disc = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
       setIsDiscOpen={setIsDiscOpen}
       isSmall={isSmall}
       isData={data ? true : false}>
-      <div className="px-4 md:px-16 lg:px-28 text-saddle">
+      <div className="px-4 md:px-16 text-saddle h-full md:h-full">
         {!data && (
           <div className="flex flex-col justify-center text-center pt-[16px] font-sans">
             What does this mean? Click the disk to see it from here.
@@ -33,12 +33,12 @@ const Disc = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
             initial={"hidden"}
             animate={isDiscOpen ? "visible" : "hidden"}>
             <a className="font-sans text-sm inline">CLOSE</a>
-            <a className="text-center flex justify-center pb-[12px]  inline">
+            <a className="text-center flex justify-center pb-[12px] inline">
               <DropdownArrow />
             </a>
           </motion.div>
         ) : null}
-        <div className="h-discscroll overflow-y-scroll overflow-x-hidden pb-36 md:pb-12 hide-scrollbar">
+        <div className=" h-[calc(100%-60px)] md:h-full overflow-y-scroll overflow-x-hidden pb-20 md:pb-12 hide-scrollbar">
           <div className="font-sans text-xl uppercase text-center pb-4">
             {data?.country}
           </div>
@@ -136,19 +136,19 @@ const Disc = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
 const colorString = (color) => {
   switch (color) {
     case "desert tan":
-      return "absolute w-disc md:w-discdesktop h-disc bg-deserttan/[0.6] md:bg-deserttan/[0.8] rounded-[15px]  ";
+      return "absolute w-disc md:w-discdesktop h-full bg-deserttan/[0.6] md:bg-deserttan/[0.8] rounded-[15px] rounded-br-none rounded-bl-none";
     case "old penny":
-      return "absolute w-disc md:w-discdesktop h-disc bg-oldpenny/[0.6] md:bg-oldpenny/[0.8] rounded-[15px] ";
+      return "absolute w-disc md:w-discdesktop h-full bg-oldpenny/[0.6] md:bg-oldpenny/[0.8] rounded-[15px] rounded-br-none rounded-bl-none";
     case "new penny":
-      return "absolute w-disc md:w-discdesktop h-disc bg-newpenny/[0.6] md:bg-newpenny/[0.8] rounded-[15px] ";
+      return "absolute w-disc md:w-discdesktop h-full bg-newpenny/[0.6] md:bg-newpenny/[0.8] rounded-[15px] rounded-br-none rounded-bl-none";
     case "pewter":
-      return "absolute w-disc md:w-discdesktop h-disc bg-pewter/[0.6] md:bg-pewter/[0.8] rounded-[15px] ";
+      return "absolute w-disc md:w-discdesktop h-full bg-pewter/[0.6] md:bg-pewter/[0.8] rounded-[15px] rounded-br-none rounded-bl-none";
     case "moss green":
-      return "absolute w-disc md:w-discdesktop h-disc bg-mossgreen/[0.6] md:bg-mossgreen/[0.8] rounded-[15px] ";
+      return "absolute w-disc md:w-discdesktop h-full bg-mossgreen/[0.6] md:bg-mossgreen/[0.8] rounded-[15px] rounded-br-none rounded-bl-none";
     case "clear":
-      return "absolute w-disc md:w-discdesktop h-disc bg-clear/[0.6] md: bg-clear/[0.8] rounded-[15px] ";
+      return "absolute w-disc md:w-discdesktop h-full bg-clear/[0.6] md: bg-clear/[0.8] rounded-[15px] rounded-br-none rounded-bl-none";
     case "olive drab":
-      return "absolute w-disc md:w-discdesktop h-disc bg-olivedrab/[0.6] md:bg-olivedrab/[0.8] rounded-[15px] ";
+      return "absolute w-disc md:w-discdesktop h-full bg-olivedrab/[0.6] md:bg-olivedrab/[0.8] rounded-[15px] rounded-br-none rounded-bl-none";
   }
 };
 
@@ -179,13 +179,13 @@ const DiscWrapper = ({
       }
     : {
         visible: {
-          y: "-60%",
+          y: "-100%",
           transition: {
             duration: 0.5,
           },
         },
         hidden: {
-          y: "-60px",
+          y: "-50px",
           transition: {
             duration: 0.5,
           },
@@ -206,7 +206,9 @@ const DiscWrapper = ({
   };
 
   return (
-    <motion.div ref={discbackgroundRef} className="w-full h-screen relative">
+    <motion.div
+      ref={discbackgroundRef}
+      className="w-full h-screen relative overflow-hidden">
       <motion.div
         className="w-full h-full top-[56px] absolute"
         variants={blur}
@@ -217,7 +219,7 @@ const DiscWrapper = ({
         }}></motion.div>
       <motion.div
         ref={discRef}
-        className="absolute w-full h-disc top-[100%] left-0  md:bg-transparent rounded-[15px] flex justify-center z-40"
+        className="absolute w-full h-disc md:h-discdesktop top-[100%] left-0  md:bg-transparent rounded-[15px] flex justify-center z-40"
         variants={variants}
         initial={"initial"}
         animate={isDiscOpen && isData ? "visible" : "hidden"}

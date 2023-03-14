@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 const BayH = ({ handleDiscClick }) => {
   return (
     <svg
@@ -9075,46 +9076,51 @@ const BayH = ({ handleDiscClick }) => {
         stroke-width="0.5"
       />
       <g opacity="0.02">
-        <a
+        <motion.a
           onClick={() => {
             handleDiscClick("Latvia");
-          }}>
+          }}
+          whileHover={{ scale: 1.2 }}>
           <path
             d="M387.9 401.13V395.81L387.62 390.77C368.37 247.61 169.61 251.99 156.72 395.81V406.17C169.13 550.01 368.47 554.63 387.62 411.49L387.9 406.17V401.13Z"
             fill="white"
           />
-        </a>
-        <a
+        </motion.a>
+        <motion.a
           onClick={() => {
             handleDiscClick("Turkey");
-          }}>
+          }}
+          whileHover={{ scale: 1.2 }}>
           <path
             d="M670.02 337.04V331.72L669.46 326.68C651.55 183.66 450.58 188.16 438.84 331.72L438.56 337.04L438.84 342.08C450.27 485.73 651.48 490.45 669.46 347.4L670.02 342.08V337.04Z"
             fill="white"
           />
-        </a>
-        <a
+        </motion.a>
+        <motion.a
           onClick={() => {
             handleDiscClick("Luxembourg");
-          }}>
+          }}
+          whileHover={{ scale: 1.2 }}>
           <path
             d="M999.149 585.29V580.25L998.589 574.93C980.369 431.81 779.949 436.38 767.969 580.25V590.33C779.969 734.17 980.349 738.74 998.589 595.65L999.149 590.33V585.29Z"
             fill="white"
           />
-        </a>
-        <a
+        </motion.a>
+        <motion.a
           onClick={() => {
             handleDiscClick("Confederacy");
-          }}>
+          }}
+          whileHover={{ scale: 1.2 }}>
           <path
             d="M1195.9 582.21V578.29L1195.62 574.09C1181.03 459.56 1020.56 463.17 1010.9 578.29V586.41C1020.81 701.4 1180.76 705.03 1195.62 590.61L1195.9 586.41V582.21Z"
             fill="white"
           />
-        </a>
-        <a
+        </motion.a>
+        <motion.a
           onClick={() => {
             handleDiscClick("Japan");
-          }}>
+          }}
+          whileHover={{ scale: 1.2 }}>
           <path
             d="M1575.7 551.99V548.91L1575.42 545.83C1564.91 460 1444 462.68 1437.16 548.91V555.07C1443.95 641.35 1564.97 644.03 1575.42 558.15L1575.7 555.07V551.99Z"
             fill="white"
@@ -9122,16 +9128,17 @@ const BayH = ({ handleDiscClick }) => {
             stroke-linecap="round"
             stroke-linejoin="round"
           />
-        </a>
-        <a
+        </motion.a>
+        <motion.a
           onClick={() => {
             handleDiscClick("Greece");
-          }}>
+          }}
+          whileHover={{ scale: 1.2 }}>
           <path
             d="M1483.9 695.57V692.49L1483.62 689.41C1472.4 603.48 1352.73 606.14 1345.08 692.49V698.65C1352.84 784.96 1472.29 787.62 1483.62 701.73L1483.9 698.65V695.57Z"
             fill="white"
           />
-        </a>
+        </motion.a>
       </g>
       <defs>
         <linearGradient

@@ -37,7 +37,14 @@ const Header = ({ page, data }) => {
           </div>
           <div className="block w-full h-screen md:absolute md:w-[450px] top-[56px] right-0 sunset">
             <div className="w-full mt-12 uppercase text-center font-sans border-t-[1px] py-6 border-white border-solid color-saddle border-b-[1px]">
-              About
+              <Link legacyBehavior={true} href="/about">
+                <a
+                  onClick={() => {
+                    setIsNavOpen(false);
+                  }}>
+                  About
+                </a>
+              </Link>
             </div>
             {/* <div className="w-full uppercase text-center font-sans border-t-[1px] py-6 border-white  border-solid color-saddle">
               Photo Gallery
