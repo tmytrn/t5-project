@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import period from "../admin/schemas/period";
 import { getAllDiscs, getAllPeriods } from "../data";
 import styles from "../styles/Home.module.scss";
 import MyLayout from "components/Layout";
@@ -151,7 +150,8 @@ const Home = ({ periods, periodsReverse }) => {
                           !isChanging && selectedPeriod == key
                             ? `/period/${period.period}`
                             : `#`
-                        }>
+                        }
+                        passHref>
                         <motion.img
                           variants={opacity}
                           animate={
@@ -217,7 +217,7 @@ const Home = ({ periods, periodsReverse }) => {
               <span className="flex w-1/2 items center z-30 ">
                 <Selector />
               </span>
-              <motion.span className="w-1/2 ml-[-20px] z-30 ">
+              <motion.span className="w-1/2 ml-[-15px] z-30 ">
                 <Hyphen />
               </motion.span>
             </div>
@@ -232,8 +232,8 @@ const Home = ({ periods, periodsReverse }) => {
                   className={
                     "h-[108px] flex justify-center w-full border-t-white border-solid border-t-[1px] stroked-saddle"
                   }>
-                  <Link href={`/period/${period.period}`}>
-                    <motion.a
+                  <Link href={`/period/${period.period}`} passHref>
+                    <motion.div
                       className={
                         "w-full flex justify-between text-7xl pl-1 tracking-tightest text-left m-center max-w-[302px] py-6 "
                       }
@@ -256,7 +256,7 @@ const Home = ({ periods, periodsReverse }) => {
                       <motion.span className="ml-auto leading-[60px] ">
                         {period.period.split("-")[1]}
                       </motion.span>
-                    </motion.a>
+                    </motion.div>
                   </Link>
                 </motion.div>
               </SwiperSlide>

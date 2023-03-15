@@ -8,6 +8,7 @@ export default defineConfig({
   title: "t5-project",
   projectId: "258g4cwf",
   dataset: "production",
+  basePath: "/admin",
   plugins: [
     deskTool({ structure: deskStructure }),
     visionTool({

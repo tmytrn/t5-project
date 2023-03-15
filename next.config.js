@@ -7,7 +7,6 @@ const STUDIO_REWRITE = {
 };
 
 module.exports = {
-  rewrites: () => [STUDIO_REWRITE],
   reactStrictMode: false,
   swcMinify: true,
   images: {
