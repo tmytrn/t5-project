@@ -1,8 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  mode: "jit",
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
+    "./bays/**/*.{js,ts,jsx,tsx}",
+    "./svg/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     letterSpacing: {
@@ -31,14 +34,15 @@ module.exports = {
         platinum: "#FFF3CF",
         saddle: "#684C21",
         iceberg: "#E2F0F8",
-        mossgreen: "#B8B57C",
-        olivedrab: "#87897C",
-        pewter: "#5B6670",
-        clear: "#B7BED3",
-        oldpenny: "#A1750A",
-        newpenny: "#DEA800",
-        darkearth: "#756967",
+        mossgreen: "#CDCD89",
+        olivedrab: "#C2C5B5",
+        pewter: "#8B949C",
+        clear: "#CDD2E1",
+        oldpenny: "#DEA927",
+        newpenny: "#FED03F",
+        darkearth: "#A5908D99",
         deserttan: "#D1CEBC",
+        sunset: "#CFD2DD",
       },
       height: {
         disc: "calc(100vh - 70px)",

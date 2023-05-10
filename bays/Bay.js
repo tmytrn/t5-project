@@ -13,8 +13,18 @@ import BayL from "./BayL";
 import BayM from "./BayM";
 import React from "react";
 import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { useDebouncedEffect } from "@lib/index";
 
-const Bay = ({ period, zoom, handleDiscClick, isMedium, isSmall }) => {
+const Bay = ({
+  period,
+  zoom,
+  handleDiscClick,
+  isMedium,
+  isSmall,
+  handleScroll,
+  isDiscOpen,
+}) => {
   const map = {
     hide: {
       scale: 1,
@@ -27,35 +37,161 @@ const Bay = ({ period, zoom, handleDiscClick, isMedium, isSmall }) => {
       transition: { duration: 0.5 },
     },
   };
+  const bayRef = useRef(null);
+
+  const [size, setSize] = useState({ width: 0, height: 0 });
+
+  const [isTapping, setIsTapping] = useState(false);
+
+  useDebouncedEffect(
+    () => {
+      if (bayRef.current != null) {
+        setSize({
+          width: bayRef.current.getBoundingClientRect().width,
+          height: bayRef.current.getBoundingClientRect().height,
+        });
+      }
+    },
+    [zoom, bayRef],
+    1000
+  );
+
+  // const size = useWindowSize()
+
+  // console.log("bottom constraint: ", size.height / 4);
+  // console.log("top constraint: ", -size.height / 4);
+  // console.log("left constraint: ", -size.width / 4);
+  // console.log("right constraint: ", size.width / 4);
 
   return (
     <motion.div
+      ref={bayRef}
       variants={map}
       initial={"hide"}
       animate={"show"}
-      className="bay drop-shadow-bay z-30 hover:cursor-grab absolute origin-center"
-      drag
-      // dragConstraints={mapRef}
+      className="bay  z-30 hover:cursor-grab origin-center "
+      drag={isTapping ? false : true}
       dragConstraints={
-        isSmall
-          ? { top: -200, left: -800, right: 800, bottom: 200 }
-          : { top: -200, left: -700, right: 700, bottom: 200 }
+        isMedium
+          ? {
+              left: -size.width / 2,
+              right: size.width / 2,
+              top: -size.height / 2,
+              bottom: size.height / 2,
+            }
+          : {
+              left: -size.width / 2,
+              right: size.width / 2,
+              top: -size.height / 2,
+              bottom: size.height / 2,
+            }
       }>
       {
         {
-          "2020-2040": <BayA handleDiscClick={handleDiscClick} />,
-          "2010-2020": <BayB handleDiscClick={handleDiscClick} />,
-          "2000-2010": <BayC handleDiscClick={handleDiscClick} />,
-          "1990-2000": <BayD handleDiscClick={handleDiscClick} />,
-          "1980-1990": <BayE handleDiscClick={handleDiscClick} />,
-          "1970-1980": <BayF handleDiscClick={handleDiscClick} />,
-          "1960-1970": <BayG handleDiscClick={handleDiscClick} />,
-          "1950-1960": <BayH handleDiscClick={handleDiscClick} />,
-          "1940-1950": <BayI handleDiscClick={handleDiscClick} />,
-          "1930-1940": <BayJ handleDiscClick={handleDiscClick} />,
-          "1920-1930": <BayK handleDiscClick={handleDiscClick} />,
-          "1910-1920": <BayL handleDiscClick={handleDiscClick} />,
-          "1850-1910": <BayM handleDiscClick={handleDiscClick} />,
+          "2020-2040": (
+            <BayA
+              handleDiscClick={handleDiscClick}
+              isTapping={isTapping}
+              setIsTapping={setIsTapping}
+              isDiscOpen={isDiscOpen}
+            />
+          ),
+          "2010-2020": (
+            <BayB
+              handleDiscClick={handleDiscClick}
+              isTapping={isTapping}
+              setIsTapping={setIsTapping}
+              isDiscOpen={isDiscOpen}
+            />
+          ),
+          "2000-2010": (
+            <BayC
+              handleDiscClick={handleDiscClick}
+              isTapping={isTapping}
+              setIsTapping={setIsTapping}
+              isDiscOpen={isDiscOpen}
+            />
+          ),
+          "1990-2000": (
+            <BayD
+              handleDiscClick={handleDiscClick}
+              isTapping={isTapping}
+              setIsTapping={setIsTapping}
+              isDiscOpen={isDiscOpen}
+            />
+          ),
+          "1980-1990": (
+            <BayE
+              handleDiscClick={handleDiscClick}
+              isTapping={isTapping}
+              setIsTapping={setIsTapping}
+              isDiscOpen={isDiscOpen}
+            />
+          ),
+          "1970-1980": (
+            <BayF
+              handleDiscClick={handleDiscClick}
+              isTapping={isTapping}
+              setIsTapping={setIsTapping}
+              isDiscOpen={isDiscOpen}
+            />
+          ),
+          "1960-1970": (
+            <BayG
+              handleDiscClick={handleDiscClick}
+              isTapping={isTapping}
+              setIsTapping={setIsTapping}
+              isDiscOpen={isDiscOpen}
+            />
+          ),
+          "1950-1960": (
+            <BayH
+              handleDiscClick={handleDiscClick}
+              isTapping={isTapping}
+              setIsTapping={setIsTapping}
+              isDiscOpen={isDiscOpen}
+            />
+          ),
+          "1940-1950": (
+            <BayI
+              handleDiscClick={handleDiscClick}
+              isTapping={isTapping}
+              setIsTapping={setIsTapping}
+              isDiscOpen={isDiscOpen}
+            />
+          ),
+          "1930-1940": (
+            <BayJ
+              handleDiscClick={handleDiscClick}
+              isTapping={isTapping}
+              setIsTapping={setIsTapping}
+              isDiscOpen={isDiscOpen}
+            />
+          ),
+          "1920-1930": (
+            <BayK
+              handleDiscClick={handleDiscClick}
+              isTapping={isTapping}
+              setIsTapping={setIsTapping}
+              isDiscOpen={isDiscOpen}
+            />
+          ),
+          "1910-1920": (
+            <BayL
+              handleDiscClick={handleDiscClick}
+              isTapping={isTapping}
+              setIsTapping={setIsTapping}
+              isDiscOpen={isDiscOpen}
+            />
+          ),
+          "1850-1910": (
+            <BayM
+              handleDiscClick={handleDiscClick}
+              isTapping={isTapping}
+              setIsTapping={setIsTapping}
+              isDiscOpen={isDiscOpen}
+            />
+          ),
         }[period]
       }
     </motion.div>

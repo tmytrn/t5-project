@@ -14,7 +14,7 @@ const Header = ({ page, data }) => {
   return (
     <nav className="w-full fixed left-0 top-0 text-saddle z-[99] h-[56px] md:h-auto ">
       {isNavOpen ? (
-        <div className="w-full h-screen flex flex-col justify-start items-center ">
+        <div className="w-full h-full flex flex-col justify-start items-center ">
           <div className="w-full flex flex-row md:flex-row justify-between md:justify-center items-center p-4 z-20 nav-gradient">
             <div className="md:w-full">
               <div>
@@ -75,8 +75,8 @@ const Header = ({ page, data }) => {
             <div className="md:w-full">
               <div>
                 <Link href="/" legacyBehavior>
-                  <a className="block w-[124px] mx-auto">
-                    <div className="w-[124px] md:ml-[11.5px]">
+                  <a className="block w-[192px] mx-auto">
+                    <div className="w-[192px] md:pr-[11.5px]">
                       <Logo />
                     </div>
                   </a>
