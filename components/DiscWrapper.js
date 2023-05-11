@@ -12,8 +12,6 @@ const DiscWrapper = ({
   originY,
   size,
 }) => {
-  const [scope, animate] = useAnimate();
-  const [isHovering, setIsHovering] = useState(false);
   const radius = size / 2;
   const x = originX + radius;
   const y = originY + radius;
@@ -25,22 +23,16 @@ const DiscWrapper = ({
       variants={hoverEffects}
       initial={"initial"}
       whileHover={"hovering"}
-      onHoverStart={() => {
-        setIsDiscHovering(true);
-      }}
-      onHoverEnd={() => {
-        setIsDiscHovering(false);
-      }}
       whileTap={"clicking"}
       onTapStart={() => {
-        setIsDiscTapping(true);
+        // setIsDiscTapping(true);
       }}
       onTap={() => {
         handleDiscClick(country);
-        setIsDiscTapping(false);
+        // setIsDiscTapping(false);
       }}
       onTapCancel={() => {
-        setIsDiscTapping(false);
+        // setIsDiscTapping(false);
       }}>
       {children}
     </motion.a>

@@ -23,6 +23,7 @@ const Bay = ({
   isMedium,
   isSmall,
   handleScroll,
+  setIsDiscHovering,
   isDiscOpen,
 }) => {
   const map = {
@@ -41,8 +42,6 @@ const Bay = ({
 
   const [size, setSize] = useState({ width: 0, height: 0 });
 
-  const [isTapping, setIsTapping] = useState(false);
-
   useDebouncedEffect(
     () => {
       if (bayRef.current != null) {
@@ -55,6 +54,8 @@ const Bay = ({
     [zoom, bayRef],
     1000
   );
+
+  const [isDiscTapping, setIsDiscTapping] = useState(false);
 
   // const size = useWindowSize()
 
@@ -69,128 +70,58 @@ const Bay = ({
       variants={map}
       initial={"hide"}
       animate={"show"}
-      className="bay  z-30 hover:cursor-grab origin-center "
-      drag={isTapping ? false : true}
-      dragConstraints={
-        isMedium
-          ? {
-              left: -size.width / 2,
-              right: size.width / 2,
-              top: -size.height / 2,
-              bottom: size.height / 2,
-            }
-          : {
-              left: -size.width / 2,
-              right: size.width / 2,
-              top: -size.height / 2,
-              bottom: size.height / 2,
-            }
-      }>
+      className="bay z-30 hover:cursor-grab origin-center "
+      drag={isDiscTapping ? false : true}
+      dragConstraints={{
+        left: -size.width / 2,
+        right: size.width / 2,
+        top: -size.height / 2,
+        bottom: size.height / 2,
+      }}>
       {
         {
           "2020-2040": (
             <BayA
               handleDiscClick={handleDiscClick}
-              isTapping={isTapping}
-              setIsTapping={setIsTapping}
               isDiscOpen={isDiscOpen}
+              setIsDiscTapping={setIsDiscTapping}
             />
           ),
           "2010-2020": (
-            <BayB
-              handleDiscClick={handleDiscClick}
-              isTapping={isTapping}
-              setIsTapping={setIsTapping}
-              isDiscOpen={isDiscOpen}
-            />
+            <BayB handleDiscClick={handleDiscClick} isDiscOpen={isDiscOpen} />
           ),
           "2000-2010": (
-            <BayC
-              handleDiscClick={handleDiscClick}
-              isTapping={isTapping}
-              setIsTapping={setIsTapping}
-              isDiscOpen={isDiscOpen}
-            />
+            <BayC handleDiscClick={handleDiscClick} isDiscOpen={isDiscOpen} />
           ),
           "1990-2000": (
-            <BayD
-              handleDiscClick={handleDiscClick}
-              isTapping={isTapping}
-              setIsTapping={setIsTapping}
-              isDiscOpen={isDiscOpen}
-            />
+            <BayD handleDiscClick={handleDiscClick} isDiscOpen={isDiscOpen} />
           ),
           "1980-1990": (
-            <BayE
-              handleDiscClick={handleDiscClick}
-              isTapping={isTapping}
-              setIsTapping={setIsTapping}
-              isDiscOpen={isDiscOpen}
-            />
+            <BayE handleDiscClick={handleDiscClick} isDiscOpen={isDiscOpen} />
           ),
           "1970-1980": (
-            <BayF
-              handleDiscClick={handleDiscClick}
-              isTapping={isTapping}
-              setIsTapping={setIsTapping}
-              isDiscOpen={isDiscOpen}
-            />
+            <BayF handleDiscClick={handleDiscClick} isDiscOpen={isDiscOpen} />
           ),
           "1960-1970": (
-            <BayG
-              handleDiscClick={handleDiscClick}
-              isTapping={isTapping}
-              setIsTapping={setIsTapping}
-              isDiscOpen={isDiscOpen}
-            />
+            <BayG handleDiscClick={handleDiscClick} isDiscOpen={isDiscOpen} />
           ),
           "1950-1960": (
-            <BayH
-              handleDiscClick={handleDiscClick}
-              isTapping={isTapping}
-              setIsTapping={setIsTapping}
-              isDiscOpen={isDiscOpen}
-            />
+            <BayH handleDiscClick={handleDiscClick} isDiscOpen={isDiscOpen} />
           ),
           "1940-1950": (
-            <BayI
-              handleDiscClick={handleDiscClick}
-              isTapping={isTapping}
-              setIsTapping={setIsTapping}
-              isDiscOpen={isDiscOpen}
-            />
+            <BayI handleDiscClick={handleDiscClick} isDiscOpen={isDiscOpen} />
           ),
           "1930-1940": (
-            <BayJ
-              handleDiscClick={handleDiscClick}
-              isTapping={isTapping}
-              setIsTapping={setIsTapping}
-              isDiscOpen={isDiscOpen}
-            />
+            <BayJ handleDiscClick={handleDiscClick} isDiscOpen={isDiscOpen} />
           ),
           "1920-1930": (
-            <BayK
-              handleDiscClick={handleDiscClick}
-              isTapping={isTapping}
-              setIsTapping={setIsTapping}
-              isDiscOpen={isDiscOpen}
-            />
+            <BayK handleDiscClick={handleDiscClick} isDiscOpen={isDiscOpen} />
           ),
           "1910-1920": (
-            <BayL
-              handleDiscClick={handleDiscClick}
-              isTapping={isTapping}
-              setIsTapping={setIsTapping}
-              isDiscOpen={isDiscOpen}
-            />
+            <BayL handleDiscClick={handleDiscClick} isDiscOpen={isDiscOpen} />
           ),
           "1850-1910": (
-            <BayM
-              handleDiscClick={handleDiscClick}
-              isTapping={isTapping}
-              setIsTapping={setIsTapping}
-              isDiscOpen={isDiscOpen}
-            />
+            <BayM handleDiscClick={handleDiscClick} isDiscOpen={isDiscOpen} />
           ),
         }[period]
       }

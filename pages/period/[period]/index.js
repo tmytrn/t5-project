@@ -25,7 +25,6 @@ const Period = ({ period, data }) => {
   const [isPastHover, setIsPastHover] = useState(false);
   const [isFutureHover, setIsFutureHover] = useState(false);
   const [zoom, setZoom] = useState(50);
-  const [lastScroll, setLastScroll] = useState(0);
   const { mapInstructionsDidRun, setMapInstructionsDidRun } =
     useContext(InstructionsContext);
   const zoomRef = useRef(null);
@@ -54,6 +53,7 @@ const Period = ({ period, data }) => {
   };
 
   const handleThrottleScroll = (event) => {
+    event.preventDefault();
     if (throttleInProgress.current) {
       return;
     }
@@ -72,23 +72,6 @@ const Period = ({ period, data }) => {
       }
     }, 200);
   };
-
-  useEffect(() => {
-    bayRef.current.addEventListener(
-      "gestureend",
-      function (e) {
-        if (e.scale < 1.0) {
-          // User moved fingers closer together
-          handleThrottleScroll(0);
-        } else if (e.scale > 1.0) {
-          // User moved fingers further apart
-          handleThrottleScroll(1);
-        }
-      },
-      false
-    );
-    return bayRef.current.removeEventListener("gestureend", () => {});
-  }, []);
 
   const opacity = {
     visible: { opacity: 1, transition: { duration: 0.5 } },
@@ -174,13 +157,13 @@ const Period = ({ period, data }) => {
           animate={isDiscOpen ? "show" : "hidden"}>
           <div className="flex flex-col-reverse md:flex-row">
             <motion.div
-              className="flex items-center pb-4 mr-4 z-30"
+              className="flex items-center md:pb-4 md:mr-4 z-30"
               variants={variants}
               initial={"hidden"}
               animate={isDiscOpen ? "hidden" : "visible"}>
-              <a className="rotate-0 " onClick={handleZoomOut}>
+              <a className=" rotate-0" onClick={handleZoomOut}>
                 <img
-                  className="w-6 h-6 md:w-8 md:h-8"
+                  className=" w-6 h-6 md:w-8 md:h-8"
                   src={"/images/zoom-out.svg"}
                 />
               </a>
@@ -188,9 +171,9 @@ const Period = ({ period, data }) => {
                 <span className="hidden md:inline-block ">Zoom: </span>
                 {" " + zoom}%
               </span>
-              <a onClick={handleZoomIn}>
+              <a className="" onClick={handleZoomIn}>
                 <img
-                  className="w-6 h-6 md:w-8 md:h-8"
+                  className=" w-6 h-6 md:w-8 md:h-8"
                   src={"/images/zoom-in.svg"}
                 />
               </a>
@@ -200,9 +183,9 @@ const Period = ({ period, data }) => {
                 <p>Move around to see the entire map.</p>
                 <p>Click on the discs to see its meaning.</p>
               </span>
-              <span className="pb-4 md:pb-0 block md:hidden">
+              {/* <span className="pb-4 md:pb-0 hidden">
                 Click each disc to see its meaning
-              </span>
+              </span> */}
             </div>
           </div>
 
@@ -216,7 +199,7 @@ const Period = ({ period, data }) => {
         <div
           className={
             mapInstructionsDidRun || isMedium
-              ? "w-full h-full"
+              ? "w-full h-full relative"
               : "blur-sm w-full h-full"
           }>
           <motion.div
@@ -225,8 +208,8 @@ const Period = ({ period, data }) => {
             animate={isDiscOpen ? "hidden" : "visible"}>
             <div className="md:hidden block absolute w-full h-[58px] period-gradient z-10 top-[56px]"></div>
             <div
-              className="md:hidden block font-serif absolute w-full text-center top-[24px] left-0 z-[0] stroked-saddle text-sunset"
-              style={{ fontSize: `${width - 200}px` }}>
+              className="md:hidden block font-serif absolute w-full text-center top-[56px] left-0 z-[0] stroked-saddle text-sunset"
+              style={{ fontSize: `${width - 250}px` }}>
               {start}
             </div>
             <div className="absolute w-full top-[90px] flex justify-between z-30">
@@ -242,7 +225,7 @@ const Period = ({ period, data }) => {
             animate={isDiscOpen ? "hidden" : "visible"}>
             <div
               className="font-serif absolute w-full text-center bottom-[-60px] left-0  z-[0] stroked-saddle text-sunset"
-              style={{ fontSize: `${width - 200}px` }}>
+              style={{ fontSize: `${width - 250}px` }}>
               {end}
             </div>
             <div className=" absolute w-full bottom-0 left-0 period-gradient-bottom z-10 h-[78px]"></div>
@@ -250,11 +233,11 @@ const Period = ({ period, data }) => {
 
           {data.future && isSmall ? (
             <motion.div
-              className="block md:hidden mt-[56px] relative w-full font-sans py-1 z-40"
+              className="block md:hidden absolute top-[56px] w-full font-sans py-1 z-40"
               variants={variants}
               initial={"hidden"}
               animate={isDiscOpen ? "hidden" : "visible"}>
-              <div className="absolute w-full flex flex-col items-center justify-center z-40">
+              <div className=" w-full flex flex-col items-center justify-center z-40">
                 <Link href={`/period/${data.future}`}>
                   <UpArrow />
                 </Link>

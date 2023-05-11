@@ -122,10 +122,10 @@ const Home = ({ periods, periodsReverse }) => {
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
       <main
-        className="h-full md:h-full d:flex md:flex-col md:justify-end pt-[172px] md:pt-[124px] px-5 md:px-0 border-solid border-saddle w-full bg-transparent overflow-hidden"
+        className="h-full md:h-full d:flex md:flex-col md:justify-end pt-[172px] md:pt-[64px] px-5 md:px-0 border-solid border-saddle w-full bg-transparent overflow-hidden"
         ref={ref}>
         {isMedium && (
-          <div className={"bg-branch hidden md:block w-full h-full"}>
+          <div className={"hidden md:block w-full h-full"}>
             <Swiper
               slidesPerView={"auto"}
               spaceBetween={24}
