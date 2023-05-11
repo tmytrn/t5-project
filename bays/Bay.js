@@ -60,8 +60,8 @@ const Bay = ({ period, zoom, handleDiscClick, isDiscOpen }) => {
       dragConstraints={{
         left: -size.width / 2,
         right: size.width / 2,
-        top: -size.height / 2,
-        bottom: size.height / 2,
+        top: -size.height / 4,
+        bottom: size.height / 4,
       }}>
       {
         {

@@ -122,7 +122,7 @@ const Period = ({ period, data }) => {
         }
       `}</style>
       <main className="h-full w-full bg-main-gradient select-none overflow-hidden">
-        {!mapInstructionsDidRun && isSmall ? (
+        {/* {!mapInstructionsDidRun && isSmall ? (
           <div className="absolute z-[98] h-full w-full left-0 top-[56px] flex flex-col justify-center align-middle text-saddle bg-platinum bg-opacity-60">
             <div className="pb-12 text-md">
               <span className="font-sans block text-center">
@@ -140,7 +140,7 @@ const Period = ({ period, data }) => {
               Got it
             </a>
           </div>
-        ) : null}
+        ) : null} */}
 
         <div
           className="hidden absolute bottom-[0px] md:flex justify-center
@@ -194,12 +194,7 @@ const Period = ({ period, data }) => {
           </Link>
         </motion.div>
 
-        <div
-          className={
-            mapInstructionsDidRun || isMedium
-              ? "w-full h-full relative"
-              : "blur-sm w-full h-full"
-          }>
+        <div className={"w-full h-full relative"}>
           <motion.div
             variants={variants}
             initial={"hidden"}

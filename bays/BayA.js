@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRef } from "react";
 import DiscWrapper from "components/DiscWrapper";
-import { gsap } from "gsap";
 
 const BayA = ({ handleDiscClick, isDiscOpen, setIsDiscTapping }) => {
   const SudanRef = useRef(null);
@@ -12,46 +11,46 @@ const BayA = ({ handleDiscClick, isDiscOpen, setIsDiscTapping }) => {
   const KuwaitRef = useRef(null);
   const NepalRef = useRef(null);
   const AlbaniaRef = useRef(null);
-  const rotate = useRef(gsap.timeline({ paused: true }));
+  // const rotate = useRef(gsap.timeline({ paused: true }));
 
-  useEffect(() => {
-    const gradients = [
-      SudanRef.current,
-      KoreaRef.current,
-      RohingyaRef.current,
-      UkraineRef.current,
-      SyriaRef.current,
-      KuwaitRef.current,
-      NepalRef.current,
-      AlbaniaRef.current,
-    ];
-    let ctx = gsap.context(() => {
-      gsap.set(gradients, { transformOrigin: "50% 50%" });
-      rotate.current.fromTo(
-        gradients,
-        { rotation: 0 },
-        {
-          rotation: 360,
-          duration: 10,
-          repeat: -1,
-          delay: 1,
-          ease: "none",
-        }
-      );
-    });
-    return () => ctx.revert();
-  }, []);
+  // useEffect(() => {
+  //   const gradients = [
+  //     SudanRef.current,
+  //     KoreaRef.current,
+  //     RohingyaRef.current,
+  //     UkraineRef.current,
+  //     SyriaRef.current,
+  //     KuwaitRef.current,
+  //     NepalRef.current,
+  //     AlbaniaRef.current,
+  //   ];
+  //   let ctx = gsap.context(() => {
+  //     gsap.set(gradients, { transformOrigin: "50% 50%" });
+  //     rotate.current.fromTo(
+  //       gradients,
+  //       { rotation: 0 },
+  //       {
+  //         rotation: 360,
+  //         duration: 10,
+  //         repeat: -1,
+  //         delay: 1,
+  //         ease: "none",
+  //       }
+  //     );
+  //   });
+  //   return () => ctx.revert();
+  // }, []);
 
-  useEffect(() => {
-    let ctx = gsap.context(() => {
-      if (isDiscOpen) {
-        rotate.current.pause();
-      } else {
-        rotate.current.play();
-      }
-    });
-    return () => ctx.revert();
-  }, [isDiscOpen]);
+  // useEffect(() => {
+  //   let ctx = gsap.context(() => {
+  //     if (isDiscOpen) {
+  //       rotate.current.pause();
+  //     } else {
+  //       rotate.current.play();
+  //     }
+  //   });
+  //   return () => ctx.revert();
+  // }, [isDiscOpen]);
 
   return (
     <svg
@@ -786,7 +785,6 @@ const BayA = ({ handleDiscClick, isDiscOpen, setIsDiscTapping }) => {
         </filter>
       </defs>
       <DiscWrapper
-        setIsDiscTapping={setIsDiscTapping}
         handleDiscClick={handleDiscClick}
         country={"Syria"}
         originX={633.85}
@@ -1135,7 +1133,6 @@ const BayA = ({ handleDiscClick, isDiscOpen, setIsDiscTapping }) => {
         </svg>
       </DiscWrapper>
       <DiscWrapper
-        setIsDiscTapping={setIsDiscTapping}
         handleDiscClick={handleDiscClick}
         country={"Albania"}
         originX={705.18}
@@ -1485,7 +1482,6 @@ const BayA = ({ handleDiscClick, isDiscOpen, setIsDiscTapping }) => {
         </svg>
       </DiscWrapper>
       <DiscWrapper
-        setIsDiscTapping={setIsDiscTapping}
         handleDiscClick={handleDiscClick}
         country={"Korea"}
         originX={354.26}
@@ -1608,7 +1604,6 @@ const BayA = ({ handleDiscClick, isDiscOpen, setIsDiscTapping }) => {
         </svg>
       </DiscWrapper>
       <DiscWrapper
-        setIsDiscTapping={setIsDiscTapping}
         handleDiscClick={handleDiscClick}
         country={"Rohingya"}
         originX={1961.56}
@@ -1965,7 +1960,6 @@ const BayA = ({ handleDiscClick, isDiscOpen, setIsDiscTapping }) => {
         </svg>
       </DiscWrapper>
       <DiscWrapper
-        setIsDiscTapping={setIsDiscTapping}
         handleDiscClick={handleDiscClick}
         country={"South Sudan"}
         originX={229.13}
@@ -2336,7 +2330,6 @@ const BayA = ({ handleDiscClick, isDiscOpen, setIsDiscTapping }) => {
         </svg>
       </DiscWrapper>
       <DiscWrapper
-        setIsDiscTapping={setIsDiscTapping}
         handleDiscClick={handleDiscClick}
         country={"Ukraine"}
         originX={914.19}
@@ -2645,7 +2638,6 @@ const BayA = ({ handleDiscClick, isDiscOpen, setIsDiscTapping }) => {
         </svg>
       </DiscWrapper>
       <DiscWrapper
-        setIsDiscTapping={setIsDiscTapping}
         handleDiscClick={handleDiscClick}
         country={"Kuwait"}
         originX={406.59}
@@ -2920,7 +2912,6 @@ const BayA = ({ handleDiscClick, isDiscOpen, setIsDiscTapping }) => {
         </svg>
       </DiscWrapper>
       <DiscWrapper
-        setIsDiscTapping={setIsDiscTapping}
         handleDiscClick={handleDiscClick}
         country={"Nepal"}
         originX={1651.59}

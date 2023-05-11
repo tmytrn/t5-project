@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { motion, useAnimate } from "framer-motion";
-import { hoverEffects, linearRotation } from "@lib/animations";
+import { motion } from "framer-motion";
+import { hoverEffects } from "@lib/animations";
 
 const DiscWrapper = ({
-  setIsDiscHovering,
-  setIsDiscTapping,
   handleDiscClick,
   children,
   country,
@@ -26,7 +24,6 @@ const DiscWrapper = ({
       whileTap={"clicking"}
       onTap={() => {
         handleDiscClick(country);
-        // setIsDiscTapping(false);
       }}>
       {children}
     </motion.a>

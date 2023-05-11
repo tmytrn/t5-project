@@ -160,8 +160,6 @@ const DiscWrapper = ({
   isSmall,
   isData,
 }) => {
-  const discRef = useRef(null);
-  const discbackgroundRef = useRef(null);
   const variants = isSmall
     ? {
         visible: {
@@ -208,9 +206,7 @@ const DiscWrapper = ({
   };
 
   return (
-    <motion.div
-      ref={discbackgroundRef}
-      className="w-full h-full absolute top-0 left-0 overflow-hidden">
+    <motion.div className="w-full h-full absolute top-0 left-0 overflow-hidden">
       <motion.div
         className="w-full h-full absolute"
         variants={blur}
@@ -221,7 +217,6 @@ const DiscWrapper = ({
         }}></motion.div>
       <div className="relative w-full h-full overflow-hidden">
         <motion.div
-          ref={discRef}
           className="absolute w-full h-full md:h-discdesktop top-[100%] left-0  md:bg-transparent rounded-[15px] flex justify-center z-40"
           variants={variants}
           initial={"initial"}
