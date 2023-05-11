@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useRef } from "react";
 import DiscWrapper from "components/DiscWrapper";
+import RotationWrapper from "components/RotationWrapper";
 
 const BayA = ({ handleDiscClick, isDiscOpen, setIsDiscTapping }) => {
   const SudanRef = useRef(null);
@@ -815,7 +816,7 @@ const BayA = ({ handleDiscClick, isDiscOpen, setIsDiscTapping }) => {
             stroke-linecap="round"
             stroke-linejoin="round"
           />
-          <path
+          <RotationWrapper
             ref={SyriaRef}
             opacity={"0.7"}
             d={
@@ -1163,7 +1164,7 @@ const BayA = ({ handleDiscClick, isDiscOpen, setIsDiscTapping }) => {
             stroke-linecap="round"
             stroke-linejoin="round"
           />
-          <path
+          <RotationWrapper
             ref={AlbaniaRef}
             isDiscOpen={isDiscOpen}
             opacity={"0.7"}
@@ -1518,7 +1519,7 @@ const BayA = ({ handleDiscClick, isDiscOpen, setIsDiscTapping }) => {
             stroke-linecap="round"
             stroke-linejoin="round"
           />
-          <path
+          <RotationWrapper
             ref={KoreaRef}
             opacity={"0.7"}
             d={
@@ -1634,7 +1635,7 @@ const BayA = ({ handleDiscClick, isDiscOpen, setIsDiscTapping }) => {
             stroke-linecap="round"
             stroke-linejoin="round"
           />
-          <path
+          <RotationWrapper
             ref={RohingyaRef}
             opacity={"0.7"}
             d={
@@ -1996,7 +1997,7 @@ const BayA = ({ handleDiscClick, isDiscOpen, setIsDiscTapping }) => {
             stroke-linecap="round"
             stroke-linejoin="round"
           />
-          <path
+          <RotationWrapper
             ref={SudanRef}
             opacity={"0.7"}
             d={
@@ -2360,7 +2361,7 @@ const BayA = ({ handleDiscClick, isDiscOpen, setIsDiscTapping }) => {
             stroke-linecap="round"
             stroke-linejoin="round"
           />
-          <path
+          <RotationWrapper
             ref={UkraineRef}
             opacity={"0.7"}
             d={
@@ -2674,7 +2675,7 @@ const BayA = ({ handleDiscClick, isDiscOpen, setIsDiscTapping }) => {
             stroke-linecap="round"
             stroke-linejoin="round"
           />
-          <path
+          <RotationWrapper
             ref={KuwaitRef}
             opacity={"0.7"}
             d={
@@ -2942,7 +2943,7 @@ const BayA = ({ handleDiscClick, isDiscOpen, setIsDiscTapping }) => {
             stroke-linecap="round"
             stroke-linejoin="round"
           />
-          <path
+          <RotationWrapper
             ref={NepalRef}
             isDiscOpen={isDiscOpen}
             opacity="0.7"
