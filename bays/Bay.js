@@ -16,16 +16,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import { useDebouncedEffect } from "@lib/index";
 
-const Bay = ({
-  period,
-  zoom,
-  handleDiscClick,
-  isMedium,
-  isSmall,
-  handleScroll,
-  setIsDiscHovering,
-  isDiscOpen,
-}) => {
+const Bay = ({ period, zoom, handleDiscClick, isDiscOpen }) => {
   const map = {
     hide: {
       scale: 1,
@@ -44,6 +35,7 @@ const Bay = ({
 
   useDebouncedEffect(
     () => {
+      console.log("set size");
       if (bayRef.current != null) {
         setSize({
           width: bayRef.current.getBoundingClientRect().width,
@@ -52,17 +44,10 @@ const Bay = ({
       }
     },
     [zoom, bayRef],
-    1000
+    2000
   );
 
   const [isDiscTapping, setIsDiscTapping] = useState(false);
-
-  // const size = useWindowSize()
-
-  // console.log("bottom constraint: ", size.height / 4);
-  // console.log("top constraint: ", -size.height / 4);
-  // console.log("left constraint: ", -size.width / 4);
-  // console.log("right constraint: ", size.width / 4);
 
   return (
     <motion.div

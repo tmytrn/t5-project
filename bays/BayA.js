@@ -32,7 +32,7 @@ const BayA = ({ handleDiscClick, isDiscOpen, setIsDiscTapping }) => {
         { rotation: 0 },
         {
           rotation: 360,
-          duration: 2,
+          duration: 10,
           repeat: -1,
           delay: 1,
           ease: "none",

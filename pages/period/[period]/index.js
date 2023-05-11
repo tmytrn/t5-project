@@ -7,14 +7,11 @@ import DiscModal from "../../../components/DiscModal";
 import { useState, useRef, useContext } from "react";
 import { motion, AnimatePresence, useMotionValue } from "framer-motion";
 import Bay from "../../../bays/Bay";
-import ZoomIn from "svg/ZoomIn";
-import ZoomOut from "svg/ZoomOut";
 import UpArrow from "svg/UpArrow";
 import DownArrow from "svg/DownArrow";
 import InstructionsContext from "components/InstructionsContext";
 import { useIsSmall, useIsMedium } from "@lib/index";
 import { useWindowSize } from "@lib/index";
-import { useDetectScroll } from "@smakss/react-scroll-direction";
 
 const Period = ({ period, data }) => {
   const { width, height } = useWindowSize();
@@ -42,7 +39,7 @@ const Period = ({ period, data }) => {
   const throttleInProgress = useRef();
 
   const handleZoomIn = () => {
-    if (zoom < 200) {
+    if (zoom < 150) {
       setZoom(zoom + 10);
     }
   };
@@ -65,6 +62,7 @@ const Period = ({ period, data }) => {
       // again on the next run
       // console.log(event.deltaY);
       throttleInProgress.current = false;
+      console.log("throttleScroll()");
       if (event.deltaY > 0) {
         handleZoomIn();
       } else {
@@ -160,7 +158,7 @@ const Period = ({ period, data }) => {
               className="flex items-center md:pb-4 md:mr-4 z-30"
               variants={variants}
               initial={"hidden"}
-              animate={isDiscOpen ? "hidden" : "visible"}>
+              animate={"visible"}>
               <a className=" rotate-0" onClick={handleZoomOut}>
                 <img
                   className=" w-6 h-6 md:w-8 md:h-8"
@@ -183,9 +181,9 @@ const Period = ({ period, data }) => {
                 <p>Move around to see the entire map.</p>
                 <p>Click on the discs to see its meaning.</p>
               </span>
-              {/* <span className="pb-4 md:pb-0 hidden">
+              <span className="pb-4 md:pb-0 block md:hidden">
                 Click each disc to see its meaning
-              </span> */}
+              </span>
             </div>
           </div>
 
@@ -205,7 +203,7 @@ const Period = ({ period, data }) => {
           <motion.div
             variants={variants}
             initial={"hidden"}
-            animate={isDiscOpen ? "hidden" : "visible"}>
+            animate={"visible"}>
             <div className="md:hidden block absolute w-full h-[58px] period-gradient z-10 top-[56px]"></div>
             <div
               className="md:hidden block font-serif absolute w-full text-center top-[56px] left-0 z-[0] stroked-saddle text-sunset"
@@ -222,7 +220,7 @@ const Period = ({ period, data }) => {
             className="md:hidden flex flex-col w-full absolute bottom-0 left-0"
             variants={variants}
             initial={"hidden"}
-            animate={isDiscOpen ? "hidden" : "visible"}>
+            animate={"visible"}>
             <div
               className="font-serif absolute w-full text-center bottom-[-60px] left-0  z-[0] stroked-saddle text-sunset"
               style={{ fontSize: `${width - 250}px` }}>
@@ -256,7 +254,7 @@ const Period = ({ period, data }) => {
             }
             variants={variants}
             initial={"hidden"}
-            animate={isDiscOpen ? "hidden" : "visible"}
+            animate={"visible"}
             onWheel={(e) => {
               handleThrottleScroll(e);
             }}
@@ -278,7 +276,7 @@ const Period = ({ period, data }) => {
               className="absolute bottom-0 left-0 py-2 font-sans w-full pb-4 z-40 flex flex-col items-center justify-center"
               variants={variants}
               initial={"hidden"}
-              animate={isDiscOpen ? "hidden" : "visible"}>
+              animate={"visible"}>
               <Link href={`/period/${data.past}`} className="z-40">
                 <span className="uppercase  text-saddle py-1  text-center">
                   To the Past
@@ -306,7 +304,7 @@ const Period = ({ period, data }) => {
               className="absolute top-0 left-0 h-full font-sans w-auto z-40 flex flex-row items-center justify-center md:px-4 lg:px-8"
               variants={variants}
               initial={"hidden"}
-              animate={isDiscOpen ? "hidden" : "visible"}
+              animate={"visible"}
               onHoverStart={() => {
                 setIsPastHover(true);
               }}
@@ -343,7 +341,7 @@ const Period = ({ period, data }) => {
               className="absolute top-0 right-0 h-full font-sans w-auto z-40 flex flex-row items-center justify-center px-12 "
               variants={variants}
               initial={"hidden"}
-              animate={isDiscOpen ? "hidden" : "visible"}
+              animate={"visible"}
               onHoverStart={() => {
                 setIsFutureHover(true);
               }}
@@ -381,7 +379,7 @@ const Period = ({ period, data }) => {
             className="absolute w-full bottom-[54px] flex justify-between z-30"
             variants={variants}
             initial={"hidden"}
-            animate={isDiscOpen ? "hidden" : "visible"}>
+            animate={"visible"}>
             <span className="border-saddle border-solid border-t-[1px] md:border-t-2 w-4"></span>
             <span className="border-saddle border-solid border-t-[1px] md:border-t-2 w-4"></span>
           </motion.div>
