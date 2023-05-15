@@ -122,26 +122,6 @@ const Period = ({ period, data }) => {
         }
       `}</style>
       <main className="h-full w-full bg-main-gradient select-none overflow-hidden">
-        {/* {!mapInstructionsDidRun && isSmall ? (
-          <div className="absolute z-[98] h-full w-full left-0 top-[56px] flex flex-col justify-center align-middle text-saddle bg-platinum bg-opacity-60">
-            <div className="pb-12 text-md">
-              <span className="font-sans block text-center">
-                Move around to see the entire map.
-              </span>
-              <span className="font-sans block text-center">
-                Click the discs to see its meaning
-              </span>
-            </div>
-            <a
-              className="underline font-sans uppercase text-center"
-              onClick={() => {
-                setMapInstructionsDidRun(true);
-              }}>
-              Got it
-            </a>
-          </div>
-        ) : null} */}
-
         <div
           className="hidden absolute bottom-[0px] md:flex justify-center
           align-bottom left-0 md:text-[124px] xl:text-[204px] w-full
@@ -305,6 +285,9 @@ const Period = ({ period, data }) => {
               }}
               onHoverEnd={() => {
                 setIsPastHover(false);
+              }}
+              onClick={() => {
+                setIsPastHover(false);
               }}>
               <Link href={`/period/${data.past}`}>
                 <motion.div
@@ -342,6 +325,9 @@ const Period = ({ period, data }) => {
               }}
               onHoverEnd={() => {
                 setIsFutureHover(false);
+              }}
+              onClick={() => {
+                setIsPastHover(false);
               }}>
               <Link href={`/period/${data.future}`} legacyBehavior>
                 <a>

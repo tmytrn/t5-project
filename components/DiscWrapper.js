@@ -4,6 +4,7 @@ import { hoverEffects } from "@lib/animations";
 
 const DiscWrapper = ({
   handleDiscClick,
+  setIsDiscTapping,
   children,
   country,
   originX,
@@ -22,8 +23,15 @@ const DiscWrapper = ({
       initial={"initial"}
       whileHover={"hovering"}
       whileTap={"clicking"}
+      onTapStart={() => {
+        setIsDiscTapping(true);
+      }}
       onTap={() => {
         handleDiscClick(country);
+        setIsDiscTapping(false);
+      }}
+      onTapCancel={() => {
+        setIsDiscTapping(false);
       }}>
       {children}
     </motion.a>

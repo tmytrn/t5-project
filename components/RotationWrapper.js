@@ -11,7 +11,7 @@ const RotationWrapper = ({ opacity, d, fill }) => {
       fill={fill}
       variants={linearRotation}
       initial={"stopped"}
-      animate={isSmall ? "stopped" : "rotating"}
+      animate={"rotating"}
     />
   );
 };

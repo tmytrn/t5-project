@@ -14,19 +14,16 @@ const Header = ({ page, data }) => {
   return (
     <nav className="w-full fixed left-0 top-0 text-saddle z-[99] h-[56px] md:h-auto ">
       {isNavOpen ? (
-        <div className="w-full h-full flex flex-col justify-start items-center ">
-          <div className="w-full flex flex-row md:flex-row justify-between md:justify-center items-center p-4 z-20 nav-gradient">
-            <div className="md:w-full">
-              <div>
-                <Link href="/" legacyBehavior>
-                  <a className="block w-[124px] mx-auto">
-                    <div className="w-[124px] md:ml-[11.5px]">
-                      <Logo />
-                    </div>
-                  </a>
-                </Link>{" "}
-              </div>
-            </div>
+        <div className="w-full flex flex-col justify-start items-center ">
+          <div className="w-full h-[56px] flex flex-row md:flex-row justify-between items-center p-4 z-20 nav-gradient">
+            <Link href="/" legacyBehavior>
+              <a className="block w-[192px]">
+                <div className="w-[192px] md:pr-[11.5px]">
+                  <Logo />
+                </div>
+              </a>
+            </Link>
+
             <a
               className="flex justify-center items-center w-[24px] h-[24px]"
               onClick={() => {
@@ -70,29 +67,23 @@ const Header = ({ page, data }) => {
           </div>
         </>
       ) : (
-        <>
-          <div className="absolute w-full h-[56px] flex flex-row justify-between md:justify-center items-center p-4 nav-gradient z-20 ">
-            <div className="md:w-full">
-              <div>
-                <Link href="/" legacyBehavior>
-                  <a className="block w-[192px] mx-auto">
-                    <div className="w-[192px] md:pr-[11.5px]">
-                      <Logo />
-                    </div>
-                  </a>
-                </Link>{" "}
+        <div className="absolute w-full h-[56px] flex flex-row justify-between items-center p-4 nav-gradient z-20 ">
+          <Link href="/" legacyBehavior>
+            <a className="block w-[192px]">
+              <div className="w-[192px] md:pr-[11.5px]">
+                <Logo />
               </div>
-            </div>
-
-            <a
-              className="flex justify-center items-center"
-              onClick={() => {
-                setIsNavOpen(true);
-              }}>
-              {isNavOpen ? <Close /> : <Hamburger />}
             </a>
-          </div>
-        </>
+          </Link>
+
+          <a
+            className="flex justify-center items-center"
+            onClick={() => {
+              setIsNavOpen(true);
+            }}>
+            {isNavOpen ? <Close /> : <Hamburger />}
+          </a>
+        </div>
       )}
     </nav>
   );

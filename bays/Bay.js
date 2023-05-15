@@ -35,7 +35,7 @@ const Bay = ({ period, zoom, handleDiscClick, isDiscOpen }) => {
 
   useDebouncedEffect(
     () => {
-      console.log("set size");
+      console.log("setConstraints()");
       if (bayRef.current != null) {
         setSize({
           width: bayRef.current.getBoundingClientRect().width,
@@ -44,7 +44,7 @@ const Bay = ({ period, zoom, handleDiscClick, isDiscOpen }) => {
       }
     },
     [zoom, bayRef],
-    2000
+    1000
   );
 
   const [isDiscTapping, setIsDiscTapping] = useState(false);
@@ -62,7 +62,8 @@ const Bay = ({ period, zoom, handleDiscClick, isDiscOpen }) => {
         right: size.width / 2,
         top: -size.height / 4,
         bottom: size.height / 4,
-      }}>
+      }}
+      dragElastic={0}>
       {
         {
           "2020-2040": (
