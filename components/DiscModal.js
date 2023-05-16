@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import DropdownArrow from "svg/DropdownArrow";
 import { PortableText } from "@portabletext/react";
@@ -7,7 +7,7 @@ import { PortableText } from "@portabletext/react";
 const DiscModal = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
   const [isEnglish, setIsEnglish] = useState(true);
   const opacity = {
-    visible: { opacity: 1, transition: { delay: 0.5 } },
+    visible: { opacity: 1, transition: { delay: 1 } },
     hidden: { opacity: 0 },
   };
 
@@ -18,27 +18,27 @@ const DiscModal = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
       setIsDiscOpen={setIsDiscOpen}
       isSmall={isSmall}
       isData={data ? true : false}>
-      <div className="px-4 md:px-16 text-saddle h-full md:h-full">
+      <div className="flex flex-col justify-center items-center px-4 md:px-16 text-saddle h-full md:h-full">
         {!data && (
-          <div className="flex flex-col justify-center text-center pt-[16px] font-sans">
+          <div className="hidden md:flex flex-col justify-center text-center pt-[16px] font-sans">
             What does this mean? Click the disk to see it from here.
           </div>
         )}
 
         {isDiscOpen || data ? (
           <motion.div
-            className="flex flex-col justify-center text-center pt-[15px] hover:cursor-pointer"
+            className="inline-flex flex-col justify-center text-center pt-[15px] hover:cursor-pointer "
             onClick={() => setIsDiscOpen(false)}
             variants={opacity}
             initial={"hidden"}
             animate={isDiscOpen ? "visible" : "hidden"}>
             <a className="font-sans text-sm inline">CLOSE</a>
-            <a className="text-center flex justify-center pb-[12px] inline">
+            <a className="text-center flex justify-center pb-[12px] ">
               <DropdownArrow />
             </a>
           </motion.div>
         ) : null}
-        <div className=" h-[calc(100%-60px)] md:h-full overflow-y-scroll overflow-x-hidden pb-20 md:pb-12 hide-scrollbar">
+        <div className="w-full h-[calc(100%-60px)] md:h-full overflow-y-scroll overflow-x-hidden pb-20 md:pb-12 hide-scrollbar">
           <div className="font-sans text-xl uppercase text-center pb-4">
             {data?.country}
           </div>
@@ -165,14 +165,13 @@ const DiscWrapper = ({
         visible: {
           y: "calc(-100% + 64px)",
           transition: {
-            duration: 0.5,
+            duration: 1,
           },
         },
         hidden: {
           y: "0%",
           transition: {
-            duration: 0.5,
-            delay: 0.5,
+            duration: 1,
           },
         },
       }
@@ -180,17 +179,26 @@ const DiscWrapper = ({
         visible: {
           y: "-100%",
           transition: {
-            duration: 0.5,
+            duration: 1,
             delay: 0.5,
           },
         },
         hidden: {
           y: "-50px",
           transition: {
-            duration: 0.5,
+            duration: 1,
           },
         },
       };
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (isDiscOpen && isData) {
+      controls.start("visible");
+    } else {
+      controls.start("hidden");
+    }
+  }, [isDiscOpen, isData, isSmall]);
 
   const blur = {
     hidden: {
@@ -205,6 +213,22 @@ const DiscWrapper = ({
     },
   };
 
+  const handlePan = (e, info) => {
+    // controls.set({ y: info.offset.y });
+    if (isSmall && info.offset.y > 0) {
+      let phoneOffset = info.offset.y + 64;
+      controls.set({ y: `calc(-100% + ` + phoneOffset + `px)` });
+    }
+  };
+  const handlePanEnd = (e, info) => {
+    if (isSmall && info.offset.y > 125) {
+      controls.start("hidden");
+      setIsDiscOpen(false);
+    } else {
+      controls.start("visible");
+    }
+  };
+
   return (
     <motion.div className="w-full h-full absolute top-0 left-0 overflow-hidden">
       <motion.div
@@ -217,13 +241,14 @@ const DiscWrapper = ({
         }}></motion.div>
       <div className="relative w-full h-full overflow-hidden">
         <motion.div
-          className="absolute w-full h-full md:h-discdesktop top-[100%] left-0  md:bg-transparent rounded-[15px] flex justify-center z-40"
+          className="absolute w-full h-full md:h-discdesktop top-[100%] left-0 md:bg-transparent rounded-[15px] flex justify-center z-40 touch-none"
           variants={variants}
-          initial={"initial"}
-          animate={isDiscOpen && isData ? "visible" : "hidden"}
+          animate={controls}
           onClick={() => {
             !isSmall && !isDiscOpen && isData ? setIsDiscOpen(true) : null;
-          }}>
+          }}
+          onPan={handlePan}
+          onPanEnd={handlePanEnd}>
           <div className="relative w-disc md:w-discdesktop">
             <div className="absolute h-full rounded-[15px] top-0 left-0 z-[-1] bg-white/[0.85] w-disc md:w-discdesktop"></div>
             <div className={colorString(color)}>{children}</div>

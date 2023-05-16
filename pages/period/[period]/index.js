@@ -12,6 +12,7 @@ import DownArrow from "svg/DownArrow";
 import InstructionsContext from "components/InstructionsContext";
 import { useIsSmall, useIsMedium } from "@lib/index";
 import { useWindowSize } from "@lib/index";
+import LoaderContext from "components/LoaderContext";
 
 const Period = ({ period, data }) => {
   const { width, height } = useWindowSize();
@@ -49,26 +50,93 @@ const Period = ({ period, data }) => {
     }
   };
 
-  const handleThrottleScroll = (event) => {
-    event.preventDefault();
-    if (throttleInProgress.current) {
-      return;
+  const periodIndex = (period) => {
+    switch (period) {
+      case "2020-2040":
+        return 12;
+      case "2010-2020":
+        return 11;
+      case "2000-2010":
+        return 10;
+      case "1990-2000":
+        return 9;
+      case "1980-1990":
+        return 8;
+      case "1970-1980":
+        return 7;
+      case "1960-1970":
+        return 6;
+      case "1950-1960":
+        return 5;
+      case "1940-1950":
+        return 4;
+      case "1930-1940":
+        return 3;
+      case "1920-1930":
+        return 2;
+      case "1910-1920":
+        return 1;
+      case "1850-1910":
+        return 0;
     }
-    // Set inProgress to true and start the timer
-    throttleInProgress.current = true;
-    setTimeout(() => {
-      // Set inProgress to false, which means
-      // that setTimeout will work
-      // again on the next run
-      // console.log(event.deltaY);
-      throttleInProgress.current = false;
-      console.log("throttleScroll()");
-      if (event.deltaY > 0) {
-        handleZoomIn();
-      } else {
-        handleZoomOut();
+  };
+
+  const { setLastBayVisited } = useContext(LoaderContext);
+
+  const handleThrottleScroll = (event) => {
+    if (isMedium) {
+      if (throttleInProgress.current) {
+        return;
       }
-    }, 200);
+      // Set inProgress to true and start the timer
+      throttleInProgress.current = true;
+      setTimeout(() => {
+        // Set inProgress to false, which means
+        // that setTimeout will work
+        // again on the next run
+        // console.log(event.deltaY);
+        throttleInProgress.current = false;
+        if (event.deltaY > 0) {
+          handleZoomIn();
+        } else {
+          handleZoomOut();
+        }
+      }, 200);
+    }
+  };
+
+  useEffect(() => {
+    bayRef.current.addEventListener(
+      "gesturechange",
+      (e) => {
+        handlePinch(e);
+      },
+      false
+    );
+    return bayRef.current.removeEventListener(
+      "gesturechange",
+      (e) => {
+        handlePinch(e);
+      },
+      false
+    );
+  });
+  useEffect(() => {
+    setLastBayVisited(periodIndex(period));
+  });
+  const handlePinch = (e) => {
+    e.preventDefault();
+    if (e.scale < 1) {
+      let zoomOffset = zoom - parseInt(e.scale * 10);
+      if (zoomOffset >= 50) {
+        setZoom(zoomOffset);
+      }
+    } else {
+      let zoomOffset = zoom + parseInt(e.scale);
+      if (zoomOffset <= 150) {
+        setZoom(zoomOffset);
+      }
+    }
   };
 
   const opacity = {
@@ -130,12 +198,12 @@ const Period = ({ period, data }) => {
         </div>
 
         <motion.div
-          className="flex justify-between absolute w-full px-4 md:px-12 top-[80px] font-sans  text-iceberg font-medium z-30"
+          className="flex justify-center md:justify-between absolute w-full px-4 md:px-12 top-[80px] font-sans  text-iceberg font-medium z-30"
           variants={blur}
           animate={isDiscOpen ? "show" : "hidden"}>
-          <div className="flex flex-col-reverse md:flex-row">
+          <div className="inline-flex flex-col-reverse md:flex-row w-full md:w-auto">
             <motion.div
-              className="flex items-center md:pb-4 md:mr-4 z-30"
+              className="inline-flex items-center md:pb-4 mr-auto md:mr-4 z-30 w-auto"
               variants={variants}
               initial={"hidden"}
               animate={"visible"}>
@@ -145,7 +213,7 @@ const Period = ({ period, data }) => {
                   src={"/images/zoom-out.svg"}
                 />
               </a>
-              <span className="px-4 text-sm md:text-normal">
+              <span className="mx-4 text-sm md:text-normal w-[24px] md:w-auto">
                 <span className="hidden md:inline-block ">Zoom: </span>
                 {" " + zoom}%
               </span>
@@ -156,12 +224,12 @@ const Period = ({ period, data }) => {
                 />
               </a>
             </motion.div>
-            <div className="text-md md:text-sm text-shadow leading-normal">
+            <div className="text-md md:text-sm leading-normal text-center md:text-left">
               <span className="hidden md:block">
                 <p>Move around to see the entire map.</p>
                 <p>Click on the discs to see its meaning.</p>
               </span>
-              <span className="pb-4 md:pb-0 block md:hidden">
+              <span className="pb-4 md:pb-0 block md:hidden text-center">
                 Click each disc to see its meaning
               </span>
             </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { hoverEffects } from "@lib/animations";
 
@@ -14,6 +14,7 @@ const DiscWrapper = ({
   const radius = size / 2;
   const x = originX + radius;
   const y = originY + radius;
+  const [tap, setTap] = useState();
 
   return (
     <motion.a
@@ -23,14 +24,17 @@ const DiscWrapper = ({
       initial={"initial"}
       whileHover={"hovering"}
       whileTap={"clicking"}
-      onTapStart={() => {
+      onTapStart={(e, i) => {
         setIsDiscTapping(true);
+        setTap({ x: i.point.x, y: i.point.y });
       }}
-      onTap={() => {
-        handleDiscClick(country);
+      onTap={(e, i) => {
+        if (Math.abs(i.point.x - tap.x) + Math.abs(i.point.y - tap.y) < 10) {
+          handleDiscClick(country);
+        }
         setIsDiscTapping(false);
       }}
-      onTapCancel={() => {
+      onTapCancel={(e, i) => {
         setIsDiscTapping(false);
       }}>
       {children}

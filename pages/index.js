@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
@@ -10,6 +10,7 @@ import Hyphen from "svg/Hyphen";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import { useIsMedium, useIsSmall } from "@lib/index";
+import LoaderContext from "components/LoaderContext";
 const Home = ({ periods, periodsReverse }) => {
   const ref = useRef();
   const isSmall = useIsSmall();
@@ -113,6 +114,9 @@ const Home = ({ periods, periodsReverse }) => {
       }, delay);
     };
   }
+  const { lastBayVisited, setLastBayVisited } = useContext(LoaderContext);
+
+  console.log("lastBayVisited: ", lastBayVisited);
 
   return (
     <div className="overflow-hidden h-full">
@@ -131,7 +135,7 @@ const Home = ({ periods, periodsReverse }) => {
               spaceBetween={24}
               threshhold={30}
               shortSwipes={false}
-              initialSlide={0}
+              initialSlide={lastBayVisited}
               centeredSlides={true}
               slideToClickedSlide={true}
               className={"mySwiper w-full h-full select-none"}
@@ -186,6 +190,9 @@ const Home = ({ periods, periodsReverse }) => {
                               ? `/period/${period.period}`
                               : `#`
                           }
+                          onClick={() => {
+                            setLastBayVisited(key);
+                          }}
                           passHref>
                           <motion.div
                             variants={desktopBay}
@@ -222,7 +229,10 @@ const Home = ({ periods, periodsReverse }) => {
                           !isChanging && selectedPeriod == key
                             ? `/period/${period.period}`
                             : `#`
-                        }>
+                        }
+                        onClick={() => {
+                          setLastBayVisited(key);
+                        }}>
                         {period.period}
                       </Link>
                     </motion.div>
@@ -239,7 +249,7 @@ const Home = ({ periods, periodsReverse }) => {
           <Swiper
             direction={"vertical"}
             slidesPerView={"auto"}
-            initialSlide={0}
+            initialSlide={lastBayVisited}
             centeredSlides={true}
             onSlideChange={(i) => {
               // setSelectedPeriod(i.realIndex);
@@ -275,7 +285,12 @@ const Home = ({ periods, periodsReverse }) => {
                   className={
                     "h-[108px] flex justify-center w-full border-t-white border-solid border-t-[1px] stroked-saddle"
                   }>
-                  <Link href={`/period/${period.period}`} passHref>
+                  <Link
+                    href={`/period/${period.period}`}
+                    onClick={() => {
+                      setLastBayVisited(key);
+                    }}
+                    passHref>
                     <motion.div
                       className={
                         "w-full flex justify-between text-7xl tracking-tightest text-left m-center min-w-[300px] py-6 "

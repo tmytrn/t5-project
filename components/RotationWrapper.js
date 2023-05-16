@@ -1,9 +1,7 @@
-import React, { useRef } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { linearRotation } from "@lib/animations";
-import { useIsSmall } from "@lib/index";
-const RotationWrapper = ({ opacity, d, fill }) => {
-  const isSmall = useIsSmall();
+const RotationWrapper = ({ opacity, d, fill, isDiscOpen }) => {
   return (
     <motion.path
       d={d}

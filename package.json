@@ -17,6 +17,7 @@
     "@sanity/ui": "^1",
     "@sanity/vision": "^3.7.0",
     "@smakss/react-scroll-direction": "^1.0.5",
+    "@use-gesture/react": "^10.2.26",
     "framer-motion": "^10.12.4",
     "gsap": "^3.11.5",
     "moment": "^2.29.4",

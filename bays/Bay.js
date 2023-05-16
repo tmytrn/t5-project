@@ -35,7 +35,7 @@ const Bay = ({ period, zoom, handleDiscClick, isDiscOpen }) => {
 
   useDebouncedEffect(
     () => {
-      console.log("setConstraints()");
+      // console.log("setConstraints()");
       if (bayRef.current != null) {
         setSize({
           width: bayRef.current.getBoundingClientRect().width,
@@ -55,15 +55,16 @@ const Bay = ({ period, zoom, handleDiscClick, isDiscOpen }) => {
       variants={map}
       initial={"hide"}
       animate={"show"}
-      className="bay z-30 hover:cursor-grab origin-center "
+      className="bay z-30 hover:cursor-grab origin-center touch-none"
       drag={isDiscTapping ? false : true}
+      dragTransition={{ bounceStiffness: 500, bounceDamping: 100 }}
       dragConstraints={{
         left: -size.width / 2,
         right: size.width / 2,
         top: -size.height / 4,
         bottom: size.height / 4,
       }}
-      dragElastic={0}>
+      dragElastic={0.2}>
       {
         {
           "2020-2040": (
