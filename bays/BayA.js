@@ -3,7 +3,7 @@ import { useRef } from "react";
 import DiscWrapper from "components/DiscWrapper";
 import RotationWrapper from "components/RotationWrapper";
 
-const BayA = ({ handleDiscClick, isDiscOpen, setIsDiscTapping }) => {
+const BayA = ({ handleDiscClick, setIsDiscTapping }) => {
   return (
     <svg
       width="2400"
@@ -636,7 +636,6 @@ const BayA = ({ handleDiscClick, isDiscOpen, setIsDiscTapping }) => {
             stroke-linejoin="round"
           />
           <RotationWrapper
-                      isDiscOpen={isDiscOpen}
             opacity={"0.7"}
             d={
               "M232.139 116.434V111.313C229.649 73.8735 211.389 40.4635 179.809 19.7435L174.689 16.6135L169.569 13.7735C135.569 -3.24652 97.4895 -3.26652 63.4995 13.7735L58.3795 16.6135L53.2595 19.7435L48.4295 23.1535C-16.7705 70.8035 -14.3605 168.863 53.2595 213.403L58.3795 216.533L63.4995 219.093C136.369 256.683 223.839 209.173 231.569 126.953L232.139 121.833V116.434Z"
@@ -985,7 +984,6 @@ const BayA = ({ handleDiscClick, isDiscOpen, setIsDiscTapping }) => {
             stroke-linejoin="round"
           />
           <RotationWrapper
-            isDiscOpen={isDiscOpen}
             opacity={"0.7"}
             d={
               "M232.19 116.297V111.177L231.91 106.057C213.29 -37.023 13.38 -32.643 1.28003 111.177L1 116.297L1.28003 121.417C13.08 265.087 213.19 269.717 231.91 126.817L232.19 121.417V116.297Z"
@@ -1340,7 +1338,6 @@ const BayA = ({ handleDiscClick, isDiscOpen, setIsDiscTapping }) => {
             stroke-linejoin="round"
           />
           <RotationWrapper
-                      isDiscOpen={isDiscOpen}
             opacity={"0.7"}
             d={
               "M278.54 139.49V133.52L277.97 127.26L277.12 120.72C269.04 55.13 211.92 3.47 146.02 1H133.51C63.81 4.46 8.18 57.91 1.56 127.26L1.28 133.52L1 139.49L1.56998 152C8.02998 218.93 60.19 271.52 127.26 277.69L133.52 278.26H139.78C209.01 278.33 267.93 227.22 277.13 158.54L277.98 152L278.55 145.74V139.48"
@@ -1457,7 +1454,6 @@ const BayA = ({ handleDiscClick, isDiscOpen, setIsDiscTapping }) => {
             stroke-linejoin="round"
           />
           <RotationWrapper
-                      isDiscOpen={isDiscOpen}
             opacity={"0.7"}
             d={
               "M186.12 93.1846L185.84 89.2046L185.56 84.9346C171.11 -29.4954 10.6199 -25.8154 1.27991 89.2046L1 93.1846L1.27991 97.4546C10.3799 212.265 171.72 215.745 185.56 101.435L185.84 97.4546L186.12 93.1846Z"
@@ -1820,7 +1816,6 @@ const BayA = ({ handleDiscClick, isDiscOpen, setIsDiscTapping }) => {
             stroke-linejoin="round"
           />
           <RotationWrapper
-                      isDiscOpen={isDiscOpen}
             opacity={"0.7"}
             d={
               "M232.19 117.329L231.91 112.209L231.63 106.809C212.95 -36.2107 13.17 -31.3707 1 112.209V122.449C13.13 266.099 213.37 270.729 231.63 127.569L232.2 117.329"
@@ -2185,7 +2180,6 @@ const BayA = ({ handleDiscClick, isDiscOpen, setIsDiscTapping }) => {
             stroke-linejoin="round"
           />
           <RotationWrapper
-                      isDiscOpen={isDiscOpen}
             opacity={"0.7"}
             d={
               "M232.2 116.313V111.193L231.63 105.793C213.54 -37.0873 12.94 -32.4873 1 111.193V121.433C13.38 265.113 213.5 269.483 231.63 126.553L232.2 121.433V116.313Z"
@@ -2500,7 +2494,6 @@ const BayA = ({ handleDiscClick, isDiscOpen, setIsDiscTapping }) => {
             stroke-linejoin="round"
           />
           <RotationWrapper
-                      isDiscOpen={isDiscOpen}
             opacity={"0.7"}
             d={
               "M278.54 139.77L278.26 133.8L277.98 127.26L277.13 121C268.29 54.95 212.37 3.88 145.75 1.28L139.78 1L133.52 1.28C64.28 4.34 7.83001 58.15 1.57001 127.26L1 133.8V146.03L1.57001 152.29C7.54001 219.15 60.42 271.98 127.26 277.98L133.52 278.55H139.78C209.02 278.65 267.93 227.14 277.13 158.54L277.98 152.28L278.55 139.77"
@@ -2769,7 +2762,6 @@ const BayA = ({ handleDiscClick, isDiscOpen, setIsDiscTapping }) => {
             stroke-linejoin="round"
           />
           <RotationWrapper
-            isDiscOpen={isDiscOpen}
             opacity="0.7"
             d="M186.12 93.24V88.97L185.84 84.99C171.1 -29.35 10.76 -25.91 1.28003 88.97L1 93.24L1.28003 97.22C10.76 212.25 170.67 215.98 185.84 101.49L186.12 97.22V93.24Z"
             fill="url(#paint0_linear_508_21904)"

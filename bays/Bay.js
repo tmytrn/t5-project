@@ -75,40 +75,88 @@ const Bay = ({ period, zoom, handleDiscClick, isDiscOpen }) => {
             />
           ),
           "2010-2020": (
-            <BayB handleDiscClick={handleDiscClick} isDiscOpen={isDiscOpen} />
+            <BayB
+              handleDiscClick={handleDiscClick}
+              isDiscOpen={isDiscOpen}
+              setIsDiscTapping={setIsDiscTapping}
+            />
           ),
           "2000-2010": (
-            <BayC handleDiscClick={handleDiscClick} isDiscOpen={isDiscOpen} />
+            <BayC
+              handleDiscClick={handleDiscClick}
+              isDiscOpen={isDiscOpen}
+              setIsDiscTapping={setIsDiscTapping}
+            />
           ),
           "1990-2000": (
-            <BayD handleDiscClick={handleDiscClick} isDiscOpen={isDiscOpen} />
+            <BayD
+              handleDiscClick={handleDiscClick}
+              isDiscOpen={isDiscOpen}
+              setIsDiscTapping={setIsDiscTapping}
+            />
           ),
           "1980-1990": (
-            <BayE handleDiscClick={handleDiscClick} isDiscOpen={isDiscOpen} />
+            <BayE
+              handleDiscClick={handleDiscClick}
+              isDiscOpen={isDiscOpen}
+              setIsDiscTapping={setIsDiscTapping}
+            />
           ),
           "1970-1980": (
-            <BayF handleDiscClick={handleDiscClick} isDiscOpen={isDiscOpen} />
+            <BayF
+              handleDiscClick={handleDiscClick}
+              isDiscOpen={isDiscOpen}
+              setIsDiscTapping={setIsDiscTapping}
+            />
           ),
           "1960-1970": (
-            <BayG handleDiscClick={handleDiscClick} isDiscOpen={isDiscOpen} />
+            <BayG
+              handleDiscClick={handleDiscClick}
+              isDiscOpen={isDiscOpen}
+              setIsDiscTapping={setIsDiscTapping}
+            />
           ),
           "1950-1960": (
-            <BayH handleDiscClick={handleDiscClick} isDiscOpen={isDiscOpen} />
+            <BayH
+              handleDiscClick={handleDiscClick}
+              isDiscOpen={isDiscOpen}
+              setIsDiscTapping={setIsDiscTapping}
+            />
           ),
           "1940-1950": (
-            <BayI handleDiscClick={handleDiscClick} isDiscOpen={isDiscOpen} />
+            <BayI
+              handleDiscClick={handleDiscClick}
+              isDiscOpen={isDiscOpen}
+              setIsDiscTapping={setIsDiscTapping}
+            />
           ),
           "1930-1940": (
-            <BayJ handleDiscClick={handleDiscClick} isDiscOpen={isDiscOpen} />
+            <BayJ
+              handleDiscClick={handleDiscClick}
+              isDiscOpen={isDiscOpen}
+              setIsDiscTapping={setIsDiscTapping}
+            />
           ),
           "1920-1930": (
-            <BayK handleDiscClick={handleDiscClick} isDiscOpen={isDiscOpen} />
+            <BayK
+              handleDiscClick={handleDiscClick}
+              isDiscOpen={isDiscOpen}
+              setIsDiscTapping={setIsDiscTapping}
+            />
           ),
           "1910-1920": (
-            <BayL handleDiscClick={handleDiscClick} isDiscOpen={isDiscOpen} />
+            <BayL
+              handleDiscClick={handleDiscClick}
+              isDiscOpen={isDiscOpen}
+              setIsDiscTapping={setIsDiscTapping}
+            />
           ),
           "1850-1910": (
-            <BayM handleDiscClick={handleDiscClick} isDiscOpen={isDiscOpen} />
+            <BayM
+              handleDiscClick={handleDiscClick}
+              isDiscOpen={isDiscOpen}
+              setIsDiscTapping={setIsDiscTapping}
+            />
           ),
         }[period]
       }
