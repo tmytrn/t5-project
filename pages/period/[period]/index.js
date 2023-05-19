@@ -222,7 +222,7 @@ const Period = ({ period, data }) => {
                 />
               </a>
             </motion.div>
-            <div className="text-md md:text-sm leading-normal font-montreal text-center md:text-left">
+            <div className="text-[20px] md:text-sm leading-normal font-montreal text-center md:text-left">
               <span className="hidden md:block">
                 <p>Move around to see the entire map.</p>
                 <p>Click on the discs to see its meaning.</p>
