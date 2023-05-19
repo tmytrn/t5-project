@@ -32,19 +32,19 @@ const DiscModal = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
             variants={opacity}
             initial={"hidden"}
             animate={isDiscOpen ? "visible" : "hidden"}>
-            <a className="font-sans text-sm inline">CLOSE</a>
+            <a className="font-sans text-base inline">CLOSE</a>
             <a className="text-center flex justify-center pb-[12px] ">
               <DropdownArrow />
             </a>
           </motion.div>
         ) : null}
         <div className="w-full h-[calc(100%-60px)] md:h-full overflow-y-scroll overflow-x-hidden pb-20 md:pb-12 hide-scrollbar">
-          <div className="font-sans text-xl uppercase text-center pb-4">
+          <div className="font-montreal text-xl uppercase text-center pb-4">
             {data?.country}
           </div>
           <div className="flex flex-col md:flex-row justify-between">
             <div className="md:w-2/3 md:pr-12">
-              <div className="flex w-full md:w-[302px] mb-4 font-sans text-center border-[1px] border-solid border-saddle ">
+              <div className="flex w-full md:w-[302px] mb-4 text-base font-sans text-center border-[1px] border-solid border-saddle ">
                 <a
                   className={
                     isEnglish
@@ -136,19 +136,19 @@ const DiscModal = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
 const colorString = (color) => {
   switch (color) {
     case "desert tan":
-      return "absolute w-disc md:w-discdesktop h-full bg-deserttan/[0.6] md:bg-deserttan/[0.8] rounded-[15px] rounded-br-none rounded-bl-none";
+      return "absolute w-disc md:w-discdesktop h-full bg-deserttan/[0.6] rounded-[15px] rounded-br-none rounded-bl-none";
     case "old penny":
-      return "absolute w-disc md:w-discdesktop h-full bg-oldpenny/[0.6] md:bg-oldpenny/[0.8] rounded-[15px] rounded-br-none rounded-bl-none";
+      return "absolute w-disc md:w-discdesktop h-full bg-oldpenny/[0.6] rounded-[15px] rounded-br-none rounded-bl-none";
     case "new penny":
-      return "absolute w-disc md:w-discdesktop h-full bg-newpenny/[0.6] md:bg-newpenny/[0.8] rounded-[15px] rounded-br-none rounded-bl-none";
+      return "absolute w-disc md:w-discdesktop h-full bg-newpenny/[0.6] rounded-[15px] rounded-br-none rounded-bl-none";
     case "pewter":
-      return "absolute w-disc md:w-discdesktop h-full bg-pewter/[0.6] md:bg-pewter/[0.8] rounded-[15px] rounded-br-none rounded-bl-none";
+      return "absolute w-disc md:w-discdesktop h-full bg-pewter/[0.6] rounded-[15px] rounded-br-none rounded-bl-none";
     case "moss green":
-      return "absolute w-disc md:w-discdesktop h-full bg-mossgreen/[0.6] md:bg-mossgreen/[0.8] rounded-[15px] rounded-br-none rounded-bl-none";
+      return "absolute w-disc md:w-discdesktop h-full bg-mossgreen/[0.6] rounded-[15px] rounded-br-none rounded-bl-none";
     case "clear":
-      return "absolute w-disc md:w-discdesktop h-full bg-clear/[0.6] md: bg-clear/[0.8] rounded-[15px] rounded-br-none rounded-bl-none";
+      return "absolute w-disc md:w-discdesktop h-full bg-clear/[0.6] rounded-[15px] rounded-br-none rounded-bl-none";
     case "olive drab":
-      return "absolute w-disc md:w-discdesktop h-full bg-olivedrab/[0.6] md:bg-olivedrab/[0.8] rounded-[15px] rounded-br-none rounded-bl-none";
+      return "absolute w-disc md:w-discdesktop h-full bg-olivedrab/[0.6] rounded-[15px] rounded-br-none rounded-bl-none";
   }
 };
 

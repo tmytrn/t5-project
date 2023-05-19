@@ -56,12 +56,12 @@ const Bay = ({ period, zoom, handleDiscClick, isDiscOpen }) => {
       initial={"hide"}
       animate={"show"}
       className="bay z-30 hover:cursor-grab origin-center touch-none"
-      drag={isDiscTapping ? false : true}
+      drag={isDiscOpen ? false : true}
       dragTransition={{ bounceStiffness: 500, bounceDamping: 100 }}
       dragConstraints={{
         left: -size.width / 2,
         right: size.width / 2,
-        top: -size.height / 4,
+        top: -(size.height - 56) / 4,
         bottom: size.height / 4,
       }}
       dragElastic={0.2}>

@@ -116,8 +116,6 @@ const Home = ({ periods, periodsReverse }) => {
   }
   const { lastBayVisited, setLastBayVisited } = useContext(LoaderContext);
 
-  console.log("lastBayVisited: ", lastBayVisited);
-
   return (
     <div className="overflow-hidden h-full">
       <Head>

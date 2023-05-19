@@ -28,6 +28,7 @@ module.exports = {
     fontFamily: {
       serif: ["PP Editorial New", "serif"],
       sans: ["PP Neue Montreal TT Book", "sans-serif"],
+      montreal: ["PP Neue Montreal", "sans-serif"],
     },
     extend: {
       colors: {

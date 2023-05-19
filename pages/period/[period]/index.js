@@ -23,8 +23,6 @@ const Period = ({ period, data }) => {
   const [isPastHover, setIsPastHover] = useState(false);
   const [isFutureHover, setIsFutureHover] = useState(false);
   const [zoom, setZoom] = useState(50);
-  const { mapInstructionsDidRun, setMapInstructionsDidRun } =
-    useContext(InstructionsContext);
   const zoomRef = useRef(null);
   const constraintsRef = useRef(null);
   const bayRef = useRef(null);
@@ -198,12 +196,12 @@ const Period = ({ period, data }) => {
         </div>
 
         <motion.div
-          className="flex justify-center md:justify-between absolute w-full px-4 md:px-12 top-[80px] font-sans  text-iceberg font-medium z-30"
+          className="flex justify-center md:justify-between absolute w-full px-4 md:px-12 top-[108px] md:top-[80px] font-sans  text-iceberg font-montreal z-30"
           variants={blur}
           animate={isDiscOpen ? "show" : "hidden"}>
           <div className="inline-flex flex-col-reverse md:flex-row w-full md:w-auto">
             <motion.div
-              className="inline-flex items-center md:pb-4 mr-auto md:mr-4 z-30 w-auto"
+              className="inline-flex justify-start items-center md:pb-4  md:mr-4 z-30 w-auto"
               variants={variants}
               initial={"hidden"}
               animate={"visible"}>
@@ -224,7 +222,7 @@ const Period = ({ period, data }) => {
                 />
               </a>
             </motion.div>
-            <div className="text-md md:text-sm leading-normal text-center md:text-left">
+            <div className="text-md md:text-sm leading-normal font-montreal text-center md:text-left">
               <span className="hidden md:block">
                 <p>Move around to see the entire map.</p>
                 <p>Click on the discs to see its meaning.</p>
@@ -274,7 +272,7 @@ const Period = ({ period, data }) => {
 
           {data.future && isSmall ? (
             <motion.div
-              className="block md:hidden absolute top-[56px] w-full font-sans py-1 z-40"
+              className="block md:hidden absolute top-[56px] w-full font-sans z-40"
               variants={variants}
               initial={"hidden"}
               animate={isDiscOpen ? "hidden" : "visible"}>
@@ -344,7 +342,7 @@ const Period = ({ period, data }) => {
           {/* <motion.div className="absolute top-[56px] w-full h-full blur-sm bg-transparent"></motion.div> */}
           {data.past && isMedium ? (
             <motion.div
-              className="absolute top-0 left-0 h-full font-sans w-auto z-40 flex flex-row items-center justify-center md:px-4 lg:px-8"
+              className="absolute top-0 left-0 h-full font-sans w-auto z-40 flex flex-row items-center justify-center pl-8"
               variants={variants}
               initial={"hidden"}
               animate={"visible"}
@@ -384,7 +382,7 @@ const Period = ({ period, data }) => {
 
           {data.future && isMedium ? (
             <motion.div
-              className="absolute top-0 right-0 h-full font-sans w-auto z-40 flex flex-row items-center justify-center px-12 "
+              className="absolute top-0 right-0 h-full font-sans w-auto z-40 flex flex-row items-center justify-center pr-8 "
               variants={variants}
               initial={"hidden"}
               animate={"visible"}
@@ -395,7 +393,7 @@ const Period = ({ period, data }) => {
                 setIsFutureHover(false);
               }}
               onClick={() => {
-                setIsPastHover(false);
+                setIsFutureHover(false);
               }}>
               <Link href={`/period/${data.future}`} legacyBehavior>
                 <a>
@@ -415,7 +413,7 @@ const Period = ({ period, data }) => {
                         To the Future
                       </span>
                     </motion.a>
-                    <a className="rotate-90">
+                    <a className="rotate-90 h-[16px]">
                       <UpArrow />
                     </a>
                   </motion.div>
