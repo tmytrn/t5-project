@@ -41,7 +41,7 @@ module.exports = {
         clear: "#CDD2E1",
         oldpenny: "#DEA927",
         newpenny: "#FED03F",
-        darkearth: "#A5908D99",
+        darkearth: "#A5908D",
         deserttan: "#D1CEBC",
         sunset: "#CFD2DD",
       },

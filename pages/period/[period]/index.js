@@ -196,28 +196,28 @@ const Period = ({ period, data }) => {
         </div>
 
         <motion.div
-          className="flex justify-center md:justify-between absolute w-full px-4 md:px-12 top-[108px] md:top-[80px] font-sans  text-iceberg font-montreal z-30"
+          className="inline-flex justify-center md:justify-between absolute w-full px-4 md:px-12 top-[108px] md:top-[80px] font-sans  text-iceberg font-montreal z-30"
           variants={blur}
           animate={isDiscOpen ? "show" : "hidden"}>
           <div className="inline-flex flex-col-reverse md:flex-row w-full md:w-auto">
             <motion.div
-              className="inline-flex justify-start items-center md:pb-4  md:mr-4 z-30 w-auto"
+              className="inline md:pb-4 md:mr-4 z-30 w-fit"
               variants={variants}
               initial={"hidden"}
               animate={"visible"}>
-              <a className=" rotate-0" onClick={handleZoomOut}>
+              <a className="inline rotate-0" onClick={handleZoomOut}>
                 <img
-                  className=" w-6 h-6 md:w-8 md:h-8"
+                  className="inline w-6 h-6 md:w-8 md:h-8"
                   src={"/images/zoom-out.svg"}
                 />
               </a>
-              <span className="mx-4 text-sm md:text-normal w-[24px] md:w-auto">
+              <span className="inline mx-4 text-sm md:text-normal w-[24px] md:w-auto">
                 <span className="hidden md:inline-block ">Zoom: </span>
                 {" " + zoom}%
               </span>
-              <a className="" onClick={handleZoomIn}>
+              <a className="inline" onClick={handleZoomIn}>
                 <img
-                  className=" w-6 h-6 md:w-8 md:h-8"
+                  className="inline w-6 h-6 md:w-8 md:h-8"
                   src={"/images/zoom-in.svg"}
                 />
               </a>
