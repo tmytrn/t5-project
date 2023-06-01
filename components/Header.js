@@ -42,6 +42,8 @@ const Header = ({ page, data }) => {
                   About
                 </a>
               </Link>
+            </div>{" "}
+            <div className="w-full mt-12 uppercase text-center font-sans border-t-[1px] py-6 border-white border-solid color-saddle border-b-[1px]">
               <Link legacyBehavior={true} href="/team">
                 <a
                   onClick={() => {
@@ -51,15 +53,6 @@ const Header = ({ page, data }) => {
                 </a>
               </Link>
             </div>
-            {/* <div className="w-full uppercase text-center font-sans border-t-[1px] py-6 border-white  border-solid color-saddle">
-              Photo Gallery
-            </div>
-            <div className="w-full uppercase text-center font-sans border-t-[1px] py-6 border-white  border-solid color-saddle">
-              Behind the Scenes
-            </div>
-            <div className="w-full uppercase text-center font-sans border-t-[1px] border-b-[1px] py-6 border-white  border-solid color-saddle">
-              News + Press
-            </div> */}
           </div>
         </div>
       ) : page == "home" ? (
