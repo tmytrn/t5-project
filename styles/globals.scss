@@ -54,6 +54,13 @@ body {
   }
 }
 
+.bg-sunset {
+  background: linear-gradient(270.22deg, #fffaea 44.79%, #bde7ff 123.77%);
+  background-repeat: none;
+  @media only screen and (min-width: 600px) {
+    background: linear-gradient(270.22deg, #fffaea 44.79%, #bde7ff 123.77%);
+  }
+}
 .bg-main-gradient {
   background: linear-gradient(
       180deg,

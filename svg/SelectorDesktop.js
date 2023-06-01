@@ -10,8 +10,8 @@ const SelectorDesktop = () => {
       <path
         d="M8 2L15 9.16279M8 2L8 16M8 2L1 9.16279"
         stroke="#684C21"
-        strokeOpacity="0.9"
-        strokeWidth="2"
+        stroke-opacity="0.9"
+        stroke-width="2"
       />
     </svg>
   );

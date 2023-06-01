@@ -9,7 +9,7 @@ const ZoomIn = () => {
         fill="#684C21"
         fill-opacity="0.9"
         stroke="#E2F0F8"
-        strokeWidth="2"
+        stroke-width="2"
       />
       <line
         x1="3.63672"
@@ -17,7 +17,7 @@ const ZoomIn = () => {
         x2="12.364"
         y2="7.72729"
         stroke="#FFF3CF"
-        strokeWidth="2"
+        stroke-width="2"
       />
       <line
         x1="8.27246"
@@ -25,7 +25,7 @@ const ZoomIn = () => {
         x2="8.27246"
         y2="12.3637"
         stroke="#FFF3CF"
-        strokeWidth="2"
+        stroke-width="2"
       />
       <circle cx="8" cy="8" r="8" fill="#684C21" fill-opacity="0.9" />
       <circle
@@ -33,8 +33,8 @@ const ZoomIn = () => {
         cy="8"
         r="7"
         stroke="#684C21"
-        strokeOpacity="0.9"
-        strokeWidth="2"
+        stroke-opacity="0.9"
+        stroke-width="2"
       />
       <line
         x1="3.63672"

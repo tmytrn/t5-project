@@ -68,7 +68,7 @@ const DiscModal = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
                   ESPAÑOL
                 </a>
               </div>
-              <div className="text-4xl pb-4 md:pb-4 lg:pb-4 leading-[52px] ">
+              <div className="text-4xl pb-8 md:pb-4 lg:pb-4 leading-[52px] ">
                 {isEnglish ? (
                   data?.translation ? (
                     `“${data.translation}”`
@@ -85,65 +85,48 @@ const DiscModal = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
               </div>
             </div>
             {data?.quote && (
-              <div className="md:w-1/3 pb-4 md:pb-4 lg:pb-2">
-                <p className="font-sans uppercase text-base pb-2">
+              <div className="md:w-1/3 pb-8 md:pb-4 lg:pb-2">
+                <p className="font-sans uppercase text-base pb-4">
                   Original Text
                 </p>
                 <div
                   className={
                     data.alignRight
-                      ? "text-right italic text-3xl leading-[48px]"
-                      : "text-left italic text-3xl leading-[48px]"
+                      ? "text-right italic text-3xl"
+                      : "text-left italic text-3xl"
                   }>
                   <PortableText value={data?.quote} />
                 </div>
               </div>
             )}
           </div>
-          <div className="flex flex-col md:flex-row justify-between">
-            <div className="md:w-2/3 md:pr-12">
-              {data?.contributor && (
-                <div className="font-sans text-base pb-4">
-                  <p className="underline uppercase">Contributor</p>
-                  <p>{data?.contributor}</p>
-                </div>
-              )}
-              {data?.organization && (
-                <div className="font-sans uppercase text-base pb-4">
-                  <p className="underline">Organization</p>
-                  <p>{data.organization}</p>
-                </div>
-              )}
-              {data?.context && (
-                <div className="font-sans text-base pb-4">
-                  <p className="uppercase underline">Context</p>
-                  <PortableText className="normal-case" value={data.context} />
-                </div>
-              )}
-              {data?.credits && (
-                <div className="font-sans uppercase text-base pb-4">
-                  <p className="uppercase underline">Credits</p>
-                  <PortableText
-                    className="normal-case text-xs"
-                    value={data.credits}
-                  />
-                </div>
-              )}
+          {data?.contributor && (
+            <div className="font-sans text-base pb-4">
+              <p className="underline uppercase">Contributor</p>
+              <p>{data?.contributor}</p>
             </div>
-            <div className="md:w-1/3 pb-4 md:pb-4 lg:pb-2">
-              {data?.link && (
-                <div className="font-sans text-base pb-4">
-                  <p className="uppercase underline">Link</p>
-                  <a
-                    href={data.link}
-                    className="hover:underline hover:cursor-pointer">
-                    {data.link}
-                  </a>
-                </div>
-              )}
+          )}
+          {data?.organization && (
+            <div className="font-sans uppercase text-base pb-4">
+              <p className="underline">Organization</p>
+              <p>{data.organization}</p>
             </div>
-          </div>
-          <div></div>
+          )}
+          {data?.context && (
+            <div className="font-sans text-base pb-4">
+              <p className="uppercase underline">Context</p>
+              <PortableText className="normal-case" value={data.context} />
+            </div>
+          )}
+          {data?.credits && (
+            <div className="font-sans uppercase text-base pb-4">
+              <p>Credits</p>
+              <PortableText
+                className="normal-case text-xs"
+                value={data.credits}
+              />
+            </div>
+          )}
         </div>
       </div>
     </DiscWrapper>

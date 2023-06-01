@@ -10,8 +10,8 @@ const Hyphen = () => {
       <path
         d="M0 1L14 1"
         stroke="#684C21"
-        strokeOpacity="0.9"
-        strokeWidth="2"
+        stroke-opacity="0.9"
+        stroke-width="2"
       />
     </svg>
   );

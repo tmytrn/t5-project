@@ -10,7 +10,7 @@ const DownArrow = () => {
       <path
         d="M8 14L1 6.83721M8 14L8 -3.0598e-07M8 14L15 6.83721"
         stroke="#684C21"
-        strokeOpacity="0.9"
+        stroke-opacity="0.9"
       />
     </svg>
   );

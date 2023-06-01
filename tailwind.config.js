@@ -48,7 +48,7 @@ module.exports = {
       height: {
         disc: "calc(100vh - 70px)",
         discscroll: "calc(100vh - 107px)",
-        discdesktop: "450px",
+        discdesktop: "400px",
       },
       width: {
         disc: "calc(100vw - 10px)",

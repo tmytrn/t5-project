@@ -25,7 +25,6 @@ export const periodPageQuery = `
     context,
     quote,
     size,
-    link,
     translation,
     spanishTranslation,
     alignRight,

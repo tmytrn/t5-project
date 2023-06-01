@@ -11,13 +11,13 @@ const Hamburger = () => {
       <path
         d="M0 1H23"
         stroke="#684C21"
-        strokeOpacity="0.9"
+        stroke-opacity="0.9"
         className="origin-center"
       />
       <path
         d="M0 10H23"
         stroke="#684C21"
-        strokeOpacity="0.9"
+        stroke-opacity="0.9"
         className="origin-center"
       />
     </svg>

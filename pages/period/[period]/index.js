@@ -180,7 +180,7 @@ const Period = ({ period, data }) => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <style global="true" jsx="true">{`
+      <style global jsx>{`
         html {
           body {
             overflow: hidden;
@@ -211,8 +211,8 @@ const Period = ({ period, data }) => {
                   src={"/images/zoom-out.svg"}
                 />
               </a>
-              <span className="inline mx-4 text-sm md:text-normal w-[24px] md:w-auto font-montreal">
-                <span className="hidden md:inline-block">Zoom: </span>
+              <span className="inline mx-4 text-sm md:text-normal w-[24px] md:w-auto">
+                <span className="hidden md:inline-block ">Zoom: </span>
                 {" " + zoom}%
               </span>
               <a className="inline" onClick={handleZoomIn}>
@@ -363,10 +363,10 @@ const Period = ({ period, data }) => {
                   animate={isPastHover ? "visible" : "hidden"}
                 />
                 <motion.div className="inline-flex">
-                  <span className="rotate-90">
+                  <a className="rotate-90">
                     <DownArrow />
-                  </span>
-                  <motion.span
+                  </a>
+                  <motion.a
                     className="z-40 rotate-[270deg] ml-[-24px]"
                     variants={opacity}
                     initial={"hidden"}
@@ -374,7 +374,7 @@ const Period = ({ period, data }) => {
                     <span className="uppercase  text-saddle py-1  text-center">
                       To the Past
                     </span>
-                  </motion.span>
+                  </motion.a>
                 </motion.div>
               </Link>
             </motion.div>
@@ -404,7 +404,7 @@ const Period = ({ period, data }) => {
                     animate={isFutureHover ? "visible" : "hidden"}
                   />
                   <motion.div className="inline-flex">
-                    <motion.span
+                    <motion.a
                       className="z-40 rotate-[90deg] mr-[-24px]"
                       variants={opacity}
                       initial={"hidden"}
@@ -412,10 +412,10 @@ const Period = ({ period, data }) => {
                       <span className="uppercase  text-saddle py-1  text-center">
                         To the Future
                       </span>
-                    </motion.span>
-                    <span className="rotate-90 h-[16px]">
+                    </motion.a>
+                    <a className="rotate-90 h-[16px]">
                       <UpArrow />
-                    </span>
+                    </a>
                   </motion.div>
                 </a>
               </Link>
