@@ -43,7 +43,7 @@ const Header = ({ page, data }) => {
                 </a>
               </Link>
             </div>{" "}
-            <div className="w-full mt-12 uppercase text-center font-sans border-t-[1px] py-6 border-white border-solid color-saddle border-b-[1px]">
+            <div className="w-full uppercase text-center font-sans  py-6 border-white border-solid color-saddle border-b-[1px]">
               <Link legacyBehavior={true} href="/team">
                 <a
                   onClick={() => {
