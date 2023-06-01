@@ -62,6 +62,7 @@ const Team = ({ team }) => {
                       fill={true}
                       src={image.asset.url}
                       alt={image.alt}
+                      priority={true}
                       className="object-cover"
                     />
                   </div>
