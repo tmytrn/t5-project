@@ -10,14 +10,14 @@ const DropdownArrow = () => {
       <path
         d="M11 11L1 1"
         stroke="#684C21"
-        stroke-width="2"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinejoin="round"
       />
       <path
         d="M11 11L21 1"
         stroke="#684C21"
-        stroke-width="2"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinejoin="round"
       />
     </svg>
   );

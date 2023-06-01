@@ -10,8 +10,8 @@ const Selector = () => {
       <path
         d="M14 8L6.83721 15M14 8L-1.22392e-06 8M14 8L6.83721 1"
         stroke="#684C21"
-        stroke-opacity="0.9"
-        stroke-width="2"
+        strokeOpacity="0.9"
+        strokeWidth="2"
       />
     </svg>
   );

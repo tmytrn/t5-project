@@ -10,7 +10,7 @@ const UpArrow = () => {
       <path
         d="M8 1L15 8.16279M8 1L8 15M8 1L1 8.16279"
         stroke="#684C21"
-        stroke-opacity="0.9"
+        strokeOpacity="0.9"
       />
     </svg>
   );
