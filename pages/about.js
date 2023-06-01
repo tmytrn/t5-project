@@ -87,7 +87,7 @@ const About = ({ about }) => {
             </div>
           </div>
         </section>
-        <section className="flex flex-col font-montreal text-left sunset">
+        <section className="flex flex-col font-montreal text-left bg-sunset">
           <div className="w-100 p-8 md:p-16">
             <div className="flex flex-col w-full md:w-2/3 ml-auto pb-12">
               <div className="pb-4">Further Readings</div>

@@ -15,12 +15,12 @@ const Close = () => {
           width="14468"
           height="7683"
           stroke="#DF2828"
-          stroke-width="4"
+          strokeWidth="4"
         />
         <path
           d="M4 4.18636L20.2635 20.4498M20.7137 4L4.45025 20.2635"
           stroke="#684C21"
-          stroke-opacity="0.9"
+          strokeOpacity="0.9"
         />
       </g>
       <defs>
