@@ -50,6 +50,14 @@ export const aboutPageQuery = `
   }
   `;
 
+export const teamPageQuery = `
+*[_id=="teamPage"]{
+  "images": images[]{asset->{url}, alt},
+  aboutText, credits,
+  additionalCredits
+}
+  `;
+
 export const metaData = `
 *[_type == "siteconfig"]{
   title,

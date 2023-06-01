@@ -23,4 +23,9 @@ export const getAboutPage = async () => {
   return data;
 };
 
+export const getTeamPage = async () => {
+  const data = await getClient().fetch(queries.teamPageQuery);
+  return data;
+};
+
 export { queries };

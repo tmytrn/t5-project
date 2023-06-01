@@ -14,6 +14,11 @@ export default {
       title: "Role",
     },
     {
+      name: "link",
+      type: "url",
+      title: "Link",
+    },
+    {
       name: "bio",
       type: "array",
       title: "Bio",
@@ -24,11 +29,4 @@ export default {
       ],
     },
   ],
-  // orderings: [
-  //   {
-  //     title: "Oldest-Newest",
-  //     name: "periodAsc",
-  //     by: [{ field: "period", direction: "asc" }],
-  //   },
-  // ],
 };

@@ -4,9 +4,26 @@ export default {
   title: "Team",
   fields: [
     {
-      name: "heroImage",
-      type: "image",
-      title: "Hero Image",
+      name: "images",
+      type: "array",
+      title: "Images",
+      of: [
+        {
+          type: "image",
+          fields: [
+            {
+              name: "alt",
+              type: "string",
+              description: "Important for SEO and accessibility.",
+              title: "Alt text",
+              validation: (Rule) =>
+                Rule.custom((value, { parent }) =>
+                  parent?.asset && !value ? "Alt text is required" : true
+                ),
+            },
+          ],
+        },
+      ],
     },
     {
       name: "aboutText",
@@ -24,12 +41,15 @@ export default {
       title: "Credits",
       of: [{ type: "credit" }],
     },
+    {
+      name: "additionalCredits",
+      type: "array",
+      title: "Additional Credits",
+      of: [
+        {
+          type: "block",
+        },
+      ],
+    },
   ],
-  // orderings: [
-  //   {
-  //     title: "Oldest-Newest",
-  //     name: "periodAsc",
-  //     by: [{ field: "period", direction: "asc" }],
-  //   },
-  // ],
 };
