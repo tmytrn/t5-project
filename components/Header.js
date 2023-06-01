@@ -42,6 +42,14 @@ const Header = ({ page, data }) => {
                   About
                 </a>
               </Link>
+              <Link legacyBehavior={true} href="/team">
+                <a
+                  onClick={() => {
+                    setIsNavOpen(false);
+                  }}>
+                  Team
+                </a>
+              </Link>
             </div>
             {/* <div className="w-full uppercase text-center font-sans border-t-[1px] py-6 border-white  border-solid color-saddle">
               Photo Gallery
