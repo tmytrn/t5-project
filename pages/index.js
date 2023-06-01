@@ -181,7 +181,8 @@ const Home = ({ periods, periodsReverse }) => {
                           !isChanging && selectedPeriod == key
                             ? "bigger"
                             : "normal"
-                        }>
+                        }
+                        whileTap={{ scale: 0.95 }}>
                         <Link
                           href={
                             !isChanging && selectedPeriod == key
