@@ -55,7 +55,7 @@ const Bay = ({ period, zoom, handleDiscClick, isDiscOpen }) => {
       variants={map}
       initial={"hide"}
       animate={"show"}
-      className="bay z-30 hover:cursor-grab origin-center touch-none"
+      className="bay z-30 hover:cursor-grab origin-center touch-none select-none"
       drag={isDiscOpen ? false : true}
       dragTransition={{ bounceStiffness: 500, bounceDamping: 100 }}
       dragConstraints={{

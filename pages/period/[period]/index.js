@@ -291,7 +291,7 @@ const Period = ({ period, data }) => {
 
           <motion.div
             className={
-              "relative left-0 top-0 w-full h-full overflow-hidden flex justify-center items-center"
+              "relative left-0 top-0 w-full h-full overflow-hidden flex justify-center items-center select-none"
             }
             variants={variants}
             initial={"hidden"}
