@@ -23,7 +23,6 @@ const Header = ({ page, data }) => {
                 </div>
               </a>
             </Link>
-
             <a
               className="flex justify-center items-center w-[24px] h-[24px]"
               onClick={() => {
@@ -34,6 +33,16 @@ const Header = ({ page, data }) => {
           </div>
           <div className="block w-full h-screen md:absolute md:w-[450px] top-[56px] right-0 sunset">
             <div className="w-full mt-12 uppercase text-center font-sans border-t-[1px] py-6 border-white border-solid color-saddle border-b-[1px]">
+              <Link legacyBehavior={true} href="/">
+                <a
+                  onClick={() => {
+                    setIsNavOpen(false);
+                  }}>
+                  Home
+                </a>
+              </Link>
+            </div>
+            <div className="w-full uppercase text-center font-sans py-6 border-white border-solid color-saddle border-b-[1px]">
               <Link legacyBehavior={true} href="/about">
                 <a
                   onClick={() => {
@@ -42,7 +51,7 @@ const Header = ({ page, data }) => {
                   About
                 </a>
               </Link>
-            </div>{" "}
+            </div>
             <div className="w-full uppercase text-center font-sans  py-6 border-white border-solid color-saddle border-b-[1px]">
               <Link legacyBehavior={true} href="/team">
                 <a

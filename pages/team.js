@@ -69,15 +69,15 @@ const Team = ({ team }) => {
                 ))}
               </Slider>
             </div>
-            <div className="flex flex-row p-8 md:p-16">
-              <div className="font-montreal w-full text-md">
+            <div className="flex flex-row p-8 md:p-16 justify-center">
+              <div className="font-montreal w-full md:w-1/2 text-md">
                 <PortableText value={data.aboutText} />
               </div>
             </div>
           </section>
           <section className="flex flex-col text-left bg-white/[0.85]">
             <div className="bg-clear/[0.6]">
-              <h1 className="text-6xl w-full md:w-1/3 leading-none p-8 md:p-16 md:pb-0">
+              <h1 className="text-6xl w-full md:w-1/3 leading-none p-8 md:p-12 md:pb-0">
                 team
                 <br />
                 credits

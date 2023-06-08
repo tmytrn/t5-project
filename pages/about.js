@@ -27,7 +27,7 @@ const About = ({ about }) => {
             <h1 className="text-[110px] md:text-[110px] w-full md:w-1/3">
               about
             </h1>
-            <div className="font-montreal w-full md:w-2/3 text-md font-medium mt-auto ml-auto">
+            <div className="font-montreal w-full md:w-2/5 text-md font-medium mt-auto ml-auto">
               <PortableText value={data.heroText} />
             </div>
           </div>
@@ -39,10 +39,10 @@ const About = ({ about }) => {
               style={{ width: "100%", height: "auto" }}
               src={data.heroImage}
               alt={data.heroImageAlt}></Image>
-            <div className="text-center py-1">{data.heroImageAlt}</div>
+            {/* <div className="text-center py-1">{data.heroImageAlt}</div> */}
           </div>
-          <div className="flex flex-row p-8 md:p-16">
-            <div className="font-montreal w-full text-md">
+          <div className="flex flex-row p-8 md:py-16 justify-center">
+            <div className="font-montreal w-full md:w-1/2 text-md">
               <PortableText value={data.aboutText} />
             </div>
           </div>
@@ -56,7 +56,7 @@ const About = ({ about }) => {
               style={{ width: "100%", height: "auto" }}
               src={data.conceptImage}
               alt={data.conceptImageAlt}></Image>
-            <div className="text-center py-1">{data.conceptImageAlt}</div>
+            {/* <div className="text-center py-1">{data.conceptImageAlt}</div> */}
           </div>
           <div className="flex flex-col md:flex-row p-8 md:p-16">
             <h1 className="text-6xl w-full md:w-1/3 leading-none pb-8 md:pb-0">
@@ -78,7 +78,7 @@ const About = ({ about }) => {
               style={{ width: "100%", height: "auto" }}
               src={data.technicalImage}
               alt={data.technicalImageAlt}></Image>
-            <div className="text-center py-1">{data.technicalImageAlt}</div>
+            {/* <div className="text-center py-1">{data.technicalImageAlt}</div> */}
           </div>
           <div className="flex flex-col md:flex-row p-8 md:p-16">
             <h1 className="text-6xl w-full md:w-1/3 ">technical</h1>

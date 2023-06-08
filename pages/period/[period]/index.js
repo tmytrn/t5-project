@@ -227,9 +227,9 @@ const Period = ({ period, data }) => {
                 <p>Move around to see the entire map.</p>
                 <p>Click on the discs to see its meaning.</p>
               </span>
-              <span className="pb-4 md:pb-0 block md:hidden text-center">
+              {/* <span className="pb-4 md:pb-0 block md:hidden text-center">
                 Click each disc to see its meaning
-              </span>
+              </span> */}
             </div>
           </div>
 
@@ -272,7 +272,7 @@ const Period = ({ period, data }) => {
 
           {data.future && isSmall ? (
             <motion.div
-              className="block md:hidden absolute top-[56px] w-full font-sans z-40"
+              className="block md:hidden absolute top-[70px] w-full font-sans z-40"
               variants={variants}
               initial={"hidden"}
               animate={isDiscOpen ? "hidden" : "visible"}>
