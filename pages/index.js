@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import Selector from "svg/Selector";
 import Hyphen from "svg/Hyphen";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Keyboard, Mousewheel } from "swiper";
 import "swiper/swiper-bundle.css";
 import { useIsMedium, useIsSmall } from "@lib/index";
 import LoaderContext from "components/LoaderContext";
@@ -131,11 +132,16 @@ const Home = ({ periods, periodsReverse }) => {
             <Swiper
               slidesPerView={"auto"}
               spaceBetween={24}
-              threshhold={30}
               shortSwipes={false}
+              threshhold={30}
               initialSlide={lastBayVisited}
               centeredSlides={true}
               slideToClickedSlide={true}
+              mousewheel={true}
+              keyboard={{
+                enabled: true,
+              }}
+              modules={[Keyboard, Mousewheel]}
               className={"mySwiper w-full h-full select-none"}
               onSlideChange={(i) => {
                 // setSelectedPeriod(i.realIndex);

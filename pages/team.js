@@ -96,7 +96,7 @@ const Team = ({ team }) => {
                           <Link
                             href={credit.link}
                             className="hover:cursor-pointer hover:underline">
-                            {credit.name}
+                            {credit.name} <span className="text-md">↗</span>
                           </Link>
                         ) : (
                           <div>{credit.name}</div>
