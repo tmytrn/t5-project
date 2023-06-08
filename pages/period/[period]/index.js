@@ -263,7 +263,7 @@ const Period = ({ period, data }) => {
             initial={"hidden"}
             animate={"visible"}>
             <div
-              className="font-serif absolute w-full text-center bottom-[-60px] left-0  z-[0] stroked-saddle text-sunset"
+              className="font-serif absolute w-full text-center bottom-[-50px] left-0  z-[0] stroked-saddle text-sunset"
               style={{ fontSize: `${width - 250}px` }}>
               {end}
             </div>
