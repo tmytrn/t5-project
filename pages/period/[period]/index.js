@@ -240,7 +240,7 @@ const Period = ({ period, data }) => {
           </Link>
         </motion.div>
 
-        <div className={"w-full h-full relative"}>
+        <div className={"w-full h-full relative select-none"}>
           <motion.div
             variants={variants}
             initial={"hidden"}
@@ -258,7 +258,7 @@ const Period = ({ period, data }) => {
           </motion.div>
 
           <motion.div
-            className="md:hidden flex flex-col w-full absolute bottom-0 left-0"
+            className="md:hidden flex flex-col w-full absolute bottom-0 left-0 select-none"
             variants={variants}
             initial={"hidden"}
             animate={"visible"}>
