@@ -122,7 +122,7 @@ const DiscModal = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
                 </div>
               )}
               {data?.credits && (
-                <div className="font-sans uppercase text-base pb-4">
+                <div className="font-sans text-base pb-4">
                   <p className="uppercase underline">Credits</p>
                   <PortableText
                     className="normal-case text-xs"
