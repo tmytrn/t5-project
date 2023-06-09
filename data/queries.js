@@ -23,6 +23,7 @@ export const periodPageQuery = `
     contributor,
     color->,
     context,
+    credits,
     quote,
     size,
     link,
