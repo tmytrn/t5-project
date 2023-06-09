@@ -196,7 +196,7 @@ const Period = ({ period, data }) => {
         </div>
 
         <motion.div
-          className="inline-flex justify-center md:justify-between absolute w-full px-4 md:px-12 top-[108px] md:top-[80px] font-sans  text-iceberg font-montreal z-30"
+          className="inline-flex justify-center md:justify-between absolute w-full px-4 md:px-12 top-[128px] md:top-[80px] font-sans  text-iceberg font-montreal z-30"
           variants={blur}
           animate={isDiscOpen ? "show" : "hidden"}>
           <div className="inline-flex flex-col-reverse md:flex-row w-full md:w-auto">
@@ -211,8 +211,8 @@ const Period = ({ period, data }) => {
                   src={"/images/zoom-out.svg"}
                 />
               </a>
-              <span className="inline mx-4 text-sm md:text-normal w-[24px] md:w-auto font-montreal">
-                <span className="hidden md:inline-block">Zoom: </span>
+              <span className="inline mx-1 md:mx-4 text-sm md:text-normal w-[24px] md:w-auto font-montreal">
+                <span>Zoom: </span>
                 {" " + zoom}%
               </span>
               <a className="inline" onClick={handleZoomIn}>
