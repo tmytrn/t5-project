@@ -8,7 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Slider from "react-slick";
 const Team = ({ team }) => {
-  console.log("teamData: ", team[0]);
+  // console.log("teamData: ", team[0]);
   const data = team[0];
 
   var settings = {
@@ -48,7 +48,7 @@ const Team = ({ team }) => {
             <span className="border-saddle border-solid border-t-[1px] md:border-t-2 w-4"></span>
           </div>
           <section className="w-100 flex flex-col">
-            <div className="flex flex-col p-8 md:p-16">
+            <div className="flex flex-col p-8 md:p-12">
               <h1 className="text-[110px] md:text-[110px] w-full md:w-1/3 leading-[110px]">
                 <span className="block">the</span>
                 team
@@ -69,7 +69,7 @@ const Team = ({ team }) => {
                 ))}
               </Slider>
             </div>
-            <div className="flex flex-row p-8 md:p-16 justify-center">
+            <div className="flex flex-row p-8 md:12 justify-center">
               <div className="font-montreal w-full md:w-1/2 text-md">
                 <PortableText value={data.aboutText} />
               </div>

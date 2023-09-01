@@ -8,13 +8,12 @@ import { motion } from "framer-motion";
 import Selector from "svg/Selector";
 import Hyphen from "svg/Hyphen";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Keyboard, Mousewheel } from "swiper";
+import { Keyboard } from "swiper";
 import "swiper/swiper-bundle.css";
 import { useIsMedium, useIsSmall } from "@lib/index";
 import LoaderContext from "components/LoaderContext";
-const Home = ({ periods, periodsReverse }) => {
+const Home = ({ periods }) => {
   const ref = useRef();
-  const isSmall = useIsSmall();
   const isMedium = useIsMedium();
   const [selectedPeriod, setSelectedPeriod] = useState(0);
   const [isChanging, setChanging] = useState(false);
@@ -26,17 +25,17 @@ const Home = ({ periods, periodsReverse }) => {
 
   const desktopBay = {
     hidden: { opacity: 0, transition: { duration: 0.1 } },
-    show: { opacity: 1, transition: { duration: 0.1, delay: 0.5 } },
+    show: { opacity: 1, transition: { duration: 0.25 } },
   };
 
   const scale = {
-    normal: { scale: 1, transition: { duration: 0.1, delay: 0 } },
-    bigger: { scale: 1.15, transition: { duration: 0.25, delay: 0.75 } },
+    normal: { scale: 0.95, transition: { duration: 0.5, delay: 0 } },
+    bigger: { scale: 1.0, transition: { duration: 0.25, delay: 0.5 } },
   };
 
   const desktopInactiveBay = {
-    hidden: { opacity: 0.5, transition: { duration: 0.001 } },
-    show: { opacity: 0, transition: { duration: 0.1, delay: 0.5 } },
+    hidden: { opacity: 0.35, transition: { duration: 0.25 } },
+    show: { opacity: 0, transition: { duration: 0.01 } },
   };
 
   const blur = {
@@ -131,17 +130,16 @@ const Home = ({ periods, periodsReverse }) => {
           <div className={"hidden md:block w-full h-full"}>
             <Swiper
               slidesPerView={"auto"}
-              spaceBetween={24}
+              spaceBetween={48}
               shortSwipes={false}
               threshhold={30}
               initialSlide={lastBayVisited}
               centeredSlides={true}
               slideToClickedSlide={true}
-              mousewheel={true}
               keyboard={{
                 enabled: true,
               }}
-              modules={[Keyboard, Mousewheel]}
+              modules={[Keyboard]}
               className={"mySwiper w-full h-full select-none"}
               onSlideChange={(i) => {
                 // setSelectedPeriod(i.realIndex);
@@ -156,71 +154,73 @@ const Home = ({ periods, periodsReverse }) => {
                 setChanging(false);
                 setSelectedPeriod(i.realIndex);
               }}>
-              {periodsReverse.map((period, key) => (
+              {periods.map((period, key) => (
                 <SwiperSlide className="w-[800px] 2xl:w-[1024px] flex justify-center items-center relative shrink-0 transition-transform md:cursor-pointer">
                   <div
-                    className=" flex flex-col h-full justify-between  "
+                    className="flex flex-col h-full justify-center items-center"
                     key={key}>
                     {/* <BayThumbnail /> */}
-                    <div className="relative select-none w-full h-full">
-                      <motion.div
-                        variants={desktopInactiveBay}
-                        animate={
-                          !isChanging && selectedPeriod == key
-                            ? "show"
-                            : "hidden"
-                        }
-                        className="absolute top-0 left-[calc(50%-400px)] 2xl:left-[calc(50%-512px)] select-none pointer-events-none"
-                        loading="lazy">
-                        <Image
-                          width={1024}
-                          height={556}
-                          src={period.inactiveImage}
-                          alt={"inactive image"}
-                        />{" "}
-                      </motion.div>
-                      <motion.div
-                        className="origin-center"
-                        variants={scale}
-                        initial="normal"
-                        animate={
-                          !isChanging && selectedPeriod == key
-                            ? "bigger"
-                            : "normal"
-                        }
-                        whileTap={{ scale: 0.95 }}>
-                        <Link
-                          href={
+                    <div className="select-none h-full w-full flex items-center">
+                      <div className="relative w-full h-[442px] 2xl:h-[556px]">
+                        <motion.div
+                          variants={desktopInactiveBay}
+                          animate={
                             !isChanging && selectedPeriod == key
-                              ? `/period/${period.period}`
-                              : `#`
+                              ? "show"
+                              : "hidden"
                           }
-                          onClick={() => {
-                            setLastBayVisited(key);
-                          }}
-                          passHref>
-                          <motion.div
-                            variants={desktopBay}
-                            animate={
+                          className="absolute top-0 left-[calc(50% - 512px)] select-none pointer-events-none"
+                          loading="lazy">
+                          <Image
+                            width={1024}
+                            height={556}
+                            src={period.inactiveImage}
+                            alt={"inactive image"}
+                          />{" "}
+                        </motion.div>
+                        <motion.div
+                          className="absolute top-0 left-[calc(50% - 512px)] origin-center"
+                          variants={scale}
+                          initial="normal"
+                          animate={
+                            !isChanging && selectedPeriod == key
+                              ? "bigger"
+                              : "normal"
+                          }
+                          whileTap={{ scale: 0.95 }}>
+                          <Link
+                            href={
                               !isChanging && selectedPeriod == key
-                                ? "show"
-                                : "hidden"
+                                ? `/period/${period.period}`
+                                : `#`
                             }
-                            className={
-                              !isChanging && selectedPeriod == key
-                                ? `absolute top-0 left-[calc(50%-400px)] 2xl:left-[calc(50%-512px)] hover:cursor-pointer`
-                                : `absolute top-0 left-[calc(50%-400px)] 2xl:left-[calc(50%-512px)] pointer-events-none`
-                            }
-                            loading="lazy">
-                            <Image
-                              width={1024}
-                              height={556}
-                              src={period.activeImage}
-                              alt={"active image"}
-                            />
-                          </motion.div>
-                        </Link>
-                      </motion.div>
+                            onClick={() => {
+                              setLastBayVisited(key);
+                            }}
+                            passHref>
+                            <motion.div
+                              variants={desktopBay}
+                              animate={
+                                !isChanging && selectedPeriod == key
+                                  ? "show"
+                                  : "hidden"
+                              }
+                              className={
+                                !isChanging && selectedPeriod == key
+                                  ? `hover:cursor-pointer`
+                                  : `pointer-events-none`
+                              }
+                              loading="lazy">
+                              <Image
+                                width={1024}
+                                height={556}
+                                src={period.activeImage}
+                                alt={"active image"}
+                              />
+                            </motion.div>
+                          </Link>
+                        </motion.div>
+                      </div>
                     </div>
                     <motion.div
                       className="w-[800px] 2xl:w-[1024px] text-[90px] text-center flex flex-col justify-center stroked-saddle text-transparent pb-4"
@@ -333,10 +333,9 @@ const Home = ({ periods, periodsReverse }) => {
 
 export async function getStaticProps() {
   const periods = await getAllPeriods();
-  const periodsReverse = periods.reverse();
   const page = "home";
   return {
-    props: { periods, periodsReverse, page },
+    props: { periods, page },
     revalidate: 10,
   };
 }

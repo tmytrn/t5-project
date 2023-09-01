@@ -17,17 +17,17 @@ const About = ({ about }) => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="w-100 bg-deserttan pt-[56px] overflow-scroll text-saddle">
+      <main className="w-100 bg-deserttan pt-[56px] overflow-scroll text-saddle ">
         <div className="absolute w-full top-[90px] flex justify-between">
           <span className="border-saddle border-solid border-t-[1px] md:border-t-2 w-4"></span>
           <span className="border-saddle border-solid border-t-[1px] md:border-t-2 w-4"></span>
         </div>
         <section className="w-100 flex flex-col">
-          <div className="flex flex-col p-8 md:p-16">
+          <div className="flex flex-col p-8 md:p-12 ">
             <h1 className="text-[110px] md:text-[110px] w-full md:w-1/3">
               about
             </h1>
-            <div className="font-montreal w-full md:w-2/5 text-md font-medium mt-auto ml-auto">
+            <div className="font-montreal w-full md:w-2/5 lg:w-3/5 text-md font-medium mt-auto ml-auto">
               <PortableText value={data.heroText} />
             </div>
           </div>
@@ -58,7 +58,7 @@ const About = ({ about }) => {
               alt={data.conceptImageAlt}></Image>
             {/* <div className="text-center py-1">{data.conceptImageAlt}</div> */}
           </div>
-          <div className="flex flex-col md:flex-row p-8 md:p-16">
+          <div className="flex flex-col md:flex-row p-8 md:12">
             <h1 className="text-6xl w-full md:w-1/3 leading-none pb-8 md:pb-0">
               concept
               <br />+<br />
@@ -80,25 +80,30 @@ const About = ({ about }) => {
               alt={data.technicalImageAlt}></Image>
             {/* <div className="text-center py-1">{data.technicalImageAlt}</div> */}
           </div>
-          <div className="flex flex-col md:flex-row p-8 md:p-16">
+          <div className="flex flex-col md:flex-row p-8 md:2">
             <h1 className="text-6xl w-full md:w-1/3 ">technical</h1>
             <div className="font-montreal w-full md:w-2/3 text-md">
               <PortableText value={data.technicalText} />
             </div>
           </div>
         </section>
-        <section className="flex flex-col font-montreal text-left bg-sunset">
-          <div className="w-100 p-8 md:p-16">
-            <div className="flex flex-col w-full md:w-2/3 ml-auto pb-12">
-              <div className="pb-4">Further Readings</div>
-              <PortableText value={data.furtherReadings} />
-            </div>
-            <div className="flex flex-col w-full md:w-2/3 ml-auto">
-              <div className="pb-4">Research Links</div>
-              <PortableText value={data.researchLinks} />
-            </div>
+
+        {/* <section className="flex flex-col font-montreal text-left bg-sunset">
+          <div className="w-100 p-8 md:p-12">
+            {data.furtherReadings && (
+              <div className="flex flex-col w-full md:w-2/3 ml-auto pb-12">
+                <div className="pb-4">Further Readings</div>
+                <PortableText value={data.furtherReadings} />
+              </div>
+            )}
+            {data.researchLinks && (
+              <div className="flex flex-col w-full md:w-2/3 ml-auto">
+                <div className="pb-4">Research Links</div>
+                <PortableText value={data.researchLinks} />
+              </div>
+            )}
           </div>
-        </section>
+        </section> */}
       </main>
     </>
   );

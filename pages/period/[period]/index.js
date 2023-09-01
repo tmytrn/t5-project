@@ -51,31 +51,31 @@ const Period = ({ period, data }) => {
   const periodIndex = (period) => {
     switch (period) {
       case "2020-2040":
-        return 12;
+        return 0;
       case "2010-2020":
-        return 11;
+        return 1;
       case "2000-2010":
-        return 10;
+        return 2;
       case "1990-2000":
-        return 9;
+        return 3;
       case "1980-1990":
-        return 8;
+        return 4;
       case "1970-1980":
-        return 7;
+        return 5;
       case "1960-1970":
         return 6;
       case "1950-1960":
-        return 5;
+        return 7;
       case "1940-1950":
-        return 4;
+        return 8;
       case "1930-1940":
-        return 3;
+        return 9;
       case "1920-1930":
-        return 2;
+        return 10;
       case "1910-1920":
-        return 1;
+        return 11;
       case "1850-1910":
-        return 0;
+        return 12;
     }
   };
 
@@ -99,7 +99,7 @@ const Period = ({ period, data }) => {
         } else {
           handleZoomOut();
         }
-      }, 200);
+      }, 100);
     }
   };
 
@@ -196,7 +196,7 @@ const Period = ({ period, data }) => {
         </div>
 
         <motion.div
-          className="inline-flex justify-center md:justify-between absolute w-full px-4 md:px-12 top-[128px] md:top-[80px] font-sans  text-iceberg font-montreal z-30"
+          className="inline-flex justify-center md:justify-between absolute w-full px-4 md:px-12 top-[128px] md:top-[80px] text-iceberg font-montreal z-30"
           variants={blur}
           animate={isDiscOpen ? "show" : "hidden"}>
           <div className="inline-flex flex-col-reverse md:flex-row w-full md:w-auto">
@@ -225,7 +225,7 @@ const Period = ({ period, data }) => {
             <div className="text-[20px] md:text-sm leading-normal font-montreal text-center md:text-left">
               <span className="hidden md:block">
                 <p>Move around to see the entire map.</p>
-                <p>Click on the discs to see its meaning.</p>
+                <p>Click on a disc to see its meaning.</p>
               </span>
               {/* <span className="pb-4 md:pb-0 block md:hidden text-center">
                 Click each disc to see its meaning
@@ -277,7 +277,7 @@ const Period = ({ period, data }) => {
               initial={"hidden"}
               animate={isDiscOpen ? "hidden" : "visible"}>
               <div className=" w-full flex flex-col items-center justify-center z-40">
-                <Link href={`/period/${data.future}`}>
+                <Link href={`/period/${data.future}`} className="w-4 h-4">
                   <UpArrow />
                 </Link>
                 <Link
@@ -323,7 +323,7 @@ const Period = ({ period, data }) => {
                   To the Past
                 </span>
               </Link>
-              <Link href={`/period/${data.past}`}>
+              <Link href={`/period/${data.past}`} className="w-4 h-4">
                 <DownArrow />
               </Link>
             </motion.div>
@@ -342,7 +342,7 @@ const Period = ({ period, data }) => {
           {/* <motion.div className="absolute top-[56px] w-full h-full blur-sm bg-transparent"></motion.div> */}
           {data.past && isMedium ? (
             <motion.div
-              className="absolute top-0 left-0 h-full font-sans w-auto z-40 flex flex-row items-center justify-center pl-8"
+              className="absolute top-0 right-0 h-full font-sans w-auto z-40 flex flex-row items-center justify-center pr-8"
               variants={variants}
               initial={"hidden"}
               animate={"visible"}
@@ -357,17 +357,14 @@ const Period = ({ period, data }) => {
               }}>
               <Link href={`/period/${data.past}`}>
                 <motion.div
-                  className="absolute top-0 left-0 w-full h-full"
+                  className="absolute top-0 right-0 w-full h-full"
                   variants={opacity}
                   initial={"hidden"}
                   animate={isPastHover ? "visible" : "hidden"}
                 />
                 <motion.div className="inline-flex">
-                  <span className="rotate-90">
-                    <DownArrow />
-                  </span>
                   <motion.span
-                    className="z-40 rotate-[270deg] ml-[-24px]"
+                    className="z-40 rotate-[90deg] ml-[-24px]"
                     variants={opacity}
                     initial={"hidden"}
                     animate={isPastHover ? "visible" : "hidden"}>
@@ -375,6 +372,9 @@ const Period = ({ period, data }) => {
                       To the Past
                     </span>
                   </motion.span>
+                  <span className="rotate-[270deg] w-6 h-6">
+                    <DownArrow />
+                  </span>
                 </motion.div>
               </Link>
             </motion.div>
@@ -382,7 +382,7 @@ const Period = ({ period, data }) => {
 
           {data.future && isMedium ? (
             <motion.div
-              className="absolute top-0 right-0 h-full font-sans w-auto z-40 flex flex-row items-center justify-center pr-8 "
+              className="absolute top-0 left-0 h-full font-sans w-auto z-40 flex flex-row items-center justify-center pl-8 "
               variants={variants}
               initial={"hidden"}
               animate={"visible"}
@@ -404,8 +404,11 @@ const Period = ({ period, data }) => {
                     animate={isFutureHover ? "visible" : "hidden"}
                   />
                   <motion.div className="inline-flex">
+                    <span className="rotate-[270deg] w-6 h-6">
+                      <UpArrow />
+                    </span>
                     <motion.span
-                      className="z-40 rotate-[90deg] mr-[-24px]"
+                      className="z-40 rotate-[270deg] mr-[-24px]"
                       variants={opacity}
                       initial={"hidden"}
                       animate={isFutureHover ? "visible" : "hidden"}>
@@ -413,9 +416,6 @@ const Period = ({ period, data }) => {
                         To the Future
                       </span>
                     </motion.span>
-                    <span className="rotate-90 h-[16px]">
-                      <UpArrow />
-                    </span>
                   </motion.div>
                 </a>
               </Link>

@@ -14,8 +14,8 @@ const Header = ({ page, data }) => {
   return (
     <nav className="w-full fixed left-0 top-0 text-saddle z-[99] h-[56px] md:h-auto ">
       {isNavOpen ? (
-        <div className="w-full flex flex-col justify-start items-center ">
-          <div className="w-full h-[56px] flex flex-row md:flex-row justify-between items-center p-4 z-20 nav-gradient">
+        <div className="w-full flex flex-col justify-start items-center">
+          <div className="w-full h-[56px] flex flex-row md:flex-row justify-between items-center p-4 md:px-12 z-20 nav-gradient">
             <Link href="/" legacyBehavior>
               <a className="block w-[192px]">
                 <div className="w-[192px] md:pr-[11.5px]">
@@ -23,13 +23,27 @@ const Header = ({ page, data }) => {
                 </div>
               </a>
             </Link>
-            <a
-              className="flex justify-center items-center w-[24px] h-[24px]"
-              onClick={() => {
-                setIsNavOpen(false);
-              }}>
-              {isNavOpen ? <Close /> : <Hamburger />}
-            </a>
+            {isNavOpen ? (
+              <a
+                className="py-4 px-2"
+                onClick={() => {
+                  setIsNavOpen(false);
+                }}>
+                <span className="w-[24px] h-[24px]">
+                  <Close />
+                </span>
+              </a>
+            ) : (
+              <a
+                className=" py-4 px-2"
+                onClick={() => {
+                  setIsNavOpen(true);
+                }}>
+                <span className="w-[24px] h-[24px]">
+                  <Hamburger />
+                </span>
+              </a>
+            )}
           </div>
           <div className="block w-full h-screen md:absolute md:w-[450px] top-[56px] right-0 sunset">
             <div className="w-full mt-12 uppercase text-center font-sans border-t-[1px] py-6 border-white border-solid color-saddle border-b-[1px]">
@@ -66,8 +80,9 @@ const Header = ({ page, data }) => {
         </div>
       ) : page == "home" ? (
         <>
-          <div className="flex flex-col justify-between align-top p-5 bg-transparent h-auto md:h-[128px]">
+          <div className="flex flex-col justify-between align-top p-5 bg-transparent h-auto md:h-[128px] md:px-12">
             <Logo />
+
             <div className="pt-2 font-sans text-base md:text-base text-center tracking-tight text-iceberg">
               Start your journey here{" "}
               <span className="block md:inline-block">
@@ -77,7 +92,7 @@ const Header = ({ page, data }) => {
           </div>
         </>
       ) : (
-        <div className="absolute w-full h-[56px] flex flex-row justify-between items-center p-4 nav-gradient z-20 ">
+        <div className="absolute w-full h-[56px] flex flex-row justify-between items-center p-4 nav-gradient z-20 md:px-12">
           <Link href="/" legacyBehavior>
             <a className="block w-[192px]">
               <div className="w-[192px] md:pr-[11.5px]">
@@ -86,13 +101,27 @@ const Header = ({ page, data }) => {
             </a>
           </Link>
 
-          <a
-            className="flex justify-center items-center"
-            onClick={() => {
-              setIsNavOpen(true);
-            }}>
-            {isNavOpen ? <Close /> : <Hamburger />}
-          </a>
+          {isNavOpen ? (
+            <a
+              className="py-4 px-2"
+              onClick={() => {
+                setIsNavOpen(false);
+              }}>
+              <span className="w-[24px] h-[24px]">
+                <Close />
+              </span>
+            </a>
+          ) : (
+            <a
+              className="py-4 px-2"
+              onClick={() => {
+                setIsNavOpen(true);
+              }}>
+              <span className="w-[24px] h-[24px]">
+                <Hamburger />
+              </span>
+            </a>
+          )}
         </div>
       )}
     </nav>
