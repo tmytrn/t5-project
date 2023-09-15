@@ -20,6 +20,8 @@ const Team = ({ team }) => {
     slidesToScroll: 1,
   };
 
+  console.log("teamData: ", team[0]);
+
   return (
     <>
       <Head>
@@ -55,19 +57,13 @@ const Team = ({ team }) => {
               </h1>
             </div>
             <div className="w-100 h-auto relative">
-              <Slider {...settings}>
-                {data.images.map((image, key) => (
-                  <div key={key} className="relative h-[207px] md:h-[900px]">
-                    <Image
-                      fill={true}
-                      src={image.asset.url}
-                      alt={image.alt}
-                      priority={true}
-                      className="object-cover"
-                    />
-                  </div>
-                ))}
-              </Slider>
+              <Image
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{ width: "100%", height: "auto" }}
+                src={data.heroImage}
+                alt={data.heroImageAlt}></Image>
             </div>
             <div className="flex flex-row p-8 md:12 justify-center">
               <div className="font-montreal w-full md:w-1/2 text-md">

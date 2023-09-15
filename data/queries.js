@@ -53,7 +53,8 @@ export const aboutPageQuery = `
 
 export const teamPageQuery = `
 *[_id=="teamPage"]{
-  "images": images[]{asset->{url}, alt},
+  "heroImage": heroImage.asset->url,
+  "heroImageAlt": heroImage.alt,
   aboutText, credits,
   additionalCredits
 }

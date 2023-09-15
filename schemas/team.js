@@ -4,24 +4,19 @@ export default {
   title: "Team",
   fields: [
     {
-      name: "images",
-      type: "array",
-      title: "Images",
-      of: [
+      name: "heroImage",
+      type: "image",
+      title: "Hero Image",
+      fields: [
         {
-          type: "image",
-          fields: [
-            {
-              name: "alt",
-              type: "string",
-              description: "Important for SEO and accessibility.",
-              title: "Alt text",
-              validation: (Rule) =>
-                Rule.custom((value, { parent }) =>
-                  parent?.asset && !value ? "Alt text is required" : true
-                ),
-            },
-          ],
+          name: "alt",
+          type: "string",
+          description: "Important for SEO and accessibility.",
+          title: "Alt text",
+          validation: (Rule) =>
+            Rule.custom((value, { parent }) =>
+              parent?.asset && !value ? "Alt text is required" : true
+            ),
         },
       ],
     },
