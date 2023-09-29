@@ -189,15 +189,16 @@ const Home = ({ periods }) => {
                           }
                           whileTap={{ scale: 0.95 }}>
                           <Link
-                            href={
-                              !isChanging && selectedPeriod == key
-                                ? `/period/${period.period}`
-                                : `#`
-                            }
-                            onClick={() => {
-                              setLastBayVisited(key);
-                            }}
-                            passHref>
+                            href={`/period/${period.period}`}
+                            onClick={(e) => {
+                              if (!isChanging && selectedPeriod == key) {
+                                console.log("link prevented");
+                                e.preventDefault();
+                                return false;
+                              } else {
+                                setLastBayVisited(key);
+                              }
+                            }}>
                             <motion.div
                               variants={desktopBay}
                               animate={
@@ -208,7 +209,7 @@ const Home = ({ periods }) => {
                               className={
                                 !isChanging && selectedPeriod == key
                                   ? `hover:cursor-pointer`
-                                  : `pointer-events-none`
+                                  : `hover:cursor-grab pointer-events-none`
                               }
                               loading="lazy">
                               <Image

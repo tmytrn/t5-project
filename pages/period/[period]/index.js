@@ -9,6 +9,8 @@ import { motion, AnimatePresence, useMotionValue } from "framer-motion";
 import Bay from "../../../bays/Bay";
 import UpArrow from "svg/UpArrow";
 import DownArrow from "svg/DownArrow";
+import LeftArrow from "svg/LeftArrow";
+import RightArrow from "svg/RightArrow";
 import InstructionsContext from "components/InstructionsContext";
 import { useIsSmall, useIsMedium } from "@lib/index";
 import { useWindowSize } from "@lib/index";
@@ -372,8 +374,8 @@ const Period = ({ period, data }) => {
                       To the Past
                     </span>
                   </motion.span>
-                  <span className="rotate-[270deg] w-6 h-6">
-                    <DownArrow />
+                  <span className=" w-6 h-6">
+                    <RightArrow />
                   </span>
                 </motion.div>
               </Link>
@@ -404,8 +406,8 @@ const Period = ({ period, data }) => {
                     animate={isFutureHover ? "visible" : "hidden"}
                   />
                   <motion.div className="inline-flex">
-                    <span className="rotate-[270deg] w-6 h-6">
-                      <UpArrow />
+                    <span className=" w-6 h-6">
+                      <LeftArrow />
                     </span>
                     <motion.span
                       className="z-40 rotate-[270deg] mr-[-24px]"

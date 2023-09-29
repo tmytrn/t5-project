@@ -5,7 +5,6 @@ import DropdownArrow from "svg/DropdownArrow";
 import { PortableText } from "@portabletext/react";
 
 const DiscModal = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
-  console.log(data);
   const [isEnglish, setIsEnglish] = useState(true);
   const opacity = {
     visible: { opacity: 1, transition: { delay: 1 } },
