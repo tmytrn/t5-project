@@ -5,10 +5,10 @@ import schemas from "./schemas/schema";
 import deskStructure from "./deskStructure";
 
 export default defineConfig({
+  basePath: "/admin",
   title: "t5-project",
   projectId: "258g4cwf",
   dataset: "production",
-  basePath: "/admin",
   plugins: [
     deskTool({ structure: deskStructure }),
     visionTool({

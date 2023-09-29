@@ -17,12 +17,12 @@ const About = ({ about }) => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="w-100 bg-deserttan pt-[56px] overflow-scroll text-saddle ">
+      <main className="w-full bg-deserttan pt-[56px] text-saddle ">
         <div className="absolute w-full top-[90px] flex justify-between">
           <span className="border-saddle border-solid border-t-[1px] md:border-t-2 w-4"></span>
           <span className="border-saddle border-solid border-t-[1px] md:border-t-2 w-4"></span>
         </div>
-        <section className="w-100 flex flex-col">
+        <section className="w-full flex flex-col">
           <div className="flex flex-col p-8 md:p-12 ">
             <h1 className="text-[110px] md:text-[110px] w-full md:w-1/3">
               about
@@ -31,7 +31,7 @@ const About = ({ about }) => {
               <PortableText value={data.heroText} />
             </div>
           </div>
-          <div className="w-100 h-auto relative">
+          <div className="w-full h-auto relative">
             <Image
               width={0}
               height={0}
@@ -47,8 +47,8 @@ const About = ({ about }) => {
             </div>
           </div>
         </section>
-        <section className="w-100 flex flex-col">
-          <div className="w-100 h-auto relative">
+        <section className="w-full flex flex-col">
+          <div className="w-full h-auto relative">
             <Image
               width={0}
               height={0}
@@ -69,8 +69,8 @@ const About = ({ about }) => {
             </div>
           </div>
         </section>
-        <section className="w-100 flex flex-col">
-          <div className="w-100 h-auto relative">
+        <section className="w-full flex flex-col">
+          <div className="w-full h-auto relative">
             <Image
               width={0}
               height={0}
@@ -89,7 +89,7 @@ const About = ({ about }) => {
         </section>
 
         {/* <section className="flex flex-col font-montreal text-left bg-sunset">
-          <div className="w-100 p-8 md:p-12">
+          <div className="w-full p-8 md:p-12">
             {data.furtherReadings && (
               <div className="flex flex-col w-full md:w-2/3 ml-auto pb-12">
                 <div className="pb-4">Further Readings</div>

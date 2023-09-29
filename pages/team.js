@@ -43,7 +43,7 @@ const Team = ({ team }) => {
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
         />
       </Head>
-      <main className="w-100 bg-white/[0.85] pt-[56px] overflow-scroll text-saddle">
+      <main className="w-100 bg-white/[0.85] pt-[56px] text-saddle">
         <div className="bg-mossgreen/[0.6]">
           <div className="absolute w-full top-[90px] flex justify-between">
             <span className="border-saddle border-solid border-t-[1px] md:border-t-2 w-4"></span>
