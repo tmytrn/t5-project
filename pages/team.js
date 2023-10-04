@@ -34,6 +34,13 @@ const Team = ({ team }) => {
       <Head>
         <title>The Team | a murmuration</title>
         <meta
+          property="og:image"
+          content="https://amurmuration.art/public/og-image.jpg"
+        />
+        <meta property="og:title" content="A Murmuration" />
+        <meta property="og:image:width" content="2577" />
+        <meta property="og:image:height" content="1350" />
+        <meta
           name="description"
           content="An artwork at the Chicago O’Hare Airport by Jina Valentine"
         />
