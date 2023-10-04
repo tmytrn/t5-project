@@ -21,7 +21,7 @@ const DiscModal = ({ data, setIsDiscOpen, isDiscOpen, isSmall }) => {
       <div className="flex flex-col justify-center items-center px-4 md:px-16 text-saddle h-full md:h-full">
         {!data && (
           <div className="hidden md:flex flex-col justify-center text-center pt-[16px] font-sans">
-            What does this mean? Click the disk to see it from here.
+            Click on a disk.
           </div>
         )}
 

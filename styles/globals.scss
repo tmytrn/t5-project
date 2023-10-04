@@ -254,9 +254,13 @@ a {
 }
 .bg-branch {
   background: url("/images/HomeBackground.svg");
+  opacity: 1;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  @media only screen and (min-width: 600px) {
+    background: none;
+  }
 }
 .drop-shadow-bay {
   filter: drop-shadow(2px 4px 20px rgba(255, 216, 80, 0.3));

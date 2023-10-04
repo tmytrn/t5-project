@@ -7,19 +7,30 @@ import Close from "../svg/Close";
 import { useState } from "react";
 import React from "react";
 import Logo from "../svg/Logo";
+import { useIsMedium } from "@lib/index";
 
 const Header = ({ page, data }) => {
   const { loaderDidRun } = useContext(LoaderContext);
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const isMedium = useIsMedium();
   return (
-    <nav className="w-full fixed left-0 top-0 text-saddle z-40 h-[56px] md:h-auto ">
+    <motion.nav
+      className="w-full fixed left-0 top-0 text-saddle z-40 h-[56px] md:h-auto "
+      animate={
+        loaderDidRun || page != "home"
+          ? { top: ["0%"] }
+          : isMedium
+          ? { top: ["80%", "0%"] }
+          : { top: ["50%", "0%"] }
+      }
+      transition={{ duration: 1, delay: 3, ease: "easeIn" }}>
       {isNavOpen ? (
         <div className="w-full flex flex-col justify-start items-center">
           <div className="w-full h-[56px] flex flex-row md:flex-row justify-between items-center p-4 md:px-12 z-20 nav-gradient">
             <Link href="/" legacyBehavior>
               <a className="block w-[192px]">
                 <div className="w-[192px] md:pr-[11.5px]">
-                  <Logo />
+                  <Logo page={page} />
                 </div>
               </a>
             </Link>
@@ -81,14 +92,14 @@ const Header = ({ page, data }) => {
       ) : page == "home" ? (
         <>
           <div className="flex flex-col justify-between align-top p-5 bg-transparent h-auto md:h-[128px] md:px-12">
-            <Logo />
-
-            <div className="pt-2 font-sans text-base md:text-base text-center tracking-tight text-iceberg">
-              Start your journey here{" "}
-              <span className="block md:inline-block">
-                by choosing an era below.
-              </span>
-            </div>
+            <Logo page={page} />
+            <motion.div
+              className="pt-2 font-sans text-base md:text-base text-center tracking-tight text-iceberg"
+              initial={loaderDidRun ? { opacity: 1 } : { opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 5, duration: 1 }}>
+              Click to enter.
+            </motion.div>
           </div>
         </>
       ) : (
@@ -96,7 +107,7 @@ const Header = ({ page, data }) => {
           <Link href="/" legacyBehavior>
             <a className="block w-[192px]">
               <div className="w-[192px] md:pr-[11.5px]">
-                <Logo />
+                <Logo page={page} />
               </div>
             </a>
           </Link>
@@ -124,7 +135,7 @@ const Header = ({ page, data }) => {
           )}
         </div>
       )}
-    </nav>
+    </motion.nav>
   );
 };
 

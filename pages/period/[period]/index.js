@@ -103,17 +103,19 @@ const Period = ({ period, data }) => {
       (event) => {
         const { ctrlKey } = event;
         if (ctrlKey) {
-          handlePinch(event);
-          // event.preventDefault();
+          // handlePinch(event);
+          event.preventDefault();
           return;
         } else {
+          //MOUSE WHEEL
           if (!Number.isInteger(event.deltaY)) {
             if (event.deltaY > 0) {
-              handleZoomIn(0.05);
+              handleZoomIn(0.5);
             } else {
-              handleZoomOut(0.05);
+              handleZoomOut(0.5);
             }
           } else {
+            //SCROLL INTERACTION
             if (throttleInProgress.current) {
               return;
             }
@@ -126,11 +128,11 @@ const Period = ({ period, data }) => {
               // console.log(event.deltaY);
               throttleInProgress.current = false;
               if (event.deltaY > 0) {
-                handleZoomIn(0.1);
+                handleZoomIn(0.01);
               } else {
-                handleZoomOut(0.1);
+                handleZoomOut(0.01);
               }
-            }, 2);
+            }, 30);
           }
         }
       },
@@ -140,7 +142,7 @@ const Period = ({ period, data }) => {
     bayRef.current.addEventListener(
       "gesturechange",
       (e) => {
-        console.log("pinch");
+        // console.log("pinch");
         e.preventDefault();
         handlePinch(e);
       },
@@ -347,8 +349,7 @@ const Period = ({ period, data }) => {
             </motion.div>
             <div className="text-[20px] md:text-sm leading-normal font-montreal text-center md:text-left">
               <span className="hidden md:block">
-                <p>Move around to see the entire map.</p>
-                <p>Click on a disc to see its meaning.</p>
+                <p>Drag to see the entire map.</p>
               </span>
               {/* <span className="pb-4 md:pb-0 block md:hidden text-center">
                 Click each disc to see its meaning
@@ -395,7 +396,7 @@ const Period = ({ period, data }) => {
 
           {data.future && isSmall ? (
             <motion.div
-              className="block md:hidden absolute top-[70px] w-full font-sans z-40"
+              className="block md:hidden absolute top-[70px] w-full font-sans z-[39]"
               variants={variants}
               initial={"hidden"}
               animate={isDiscOpen ? "hidden" : "visible"}>
@@ -437,7 +438,7 @@ const Period = ({ period, data }) => {
 
           {data.past && isSmall ? (
             <motion.div
-              className="absolute bottom-0 left-0 py-2 font-sans w-full pb-4 z-40 flex flex-col items-center justify-center"
+              className="absolute bottom-0 left-0 py-2 font-sans w-full pb-4 z-[39] flex flex-col items-center justify-center"
               variants={variants}
               initial={"hidden"}
               animate={"visible"}>

@@ -13,6 +13,7 @@ const MyLayout = ({ page, children }) => {
     <LoaderContext.Provider
       value={{
         loaderDidRun: loaderDidRun,
+        setLoaderDidRun: setLoaderDidRun,
         lastBayVisited: lastBayVisited,
         setLastBayVisited: setLastBayVisited,
       }}>

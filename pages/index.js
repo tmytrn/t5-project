@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
@@ -13,6 +13,7 @@ import "swiper/swiper-bundle.css";
 import { useIsMedium, useIsSmall } from "@lib/index";
 import LoaderContext from "components/LoaderContext";
 import { useRouter } from "next/router";
+
 const Home = ({ periods }) => {
   const router = useRouter();
   const ref = useRef();
@@ -116,10 +117,18 @@ const Home = ({ periods }) => {
       }, delay);
     };
   }
-  const { lastBayVisited, setLastBayVisited } = useContext(LoaderContext);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoaderDidRun(true);
+    }, 6000);
+  });
+
+  const { lastBayVisited, setLastBayVisited, loaderDidRun, setLoaderDidRun } =
+    useContext(LoaderContext);
 
   return (
-    <div className="overflow-hidden h-full">
+    <div className="overflow-hidden h-full bg-branch">
       <Head>
         <title>A Murmuration</title>
         <meta
@@ -204,7 +213,14 @@ const Home = ({ periods }) => {
         className="h-full md:h-full d:flex md:flex-col md:justify-end pt-[172px] md:pt-[64px] px-5 md:px-0 border-solid border-saddle w-full bg-transparent overflow-hidden"
         ref={ref}>
         {isMedium && (
-          <div className={"hidden md:block w-full h-full"}>
+          <motion.div
+            className={"hidden md:block w-full h-full"}
+            animate={
+              loaderDidRun
+                ? { y: ["0%"], opacity: [1] }
+                : { y: ["10%", "0%"], opacity: [0, 1] }
+            }
+            transition={{ delay: 3.5, duration: 1, ease: "easeInOut" }}>
             <Swiper
               slidesPerView={"auto"}
               spaceBetween={48}
@@ -228,7 +244,6 @@ const Home = ({ periods }) => {
               }}
               onSlideChange={(i) => {
                 // setSelectedPeriod(i.realIndex);
-                console.log(selectedPeriod, "is active");
                 setChanging(false);
                 setSelectedPeriod(i.realIndex);
               }}
@@ -328,12 +343,18 @@ const Home = ({ periods }) => {
                 </SwiperSlide>
               ))}
             </Swiper>
-          </div>
+          </motion.div>
         )}
         <motion.div
           className={
-            " md:hidden absolute left-0 top-0 h-full w-full bg-transparent bg-branch overflow-hidden"
-          }>
+            " md:hidden absolute left-0 top-0 h-full w-full bg-transparent overflow-hidden"
+          }
+          animate={
+            loaderDidRun
+              ? { y: ["0%"], opacity: [1] }
+              : { y: ["50%", "0%"], opacity: [0, 1] }
+          }
+          transition={{ delay: 3.5, duration: 1, ease: "easeIn" }}>
           <Swiper
             direction={"vertical"}
             slidesPerView={"auto"}
