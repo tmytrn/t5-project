@@ -133,7 +133,7 @@ const Home = ({ periods }) => {
         <title>a murmuration</title>
         <meta
           property="og:image"
-          content="https://amurmuration.art/public/og-image.jpg"
+          content="https://www.amurmuration.art/images/og-image.jpg"
         />
         <meta property="og:title" content="A Murmuration" />
         <meta property="og:image:width" content="2577" />

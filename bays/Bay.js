@@ -12,6 +12,7 @@ import BayK from "./BayK";
 import BayL from "./BayL";
 import BayM from "./BayM";
 import React from "react";
+import PinchZoom from "pinch-zoom-js";
 import {
   motion,
   useMotionValue,
@@ -23,7 +24,14 @@ import {
 import { useState, useEffect, useRef } from "react";
 import { useDebouncedEffect } from "@lib/index";
 
-const Bay = ({ period, zoom, handleDiscClick, isDiscOpen }) => {
+const Bay = ({
+  period,
+  zoom,
+  handleDiscClick,
+  isDiscOpen,
+  transformX,
+  transformY,
+}) => {
   const map = {
     hide: {
       opacity: 0,
@@ -65,11 +73,20 @@ const Bay = ({ period, zoom, handleDiscClick, isDiscOpen }) => {
     }, 2000);
   });
 
-  const sSmooth = useSpring(zoom, { bounce: 0, damping: 50, stiffness: 400 });
+  // useEffect(() => {
+  //   const pz = new PinchZoom(bayRef.current, { minZoom: 1 });
+  // }, []);
+
+  const sSmooth = useSpring(zoom, {
+    bounce: 0,
+    damping: 100,
+    stiffness: 200,
+    duration: 0.1,
+  });
   const sVelocity = useVelocity(sSmooth);
 
   const scale = useTransform(sSmooth, [0.5, 1.5], [0.5, 1.5], {
-    clamp: false,
+    clamp: true,
   });
 
   return (
@@ -79,7 +96,7 @@ const Bay = ({ period, zoom, handleDiscClick, isDiscOpen }) => {
       initial={"hide"}
       animate={"show"}
       style={{ scale }}
-      className="bay z-30 hover:cursor-grab origin-center touch-none select-none"
+      className="bay z-30 hover:cursor-grab touch-none origin-center select-none"
       drag={isDiscOpen ? false : true}
       dragTransition={{ bounceStiffness: 500, bounceDamping: 100 }}
       dragConstraints={{

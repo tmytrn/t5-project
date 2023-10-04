@@ -104,16 +104,30 @@ const Period = ({ period, data }) => {
         const { ctrlKey } = event;
         if (ctrlKey) {
           // handlePinch(event);
+          // console.log("pinch");
           event.preventDefault();
           return;
         } else {
           //MOUSE WHEEL
           if (!Number.isInteger(event.deltaY)) {
-            if (event.deltaY > 0) {
-              handleZoomIn(0.5);
-            } else {
-              handleZoomOut(0.5);
+            if (throttleInProgress.current) {
+              return;
             }
+            // Set inProgress to true and start the timer
+            throttleInProgress.current = true;
+            setTimeout(() => {
+              // Set inProgress to false, which means
+              // that setTimeout will work
+              // again on the next run
+              // console.log(event.deltaY);
+
+              throttleInProgress.current = false;
+              if (event.deltaY > 0) {
+                handleZoomIn(0.1);
+              } else {
+                handleZoomOut(0.1);
+              }
+            }, 10);
           } else {
             //SCROLL INTERACTION
             if (throttleInProgress.current) {
@@ -125,14 +139,14 @@ const Period = ({ period, data }) => {
               // Set inProgress to false, which means
               // that setTimeout will work
               // again on the next run
-              // console.log(event.deltaY);
+              // console.log("scroll");
               throttleInProgress.current = false;
               if (event.deltaY > 0) {
-                handleZoomIn(0.01);
+                handleZoomIn(0.05);
               } else {
-                handleZoomOut(0.01);
+                handleZoomOut(0.05);
               }
-            }, 30);
+            }, 50);
           }
         }
       },
@@ -218,7 +232,7 @@ const Period = ({ period, data }) => {
         <title>{period} | a murmuration</title>
         <meta
           property="og:image"
-          content="https://amurmuration.art/public/og-image.jpg"
+          content="https://www.amurmuration.art/images/og-image.jpg"
         />
         <meta property="og:title" content="A Murmuration" />
         <meta property="og:image:width" content="2577" />
