@@ -12,26 +12,38 @@ import BayK from "./BayK";
 import BayL from "./BayL";
 import BayM from "./BayM";
 import React from "react";
-import { motion } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useMotionValueEvent,
+  useSpring,
+  useVelocity,
+  useTransform,
+} from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import { useDebouncedEffect } from "@lib/index";
 
 const Bay = ({ period, zoom, handleDiscClick, isDiscOpen }) => {
   const map = {
     hide: {
-      scale: 1,
       opacity: 0,
       transition: { duration: 0.5 },
     },
     show: {
-      scale: zoom / 100,
       opacity: 1,
       transition: { duration: 0.5 },
+    },
+    scaleable: {
+      scale: zoom / 100,
+      opacity: 1,
+      transition: { type: "spring", duration: 0.15 },
     },
   };
   const bayRef = useRef(null);
 
   const [size, setSize] = useState({ width: 0, height: 0 });
+  const [isDiscTapping, setIsDiscTapping] = useState(false);
+  const [isBaySet, setIsBaySet] = useState(false);
 
   useDebouncedEffect(
     () => {
@@ -47,7 +59,18 @@ const Bay = ({ period, zoom, handleDiscClick, isDiscOpen }) => {
     1000
   );
 
-  const [isDiscTapping, setIsDiscTapping] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsBaySet(true);
+    }, 2000);
+  });
+
+  const sSmooth = useSpring(zoom, { bounce: 0, damping: 50, stiffness: 400 });
+  const sVelocity = useVelocity(sSmooth);
+
+  const scale = useTransform(sSmooth, [0.5, 1.5], [0.5, 1.5], {
+    clamp: false,
+  });
 
   return (
     <motion.div
@@ -55,6 +78,7 @@ const Bay = ({ period, zoom, handleDiscClick, isDiscOpen }) => {
       variants={map}
       initial={"hide"}
       animate={"show"}
+      style={{ scale }}
       className="bay z-30 hover:cursor-grab origin-center touch-none select-none"
       drag={isDiscOpen ? false : true}
       dragTransition={{ bounceStiffness: 500, bounceDamping: 100 }}

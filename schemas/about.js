@@ -97,9 +97,9 @@ export default {
       ],
     },
     {
-      name: "furtherReadings",
+      name: "landAcknowledgement",
       type: "array",
-      title: "Further Readings",
+      title: "Land Acknowledgement",
       of: [
         {
           type: "block",
@@ -107,12 +107,12 @@ export default {
       ],
     },
     {
-      name: "researchLinks",
+      name: "gallery",
+      title: "Gallery",
       type: "array",
-      title: "Research Links",
       of: [
         {
-          type: "block",
+          type: "image",
         },
       ],
     },

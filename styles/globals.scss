@@ -16,6 +16,7 @@ body {
     ),
     rgba(255, 255, 255, 0.85);
   background-repeat: none;
+  overscroll-behavior-y: none;
   // overflow: hidden;
 
   font-family: "PP Editorial New", -apple-system, BlinkMacSystemFont, Segoe UI,
@@ -44,6 +45,11 @@ body {
 .slick-list,
 .slick-track {
   touch-action: pan-y;
+  height: 100%;
+}
+
+.slick-slide div {
+  height: 100%;
 }
 
 .layer-svgs {
@@ -119,6 +125,7 @@ a {
 }
 .slick-list {
   padding: 0;
+  height: 100%;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */

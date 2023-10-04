@@ -5,16 +5,16 @@ import MyLayout from "components/Layout";
 import Link from "next/link";
 import DiscModal from "../../../components/DiscModal";
 import { useState, useRef, useContext } from "react";
-import { motion, AnimatePresence, useMotionValue } from "framer-motion";
+import { motion, useMotionValue, useMotionValueEvent } from "framer-motion";
 import Bay from "../../../bays/Bay";
 import UpArrow from "svg/UpArrow";
 import DownArrow from "svg/DownArrow";
 import LeftArrow from "svg/LeftArrow";
 import RightArrow from "svg/RightArrow";
-import InstructionsContext from "components/InstructionsContext";
 import { useIsSmall, useIsMedium } from "@lib/index";
 import { useWindowSize } from "@lib/index";
 import LoaderContext from "components/LoaderContext";
+import ZoomIn from "svg/ZoomIn";
 
 const Period = ({ period, data }) => {
   const { width, height } = useWindowSize();
@@ -24,9 +24,10 @@ const Period = ({ period, data }) => {
   const [currentDisc, setCurentDisc] = useState();
   const [isPastHover, setIsPastHover] = useState(false);
   const [isFutureHover, setIsFutureHover] = useState(false);
-  const [zoom, setZoom] = useState(50);
+  const [zoomDisplay, setZoomDisplay] = useState(50);
   const zoomRef = useRef(null);
   const constraintsRef = useRef(null);
+  const throttleInProgress = useRef(null);
   const bayRef = useRef(null);
   data = data[0];
   const discs = data.discs;
@@ -37,17 +38,30 @@ const Period = ({ period, data }) => {
   };
   const start = period.split("-")[1];
   const end = period.split("-")[0];
-  const throttleInProgress = useRef();
 
-  const handleZoomIn = () => {
-    if (zoom < 150) {
-      setZoom(zoom + 10);
+  const zoomMV = useMotionValue(0.5);
+  useMotionValueEvent(zoomMV, "change", (latest) =>
+    setZoomDisplay(zoomMV.current * 100)
+  );
+  const handleZoomIn = (increment) => {
+    if (zoomMV.current < 1.5) {
+      zoomMV.set((Number.parseFloat(zoomMV.current) + increment).toFixed(2));
+    } else if (zoomMV == 1.5) {
+      return;
+    } else {
+      zoomMV.set(1.5);
     }
+    // console.log(zoomMV.current);
   };
-  const handleZoomOut = () => {
-    if (zoom > 50) {
-      setZoom(zoom - 10);
+  const handleZoomOut = (increment) => {
+    if (zoomMV.current > 0.5) {
+      zoomMV.set((Number.parseFloat(zoomMV.current) - increment).toFixed(2));
+    } else if (zoomMV == 0.5) {
+      return;
+    } else {
+      zoomMV.set(0.5);
     }
+    // console.log(zoomMV.current);
   };
 
   const periodIndex = (period) => {
@@ -83,32 +97,51 @@ const Period = ({ period, data }) => {
 
   const { setLastBayVisited } = useContext(LoaderContext);
 
-  const handleThrottleScroll = (event) => {
-    if (isMedium) {
-      if (throttleInProgress.current) {
-        return;
-      }
-      // Set inProgress to true and start the timer
-      throttleInProgress.current = true;
-      setTimeout(() => {
-        // Set inProgress to false, which means
-        // that setTimeout will work
-        // again on the next run
-        // console.log(event.deltaY);
-        throttleInProgress.current = false;
-        if (event.deltaY > 0) {
-          handleZoomIn();
-        } else {
-          handleZoomOut();
-        }
-      }, 100);
-    }
-  };
-
   useEffect(() => {
+    bayRef.current.addEventListener(
+      "wheel",
+      (event) => {
+        const { ctrlKey } = event;
+        if (ctrlKey) {
+          handlePinch(event);
+          // event.preventDefault();
+          return;
+        } else {
+          if (!Number.isInteger(event.deltaY)) {
+            if (event.deltaY > 0) {
+              handleZoomIn(0.05);
+            } else {
+              handleZoomOut(0.05);
+            }
+          } else {
+            if (throttleInProgress.current) {
+              return;
+            }
+            // Set inProgress to true and start the timer
+            throttleInProgress.current = true;
+            setTimeout(() => {
+              // Set inProgress to false, which means
+              // that setTimeout will work
+              // again on the next run
+              // console.log(event.deltaY);
+              throttleInProgress.current = false;
+              if (event.deltaY > 0) {
+                handleZoomIn(0.1);
+              } else {
+                handleZoomOut(0.1);
+              }
+            }, 2);
+          }
+        }
+      },
+      { passive: false }
+    );
+
     bayRef.current.addEventListener(
       "gesturechange",
       (e) => {
+        console.log("pinch");
+        e.preventDefault();
         handlePinch(e);
       },
       false
@@ -116,25 +149,30 @@ const Period = ({ period, data }) => {
     return bayRef.current.removeEventListener(
       "gesturechange",
       (e) => {
+        e.preventDefault();
         handlePinch(e);
       },
       false
     );
   });
+
   useEffect(() => {
     setLastBayVisited(periodIndex(period));
   });
+
   const handlePinch = (e) => {
     e.preventDefault();
     if (e.scale < 1) {
-      let zoomOffset = zoom - parseInt(e.scale * 10);
-      if (zoomOffset >= 50) {
-        setZoom(zoomOffset);
+      // let zoomOffset = zoomMV.current - (parseInt(e.scale) / 100).toFixed(2);
+      // zoomMV.set(zoomOffset);
+      if (zoomMV.current >= 0.5) {
+        zoomMV.set(e.scale);
       }
     } else {
-      let zoomOffset = zoom + parseInt(e.scale);
-      if (zoomOffset <= 150) {
-        setZoom(zoomOffset);
+      // let zoomOffset = zoomMV.current + (parseInt(e.scale) / 100).toFixed(2);
+      // zoomMV.set(zoomOffset);
+      if (zoomMV.current <= 1.5) {
+        zoomMV.set(e.scale);
       }
     }
   };
@@ -178,9 +216,84 @@ const Period = ({ period, data }) => {
         <title>A Murmuration</title>
         <meta
           name="description"
-          content="Here we come, go and shape the land."
+          content="An artwork at the Chicago O’Hare Airport by Jina Valentine"
         />
-        <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="viewport"
+          content="width=device-width, user-scalable=no"></meta>
+        <link
+          rel="apple-touch-icon"
+          sizes="57x57"
+          href="/apple-icon-57x57.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="60x60"
+          href="/apple-icon-60x60.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="72x72"
+          href="/apple-icon-72x72.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="76x76"
+          href="/apple-icon-76x76.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="114x114"
+          href="/apple-icon-114x114.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="120x120"
+          href="/apple-icon-120x120.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="144x144"
+          href="/apple-icon-144x144.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="152x152"
+          href="/apple-icon-152x152.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-icon-180x180.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="192x192"
+          href="/android-icon-192x192.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="96x96"
+          href="/favicon-96x96.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+        <meta name="theme-color" content="#ffffff"></meta>
       </Head>
       <style global="true" jsx="true">{`
         html {
@@ -207,17 +320,25 @@ const Period = ({ period, data }) => {
               variants={variants}
               initial={"hidden"}
               animate={"visible"}>
-              <a className="inline rotate-0" onClick={handleZoomOut}>
+              <a
+                className="inline rotate-0"
+                onClick={() => {
+                  handleZoomOut(0.1);
+                }}>
                 <img
                   className="inline w-6 h-6 md:w-8 md:h-8"
                   src={"/images/zoom-out.svg"}
                 />
               </a>
-              <span className="inline mx-1 md:mx-4 text-sm md:text-normal w-[24px] md:w-auto font-montreal">
+              <span className="inline md:inline-block mx-1 md:mx-4 text-sm md:text-normal w-[28px] md:w-[80px] font-montreal text-center">
                 <span>Zoom: </span>
-                {" " + zoom}%
+                {" " + Number.parseFloat(zoomDisplay).toFixed(0)}%
               </span>
-              <a className="inline" onClick={handleZoomIn}>
+              <a
+                className="inline"
+                onClick={() => {
+                  handleZoomIn(0.1);
+                }}>
                 <img
                   className="inline w-6 h-6 md:w-8 md:h-8"
                   src={"/images/zoom-in.svg"}
@@ -298,20 +419,20 @@ const Period = ({ period, data }) => {
             variants={variants}
             initial={"hidden"}
             animate={"visible"}
-            onWheel={(e) => {
-              handleThrottleScroll(e);
-            }}
             ref={bayRef}>
+            {/* // onWheel={handleThrottleScroll} */}
+            {/* <div style={{ transform: `scale(${zoom / 100}, ${zoom / 100})` }}> */}
             <Bay
               period={period}
               mapRef={zoomRef}
-              zoom={zoom}
+              zoom={zoomMV}
               handleDiscClick={handleDiscClick}
               isDiscOpen={isDiscOpen}
               isSmall={isSmall}
               isMedium={isMedium}
               constraints={constraintsRef}
             />
+            {/* </div> */}
           </motion.div>
 
           {data.past && isSmall ? (

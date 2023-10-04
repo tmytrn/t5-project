@@ -46,8 +46,8 @@ export const aboutPageQuery = `
   technicalText,
   "technicalImage": technicalImage.asset->url,
   "technicalImageAlt": technicalImage.alt,
-  furtherReadings,
-  researchLinks,
+  landAcknowledgement,
+  "gallery": gallery[].asset->url,
   }
   `;
 
@@ -56,7 +56,8 @@ export const teamPageQuery = `
   "heroImage": heroImage.asset->url,
   "heroImageAlt": heroImage.alt,
   aboutText, credits,
-  additionalCredits
+  additionalCredits,
+  "gallery": gallery[].asset->url,
 }
   `;
 

@@ -12,7 +12,7 @@ const Header = ({ page, data }) => {
   const { loaderDidRun } = useContext(LoaderContext);
   const [isNavOpen, setIsNavOpen] = useState(false);
   return (
-    <nav className="w-full fixed left-0 top-0 text-saddle z-[99] h-[56px] md:h-auto ">
+    <nav className="w-full fixed left-0 top-0 text-saddle z-40 h-[56px] md:h-auto ">
       {isNavOpen ? (
         <div className="w-full flex flex-col justify-start items-center">
           <div className="w-full h-[56px] flex flex-row md:flex-row justify-between items-center p-4 md:px-12 z-20 nav-gradient">
