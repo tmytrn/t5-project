@@ -150,7 +150,7 @@ const About = ({ about }) => {
               alt={data.heroImageAlt}></Image>
             {/* <div className="text-center py-1">{data.heroImageAlt}</div> */}
           </div>
-          <div className="flex flex-row p-4 px-12 lg:py-16 justify-center">
+          <div className="flex flex-row p-4 md:px-12 lg:py-16 justify-center">
             <div className="font-montreal w-full md:w-3/4 text-base md:text-md">
               <PortableText value={data.aboutText} />
             </div>
@@ -227,7 +227,7 @@ const About = ({ about }) => {
             <h1 className="text-4xl md:text-4xl  w-full md:w-1/3 ">
               Land Acknowledgements
             </h1>
-            <div className="font-montreal w-full md:w-2/3 text-sm">
+            <div className="font-montreal w-full md:w-2/3 text-base">
               <PortableText value={data.landAcknowledgement} />
             </div>
           </div>

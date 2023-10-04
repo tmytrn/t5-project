@@ -46,7 +46,7 @@ const Period = ({ period, data }) => {
   const handleZoomIn = (increment) => {
     if (zoomMV.current < 1.5) {
       zoomMV.set((Number.parseFloat(zoomMV.current) + increment).toFixed(2));
-    } else if (zoomMV == 1.5) {
+    } else if (zoomMV.cuurent == 1.5) {
       return;
     } else {
       zoomMV.set(1.5);
@@ -56,7 +56,7 @@ const Period = ({ period, data }) => {
   const handleZoomOut = (increment) => {
     if (zoomMV.current > 0.5) {
       zoomMV.set((Number.parseFloat(zoomMV.current) - increment).toFixed(2));
-    } else if (zoomMV == 0.5) {
+    } else if (zoomMV.current == 0.5) {
       return;
     } else {
       zoomMV.set(0.5);
