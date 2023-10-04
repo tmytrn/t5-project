@@ -125,7 +125,7 @@ const About = ({ about }) => {
           <span className="border-saddle border-solid border-t-[1px] md:border-t-2 w-4"></span>
         </div>
         <section className="w-full flex flex-col">
-          <div className="flex flex-col p-8 md:py-12 md:px-12 lg:px-48">
+          <div className="flex flex-col p-4 md:py-12 md:px-12 lg:px-48">
             <h1 className="text-[110px] md:text-[110px] w-full md:w-1/3">
               about
             </h1>
@@ -143,8 +143,8 @@ const About = ({ about }) => {
               alt={data.heroImageAlt}></Image>
             {/* <div className="text-center py-1">{data.heroImageAlt}</div> */}
           </div>
-          <div className="flex flex-row p-8 lg:py-16 justify-center">
-            <div className="font-montreal w-full md:w-3/4 text-md">
+          <div className="flex flex-row p-4 lg:py-16 justify-center">
+            <div className="font-montreal w-full md:w-3/4 text-base md:text-md">
               <PortableText value={data.aboutText} />
             </div>
           </div>
@@ -160,13 +160,13 @@ const About = ({ about }) => {
               alt={data.conceptImageAlt}></Image>
             {/* <div className="text-center py-1">{data.conceptImageAlt}</div> */}
           </div>
-          <div className="flex flex-col md:flex-row justify-between p-8 md:px-0">
+          <div className="flex flex-col md:flex-row justify-between p-4 md:px-0">
             <h1 className="text-6xl md:text-5xl w-full md:w-1/3 leading-none pb-8 md:pb-0">
               concept
               <br />+<br />
               background
             </h1>
-            <div className="font-montreal w-full md:w-2/3 text-md">
+            <div className="font-montreal w-full md:w-2/3 text-base md:text-md">
               <PortableText value={data.conceptText} />
             </div>
           </div>
@@ -181,17 +181,17 @@ const About = ({ about }) => {
               src={data.technicalImage}
               alt={data.technicalImageAlt}></Image>
           </div>
-          <div className="flex flex-col md:flex-row p-8 md:px-0">
+          <div className="flex flex-col md:flex-row p-4 md:px-0">
             <h1 className="text-6xl md:text-5xl  w-full md:w-1/3 ">
               technical
             </h1>
-            <div className="font-montreal w-full md:w-2/3 text-md">
+            <div className="font-montreal w-full md:w-2/3 text-base md:text-md">
               <PortableText value={data.technicalText} />
             </div>
           </div>
         </section>
         <section className="w-full flex flex-col md:px-12 lg:px-48">
-          <div className="flex flex-col p-8 md:px-0">
+          <div className="flex flex-col p-4 md:px-0">
             <h1 className="text-6xl md:text-4xl  w-full md:w-1/3 ">Gallery</h1>
             <div className="w-full columns-1 space-y-2 md:gap-2 md:columns-2 md:space-y-2">
               {data.gallery.map((image, key) => (
@@ -216,7 +216,7 @@ const About = ({ about }) => {
           </div>
         </section>
         <section className="w-full flex flex-col md:px-12 lg:px-48">
-          <div className="flex flex-col md:flex-row p-8 md:px-0">
+          <div className="flex flex-col md:flex-row p-4 md:px-0">
             <h1 className="text-4xl md:text-4xl  w-full md:w-1/3 ">
               Land Acknowledgements
             </h1>
