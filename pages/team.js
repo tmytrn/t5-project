@@ -201,7 +201,7 @@ const Team = ({ team }) => {
               <h1 className="text-6xl md:text-4xl  w-full md:w-1/3 ">
                 Gallery
               </h1>
-              <div className="w-full columns-1 space-y-4 md:gap-2 md:columns-4 md:space-y-2">
+              <div className="w-full columns-1 space-y-4 md:gap-2 md:columns-2 md:space-y-2">
                 {data.gallery.map((image, key) => (
                   <div
                     className="block relative"

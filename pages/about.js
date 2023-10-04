@@ -143,7 +143,7 @@ const About = ({ about }) => {
               alt={data.heroImageAlt}></Image>
             {/* <div className="text-center py-1">{data.heroImageAlt}</div> */}
           </div>
-          <div className="flex flex-row p-4 lg:py-16 justify-center">
+          <div className="flex flex-row p-4 px-12 lg:py-16 justify-center">
             <div className="font-montreal w-full md:w-3/4 text-base md:text-md">
               <PortableText value={data.aboutText} />
             </div>
@@ -160,7 +160,7 @@ const About = ({ about }) => {
               alt={data.conceptImageAlt}></Image>
             {/* <div className="text-center py-1">{data.conceptImageAlt}</div> */}
           </div>
-          <div className="flex flex-col md:flex-row justify-between p-4 md:px-0">
+          <div className="flex flex-col md:flex-row justify-between p-4 md:px-0 md:py-8">
             <h1 className="text-6xl md:text-5xl w-full md:w-1/3 leading-none pb-8 md:pb-0">
               concept
               <br />+<br />
@@ -181,7 +181,7 @@ const About = ({ about }) => {
               src={data.technicalImage}
               alt={data.technicalImageAlt}></Image>
           </div>
-          <div className="flex flex-col md:flex-row p-4 md:px-0">
+          <div className="flex flex-col md:flex-row p-4 md:px-0 md:py-8">
             <h1 className="text-6xl md:text-5xl  w-full md:w-1/3 ">
               technical
             </h1>
