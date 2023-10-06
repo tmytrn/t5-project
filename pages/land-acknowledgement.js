@@ -7,7 +7,7 @@ const LandAcknowledgement = ({ data }) => {
   return (
     <>
       <Head>
-        <title>About | a murmuration</title>
+        <title>Land Acknowledgement | a murmuration</title>
         <meta
           property="og:image"
           content="https://www.amurmuration.art/images/og-image.jpg"
