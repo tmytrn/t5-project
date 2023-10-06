@@ -108,7 +108,8 @@ const LandAcknowledgement = ({ data }) => {
         <section className="w-full flex flex-col  md:px-4 lg:px-48 md:py-12">
           <div className="flex flex-col md:flex-row p-4 md:px-0">
             <h1 className="text-4xl md:text-4xl  w-full md:w-1/3 ">
-              land acknowledgement
+              land
+              <br /> acknowledgement
             </h1>
             <div className="font-montreal w-full md:w-2/3 text-base md:px-2">
               <PortableText value={data[0].landAcknowledgement} />
