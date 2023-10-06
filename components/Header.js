@@ -87,6 +87,16 @@ const Header = ({ page, data }) => {
                 </a>
               </Link>
             </div>
+            <div className="w-full uppercase text-center font-sans  py-6 border-white border-solid color-saddle border-b-[1px]">
+              <Link legacyBehavior={true} href="/land-acknowledgement">
+                <a
+                  onClick={() => {
+                    setIsNavOpen(false);
+                  }}>
+                  Land Acknowledgement
+                </a>
+              </Link>
+            </div>
           </div>
         </div>
       ) : page == "home" ? (

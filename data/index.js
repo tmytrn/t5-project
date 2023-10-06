@@ -28,4 +28,9 @@ export const getTeamPage = async () => {
   return data;
 };
 
+export const getLandAcknowledgementPage = async () => {
+  const data = await getClient().fetch(queries.landAcknowledgementPageQuery);
+  return data;
+};
+
 export { queries };

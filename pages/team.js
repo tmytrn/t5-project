@@ -27,7 +27,7 @@ const Team = ({ team }) => {
     backgroundImage: `url(${imgSrc})`,
   });
 
-  console.log("teamData: ", team[0]);
+  // console.log("teamData: ", team[0]);
 
   return (
     <>
@@ -206,12 +206,12 @@ const Team = ({ team }) => {
           <section className="w-full flex flex-col bg-white/[0.85]">
             <div className="flex flex-col p-4 md:px-12 lg:px-48 pb-12 bg-clear/[0.6]">
               <h1 className="text-6xl md:text-4xl  w-full md:w-1/3 ">
-                Gallery
+                gallery
               </h1>
-              <div className="w-full columns-1 space-y-4 md:gap-2 md:columns-2 md:space-y-2">
+              <div className="w-full grid grid-cols-3 gap-2 auto-cols-fr">
                 {data.gallery.map((image, key) => (
                   <div
-                    className="block relative"
+                    className="block relative aspect-square"
                     key={key}
                     onClick={() => {
                       setGalleryState(true);
@@ -223,7 +223,8 @@ const Team = ({ team }) => {
                       height={0}
                       sizes="100vw"
                       style={{ width: "100%", height: "auto" }}
-                      alt={`About Image ${key}`}
+                      className="aspect-square object-cover"
+                      alt={`Team Image ${key}`}
                     />
                   </div>
                 ))}
@@ -243,10 +244,10 @@ const Team = ({ team }) => {
             </div>
             <Slider ref={sliderRef} {...settings}>
               {data.gallery.map((image, key) => (
-                <div className="block relative w-full h-full">
+                <div className="block relative w-full h-full p-1">
                   <figure
                     className={
-                      "w-full h-full bg-contain bg-no-repeat bg-center"
+                      "w-full h-full bg-contain bg-no-repeat bg-center "
                     }
                     style={imgStyle(image)}
                     key={key}

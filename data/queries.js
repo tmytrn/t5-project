@@ -46,7 +46,6 @@ export const aboutPageQuery = `
   technicalText,
   "technicalImage": technicalImage.asset->url,
   "technicalImageAlt": technicalImage.alt,
-  landAcknowledgement,
   "gallery": gallery[].asset->url,
   }
   `;
@@ -59,6 +58,11 @@ export const teamPageQuery = `
   additionalCredits,
   "gallery": gallery[].asset->url,
 }
+  `;
+export const landAcknowledgementPageQuery = `
+*[_id=="aboutPage"]{
+landAcknowledgement
+  } 
   `;
 
 export const metaData = `

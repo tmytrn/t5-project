@@ -199,11 +199,11 @@ const About = ({ about }) => {
         </section>
         <section className="w-full flex flex-col md:px-12 lg:px-48">
           <div className="flex flex-col p-4 md:px-0">
-            <h1 className="text-6xl md:text-4xl  w-full md:w-1/3 ">Gallery</h1>
-            <div className="w-full columns-1 space-y-2 md:gap-2 md:columns-2 md:space-y-2">
+            <h1 className="text-6xl md:text-4xl  w-full md:w-1/3 ">gallery</h1>
+            <div className="w-full grid grid-cols-3 gap-2 auto-cols-fr">
               {data.gallery.map((image, key) => (
                 <div
-                  className="block relative"
+                  className="block relative aspect-square"
                   key={key}
                   onClick={() => {
                     setGalleryState(true);
@@ -215,20 +215,11 @@ const About = ({ about }) => {
                     height={0}
                     sizes="100vw"
                     style={{ width: "100%", height: "auto" }}
+                    className="aspect-square object-cover"
                     alt={`About Image ${key}`}
                   />
                 </div>
               ))}
-            </div>
-          </div>
-        </section>
-        <section className="w-full flex flex-col md:px-12 lg:px-48">
-          <div className="flex flex-col md:flex-row p-4 md:px-0">
-            <h1 className="text-4xl md:text-4xl  w-full md:w-1/3 ">
-              Land Acknowledgements
-            </h1>
-            <div className="font-montreal w-full md:w-2/3 text-base">
-              <PortableText value={data.landAcknowledgement} />
             </div>
           </div>
         </section>
@@ -245,7 +236,7 @@ const About = ({ about }) => {
           </div>
           <Slider ref={sliderRef} {...settings}>
             {data.gallery.map((image, key) => (
-              <div className="block relative w-full h-full">
+              <div className="block relative w-full h-full p-1">
                 <figure
                   className={"w-full h-full bg-contain bg-no-repeat bg-center"}
                   style={imgStyle(image)}
