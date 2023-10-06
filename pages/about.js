@@ -199,7 +199,7 @@ const About = ({ about }) => {
         </section>
         <section className="w-full flex flex-col md:px-12 lg:px-48">
           <div className="flex flex-col p-4 md:px-0">
-            <h1 className="text-6xl md:text-4xl  w-full md:w-1/3 ">gallery</h1>
+            <h1 className="text-6xl md:text-5xl  w-full md:w-1/3 ">gallery</h1>
             <div className="w-full grid grid-cols-3 gap-2 auto-cols-fr">
               {data.gallery.map((image, key) => (
                 <div
