@@ -203,7 +203,7 @@ const About = ({ about }) => {
             <div className="w-full grid grid-cols-3 gap-2 auto-cols-fr">
               {data.gallery.map((image, key) => (
                 <div
-                  className="block relative aspect-square"
+                  className="block relative aspect-square cursor-pointer"
                   key={key}
                   onClick={() => {
                     setGalleryState(true);

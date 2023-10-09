@@ -93,7 +93,7 @@ const Header = ({ page, data }) => {
                   onClick={() => {
                     setIsNavOpen(false);
                   }}>
-                  Land Acknowledgement
+                  Land
                 </a>
               </Link>
             </div>
