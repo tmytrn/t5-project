@@ -6,15 +6,7 @@ const STUDIO_REWRITE = {
 module.exports = {
   reactStrictMode: false,
   swcMinify: true,
-  async redirects() {
-    return [
-      {
-        source: "/admin/:path*",
-        destination: "/admin/desk",
-        permanent: true,
-      },
-    ];
-  },
+  rewrites: async () => [STUDIO_REWRITE],
   images: {
     remotePatterns: [
       {
