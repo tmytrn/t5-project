@@ -4,8 +4,9 @@ import { visionTool } from "@sanity/vision";
 import schemas from "./schemas/schema";
 
 export default defineConfig({
-  basePath: "/admin",
+  name: "default",
   title: "t5-project",
+  basePath: "/admin",
   projectId: "258g4cwf",
   dataset: "production",
   plugins: [

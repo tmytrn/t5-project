@@ -1,9 +1,8 @@
-// ./pages/studio/[[...index]].tsx
 import React from "react";
 import Head from "next/head";
 import { NextStudio } from "next-sanity/studio";
+import { StudioLayout, StudioProvider } from "sanity";
 import { metadata } from "next-sanity/studio/metadata";
-
 import config from "../../sanity.config";
 
 export default function StudioPage() {
@@ -14,7 +13,12 @@ export default function StudioPage() {
           <meta key={key} name={key} content={value} />
         ))}
       </Head>
-      <NextStudio config={config} />
+
+      <NextStudio config={config}>
+        <StudioProvider config={config}>
+          <StudioLayout />
+        </StudioProvider>
+      </NextStudio>
     </>
   );
 }
