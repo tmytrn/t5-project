@@ -6,7 +6,6 @@ const STUDIO_REWRITE = {
 module.exports = {
   reactStrictMode: false,
   swcMinify: true,
-  rewrites: async () => [STUDIO_REWRITE],
   async redirects() {
     return [
       {
